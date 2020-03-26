@@ -50,7 +50,9 @@ function Landing(props) {
         </p>
       </section>
       <section>
-        <h2>Guidelines</h2>
+        <header>
+          <h2>Guidelines</h2>
+        </header>
         <p>We keep this a safe space by self monitoring.</p>
         <p>Please, when sharing, do not use names or details of others.</p>
         <p>Speak only to your own experience.</p>
@@ -66,7 +68,9 @@ function Landing(props) {
         </p>
       </section>
       <section>
-        <h3>Begin</h3>
+        <header>
+          <h3>Begin</h3>
+        </header>
         <Button buttonText="Start your journey"></Button>
       </section>
     </>
