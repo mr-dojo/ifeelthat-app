@@ -1,3 +1,14 @@
 .App {
   text-align: center;
 }
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background-color: transparent;
+  border: solid black 0.5px;
+  margin-bottom: 20px;
+}
