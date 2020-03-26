@@ -1,5 +1,14 @@
-.App {
+* {
   text-align: center;
+}
+
+body {
+  width: 100%;
+}
+
+main {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 section {
@@ -8,7 +17,9 @@ section {
   justify-content: center;
   align-items: center;
   height: 500px;
-  width: 100vw;
+  width: 100;
+  padding-left: 15px;
+  padding-right: 15px;
   background-color: transparent;
   border: solid black 0.5px;
   margin-bottom: 20px;
@@ -19,4 +30,27 @@ div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Arial", sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+p {
+  font-family: Arial, sans-serif;
 }

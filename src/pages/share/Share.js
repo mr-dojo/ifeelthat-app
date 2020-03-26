@@ -4,7 +4,7 @@ import Button from "../../components/button/Button";
 class Share extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <header>
           <h1>Share</h1>
         </header>
@@ -16,10 +16,12 @@ class Share extends React.Component {
         <section>
           <p>
             Think about what you want out of this. What are you looking for?
-            What are you hoping to get out of sharring what you are feeling? Set
-            a short intention for your share. An intention is [definition]. Its
-            totally okay if you don't know. (gives listeners a bit of context
-            and reminds you why you are here)
+            What are you hoping to get out of sharring what you are feeling?
+          </p>
+          <p>
+            Set a short intention for your share. An intention is [definition].
+            Its totally okay if you don't know. (gives listeners a bit of
+            context and reminds you why you are here)
           </p>
         </section>
         <section>
@@ -45,7 +47,7 @@ class Share extends React.Component {
           </form>
         </section>
         <section>
-          <h1>Guidelines</h1>
+          <h2>Guidelines</h2>
           <p>
             My hope for you is that...[be honest, go deep, experience repressed
             emotion, find lesson, bring it into your life]
@@ -87,7 +89,7 @@ class Share extends React.Component {
         </section>
         <Button buttonText="Share"></Button>
         <Button buttonText="Let it go/release/burn it/delete/shed"></Button>
-      </div>
+      </>
     );
   }
 }

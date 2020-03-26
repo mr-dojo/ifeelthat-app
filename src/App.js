@@ -12,9 +12,9 @@ import Footer from "./components/footer/Footer";
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Nav></Nav>
+      <>
         <body>
+          <Nav></Nav>
           <main>
             <Route exact path="/" component={Landing} />
             <Route path="/breathe" component={Grounding} />
@@ -24,7 +24,7 @@ class App extends React.Component {
           <Safety></Safety>
           <Footer></Footer>
         </body>
-      </div>
+      </>
     );
   }
 }

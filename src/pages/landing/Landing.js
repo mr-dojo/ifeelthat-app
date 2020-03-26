@@ -8,8 +8,8 @@ function Landing(props) {
         <h1>Listen and Share</h1>
         <p>In the age of Social Media we are more dissconnected than ever.</p>
         <h2>
-          A place to express yourself anonymously with no profiles, no likes, no
-          followers
+          This is a place to express yourself anonymously with no profiles, no
+          likes, no followers
         </h2>
       </header>
       <section>
@@ -39,10 +39,13 @@ function Landing(props) {
         <header>
           <h3>Share your emotional experiences with other humans</h3>
         </header>
+        <p>It's a very scary thing to do. (or at least it is for me)</p>
         <p>
-          It's a very scary thing to do. (or at least it is for me) This gives
-          you an opportunity to anonymously voice your emotional experiences. I
-          know for me, I get a sense of relief when I fully acknowledge and
+          This gives you an opportunity to anonymously voice your emotional
+          experiences.
+        </p>
+        <p>
+          I know for me, I get a sense of relief when I fully acknowledge and
           express what's going on inside.
         </p>
       </section>
