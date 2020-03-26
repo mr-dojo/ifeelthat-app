@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route } from "react-router-dom";
+import Nav from "./components/nav/Nav";
+import Landing from "./pages/landing/Landing";
+import Grounding from "./pages/grounding/Grounding";
+import Listen from "./pages/listen/Listen";
+import Share from "./pages/share/Share";
+import Safety from "./components/safety/Safety";
+import "./App.css";
+import Footer from "./components/footer/Footer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Nav></Nav>
+        <body>
+          <main>
+            <Route exact path="/" component={Landing} />
+            <Route path="/breathe" component={Grounding} />
+            <Route exact path="/listen" component={Listen} />
+            <Route exact path="/share" component={Share} />
+          </main>
+          <Safety></Safety>
+          <Footer></Footer>
+        </body>
+      </div>
+    );
+  }
 }
 
 export default App;

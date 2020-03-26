@@ -1,0 +1,9 @@
+.footer-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  height: 30px;
+  padding: 1px;
+}
