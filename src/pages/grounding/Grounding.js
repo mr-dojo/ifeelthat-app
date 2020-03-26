@@ -4,7 +4,7 @@ import Button from "../../components/button/Button";
 class Grounding extends React.Component {
   render() {
     return (
-      <div>
+      <>
         <header>
           <h1>Grounding</h1>
         </header>
@@ -15,21 +15,19 @@ class Grounding extends React.Component {
         </section>
         <section>
           <form class="claim-emotion">
-            <div class="form-section">
-              <label for="claim-emotion">
-                What emotion is alive in you right now? What emotion are you
-                experiencing right now?
-              </label>
-              <select type="text" name="claim-emotion" required>
-                <option value="mad">Mad</option>
-                <option value="sad">Sad</option>
-                <option value="fear">Fear</option>
-                <option value="glad">Glad</option>
-                <option value="guilt">Guilt</option>
-                <option value="shame">Shame</option>
-              </select>
-              <Button buttonText="Save" buttonType="submit"></Button>
-            </div>
+            <label for="claim-emotion">
+              What emotion is alive in you right now? What emotion are you
+              experiencing right now?
+            </label>
+            <select type="text" name="claim-emotion" required>
+              <option value="mad">Mad</option>
+              <option value="sad">Sad</option>
+              <option value="fear">Fear</option>
+              <option value="glad">Glad</option>
+              <option value="guilt">Guilt</option>
+              <option value="shame">Shame</option>
+            </select>
+            <Button buttonText="Save" buttonType="submit"></Button>
           </form>
         </section>
         <section>
@@ -40,30 +38,30 @@ class Grounding extends React.Component {
         </section>
         <section>
           <form>
-            <div class="form-section">
-              <label for="name-color">
-                What color would you associate with that feeling
-              </label>
-              <select type="text" name="name-color" required>
-                <option value="Black">Black</option>
-                <option value="White">White</option>
-                <option value="Grey">Grey</option>
-                <option value="Red">Red</option>
-                <option value="Pink">Pink</option>
-                <option value="Orange">Orange</option>
-                <option value="Yellow">Yellow</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Purple">Purple</option>
-              </select>
-              <Button buttonText="Save" buttonType="submit"></Button>
-            </div>
+            <label for="name-color">
+              What color would you associate with that feeling?
+            </label>
+            <select type="text" name="name-color" required>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Grey">Grey</option>
+              <option value="Red">Red</option>
+              <option value="Pink">Pink</option>
+              <option value="Orange">Orange</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Green">Green</option>
+              <option value="Blue">Blue</option>
+              <option value="Purple">Purple</option>
+            </select>
+            <Button buttonText="Save" buttonType="submit"></Button>
           </form>
         </section>
-        <Button buttonText="Go Deeper"></Button>
-        <Button buttonText="Listen"></Button>
-        <Button buttonText="Share"></Button>
-      </div>
+        <section>
+          <Button buttonText="Go Deeper"></Button>
+          <Button buttonText="Listen"></Button>
+          <Button buttonText="Share"></Button>
+        </section>
+      </>
     );
   }
 }
