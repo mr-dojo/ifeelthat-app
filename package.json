@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "npm": "6.13.4",
-    "node": "10.19.0"
+    "node": "vnpm10.19.0"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -20,6 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
     "deploy": "git push heroku master"
   },
   "eslintConfig": {
