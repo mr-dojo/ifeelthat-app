@@ -9,20 +9,16 @@ class Share extends React.Component {
           <h1>Share</h1>
         </header>
         <section>
+          <h2>Guidelines</h2>
+          <p>We keep this a safe place by self monitoring</p>
           <p>
-            Take another deep breath and allow yourself to feel that emotion...
+            Please, when sharing, do <strong>not</strong> use names or details
+            of others
           </p>
-        </section>
-        <section>
-          <form>
-            <label for="share-intention">Set Intention</label>
-            <input
-              type="text"
-              placeholder="Write a short intention"
-              required
-            ></input>
-            <Button buttonText="Share" buttonType="submit"></Button>
-          </form>
+          <p>
+            Talk about <strong>your own</strong> experience
+          </p>
+          <p>Please be honest and speak from your heart</p>
         </section>
         <section>
           <form>
@@ -32,31 +28,10 @@ class Share extends React.Component {
               <option value="audio">Audio</option>
               <option value="video">Video</option>
             </select>
-            <Button buttonText="Share" buttonType="submit"></Button>
+            <Button buttonText="Select" buttonType="submit"></Button>
           </form>
         </section>
         <section>
-          <h2>Guidelines</h2>
-          <p>
-            My hope for you is that...[be honest, go deep, experience repressed
-            emotion, find lesson, bring it into your life]
-          </p>
-          <p>
-            Not sharring names(or other personal information) this creates a
-            space that is safe and comfortable. anonminity creates the container
-            and makes us feel safe and bit on confidentiality
-          </p>
-          <p>
-            [guidance about keeping focused on your intention and emotion during
-            the share] use kindergarden words
-          </p>
-          <p>Avoid story, keep with emotion, breath, [use "I" statements]</p>
-        </section>
-        <section>
-          <p>
-            [this section displays a form for the chosen method of sharing
-            (text/audio/video)]
-          </p>
           <form>
             <label for="share-text">Express yourself</label>
             <textarea
@@ -72,12 +47,12 @@ class Share extends React.Component {
         </section>
         <section>
           <p>
-            Take another deep breath and apprecieate the lightness that comes
-            expressing your feelings
+            Take another deep breath and appreciate the lightness that comes
+            from expressing these feelings
           </p>
         </section>
-        <Button buttonText="Share"></Button>
-        <Button buttonText="Let it go/release/burn it/delete/shed"></Button>
+        <Button buttonText="Share it"></Button>
+        <Button buttonText="Burn it / Delete"></Button>
       </>
     );
   }
