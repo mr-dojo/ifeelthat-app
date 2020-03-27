@@ -17,7 +17,7 @@ class Grounding extends React.Component {
           <form class="claim-emotion">
             <label for="claim-emotion">
               What emotion is alive in you right now? What emotion are you
-              experiencing right now?
+              experiencing?
             </label>
             <select type="text" name="claim-emotion" required>
               <option value="mad">Mad</option>
@@ -26,14 +26,15 @@ class Grounding extends React.Component {
               <option value="glad">Glad</option>
               <option value="guilt">Guilt</option>
               <option value="shame">Shame</option>
+              <option value="other">*more to come*</option>
             </select>
             <Button buttonText="Save" buttonType="submit"></Button>
           </form>
         </section>
         <section>
           <p>
-            Even though it may be difficult and you may resist, Take another
-            deep breath and try to really feel that emotion for a moment...
+            Take another deep breath and try to really feel that emotion for a
+            moment...
           </p>
         </section>
         <section>
@@ -52,6 +53,7 @@ class Grounding extends React.Component {
               <option value="Green">Green</option>
               <option value="Blue">Blue</option>
               <option value="Purple">Purple</option>
+              <option value="other">*more to come*</option>
             </select>
             <Button buttonText="Save" buttonType="submit"></Button>
           </form>
