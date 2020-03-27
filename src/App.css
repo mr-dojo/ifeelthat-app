@@ -16,8 +16,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 500px;
-  width: 100;
+  min-height: 500px;
   padding-left: 15px;
   padding-right: 15px;
   background-color: transparent;
@@ -30,6 +29,24 @@ div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+textarea {
+  min-width: 250px;
+  text-align: left;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  min-width: 100px;
 }
 
 h1,
