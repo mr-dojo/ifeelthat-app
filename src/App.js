@@ -12,7 +12,7 @@ import Footer from "./components/footer/Footer";
 class App extends React.Component {
   render() {
     return (
-      <>
+      <div className="App">
         <body>
           <Nav></Nav>
           <main>
@@ -24,7 +24,7 @@ class App extends React.Component {
           <Safety></Safety>
           <Footer></Footer>
         </body>
-      </>
+      </div>
     );
   }
 }

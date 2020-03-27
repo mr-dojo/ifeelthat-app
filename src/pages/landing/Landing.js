@@ -55,7 +55,7 @@ function Landing(props) {
         </header>
         <p>We keep this a safe space by self monitoring.</p>
         <p>Please, when sharing, do not use names or details of others.</p>
-        <p>Speak only to your own experience.</p>
+        <p>Talk about your own experience.</p>
       </section>
       <section>
         <p>

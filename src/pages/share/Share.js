@@ -14,17 +14,6 @@ class Share extends React.Component {
           </p>
         </section>
         <section>
-          <p>
-            Think about what you want out of this. What are you looking for?
-            What are you hoping to get out of sharring what you are feeling?
-          </p>
-          <p>
-            Set a short intention for your share. An intention is [definition].
-            Its totally okay if you don't know. (gives listeners a bit of
-            context and reminds you why you are here)
-          </p>
-        </section>
-        <section>
           <form>
             <label for="share-intention">Set Intention</label>
             <input
