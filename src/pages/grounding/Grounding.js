@@ -16,7 +16,7 @@ class Grounding extends React.Component {
         <section>
           <form class="claim-emotion">
             <label for="claim-emotion">
-              What emotion is alive in you right now? What emotion are you
+              What feeling is alive in you right now? What emotion are you
               experiencing?
             </label>
             <select type="text" name="claim-emotion" required>
