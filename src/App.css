@@ -1,5 +1,6 @@
 * {
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 body {
@@ -66,8 +67,4 @@ h2 {
 
 h3 {
   font-size: 26px;
-}
-
-p {
-  font-family: Arial, sans-serif;
 }

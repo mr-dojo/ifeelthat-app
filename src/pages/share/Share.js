@@ -1,4 +1,6 @@
 import React from "react";
+import ShareText from "./shareText/ShareText";
+import ShareAudio from "./shareAudio/ShareAudio";
 import Button from "../../components/button/Button";
 
 class Share extends React.Component {
@@ -30,20 +32,8 @@ class Share extends React.Component {
             <Button buttonText="Select" buttonType="submit"></Button>
           </form>
         </section>
-        <section>
-          <form>
-            <label for="share-text">Express yourself</label>
-            <textarea
-              type="text"
-              rows="10"
-              columns="30"
-              name="share-text"
-              placeholder="Speak to that [color] [emotion] you are experiencing..."
-              required
-            ></textarea>
-            <Button buttonText="Share" buttonType="submit"></Button>
-          </form>
-        </section>
+        <ShareText />
+        <ShareAudio />
         <section>
           <p>
             Take another deep breath and appreciate the lightness that comes
