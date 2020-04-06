@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../components/button/Button";
+import Player from "../../components/player/Player";
 import "./listen.css";
 
 class Listen extends React.Component {
@@ -9,6 +10,9 @@ class Listen extends React.Component {
         <header>
           <h1>Listen</h1>
         </header>
+        <section>
+          <Player />
+        </section>
         <section>
           <h2>A black feeling of anxiety</h2>
           <p className="share-text">Quarantine.</p>
