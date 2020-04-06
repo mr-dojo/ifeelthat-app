@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../components/button/Button";
-import Player from "../../components/player/Player";
+import Player from "./player/Player";
 import "./listen.css";
 
 class Listen extends React.Component {

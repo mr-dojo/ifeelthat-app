@@ -26,7 +26,6 @@ class Share extends React.Component {
             <select name="share-type">
               <option value="text">Text</option>
               <option value="audio">Audio</option>
-              <option value="video">Video</option>
             </select>
             <Button buttonText="Select" buttonType="submit"></Button>
           </form>
