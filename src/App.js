@@ -13,17 +13,15 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <body>
-          <Nav></Nav>
-          <main>
-            <Route exact path="/" component={Landing} />
-            <Route path="/breathe" component={Grounding} />
-            <Route exact path="/listen" component={Listen} />
-            <Route exact path="/share" component={Share} />
-          </main>
-          <Safety></Safety>
-          <Footer></Footer>
-        </body>
+        <Nav></Nav>
+        <main>
+          <Route exact path="/" component={Landing} />
+          <Route path="/breathe" component={Grounding} />
+          <Route exact path="/listen" component={Listen} />
+          <Route exact path="/share" component={Share} />
+        </main>
+        <Safety></Safety>
+        <Footer></Footer>
       </>
     );
   }
