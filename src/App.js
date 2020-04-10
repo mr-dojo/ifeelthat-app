@@ -18,8 +18,10 @@ class App extends React.Component {
     updatePosition: () => {},
   };
 
-  updateFeeling = (feeling) => {
-    console.log(feeling);
+  updateFeeling = (newFeeling) => {
+    this.setState({
+      feeling: newFeeling,
+    });
   };
 
   updatePosition = (position) => {

@@ -2,6 +2,7 @@ import React from "react";
 
 const StoreContext = React.createContext({
   feeling: {
+    id: Number,
     emotion: "",
     color: "",
   },
