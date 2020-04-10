@@ -8,11 +8,33 @@ import Share from "./pages/share/Share";
 import Safety from "./components/safety/Safety";
 import "./App.css";
 import Footer from "./components/footer/Footer";
+import StoreContext from "./StoreContext";
 
 class App extends React.Component {
+  state = {
+    feeling: {},
+    sharePosition: "",
+    updateFeeling: () => {},
+    updatePosition: () => {},
+  };
+
+  updateFeeling = (feeling) => {
+    console.log(feeling);
+  };
+
+  updatePosition = (position) => {
+    console.log(position);
+  };
+
   render() {
+    const contextValues = {
+      feeling: this.state.feeling,
+      sharePosition: this.state.sharePosition,
+      updateFeeling: this.updateFeeling,
+      updatePosition: this.updatePosition,
+    };
     return (
-      <>
+      <StoreContext.Provider value={contextValues}>
         <Nav></Nav>
         <main>
           <Route exact path="/" component={Landing} />
@@ -22,7 +44,7 @@ class App extends React.Component {
         </main>
         <Safety></Safety>
         <Footer></Footer>
-      </>
+      </StoreContext.Provider>
     );
   }
 }
