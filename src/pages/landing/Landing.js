@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../components/button/Button";
+import { Link } from "react-router-dom";
 
 function Landing(props) {
   return (
@@ -81,7 +82,9 @@ function Landing(props) {
         <header>
           <h3>Begin</h3>
         </header>
-        <Button buttonText="Start your journey"></Button>
+        <Link to="/breathe">
+          <Button buttonText="Start your journey" />
+        </Link>
       </section>
     </>
   );
