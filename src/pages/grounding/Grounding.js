@@ -1,9 +1,12 @@
 import React from "react";
 import Button from "../../components/button/Button";
+import StoreContext from "../../StoreContext";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
 
 class Grounding extends React.Component {
+  static contextType = StoreContext;
+
   state = {
     emotion: "",
     color: "",
@@ -12,6 +15,7 @@ class Grounding extends React.Component {
   handleEmotionSubmit = (e) => {
     e.preventDefault();
     this.setState({ emotion: e.target.emotion.value });
+    // Scroll to the second breath section
     document.getElementById("breathe-again").scrollIntoView(true);
   };
 
@@ -22,12 +26,11 @@ class Grounding extends React.Component {
     });
 
     const postFeeling = () => {
-      document.getElementById("grounding-buttons").scrollIntoView(true);
-
       const newFeeling = {
         emotion: this.state.emotion,
         color: this.state.color,
       };
+
       fetch(`${API_ENDPOINT}feeling`, {
         method: "POST",
         body: JSON.stringify(newFeeling),
@@ -42,7 +45,9 @@ class Grounding extends React.Component {
           return res.json();
         })
         .then((resJson) => {
-          console.log(resJson);
+          this.context.updateFeeling(resJson);
+          // Scroll to the buttons at the bottom of the page
+          document.getElementById("grounding-buttons").scrollIntoView(true);
         });
     };
   };
