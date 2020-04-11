@@ -13,7 +13,7 @@ import StoreContext from "./StoreContext";
 class App extends React.Component {
   state = {
     feeling: {},
-    sharePosition: "",
+    sharePosition: 0,
     updateFeeling: () => {},
     updatePosition: () => {},
   };
@@ -24,8 +24,10 @@ class App extends React.Component {
     });
   };
 
-  updatePosition = (position) => {
-    console.log(position);
+  updatePosition = () => {
+    this.setState({
+      sharePosition: this.state.sharePosition + 1,
+    });
   };
 
   render() {
