@@ -6,7 +6,7 @@ export default class ShareText extends React.Component {
     return (
       <section>
         <form>
-          <label for="share-text">Express yourself</label>
+          <label htmlFor="share-text">Express yourself</label>
           <textarea
             type="text"
             rows="10"

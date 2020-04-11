@@ -24,7 +24,9 @@ class Share extends React.Component {
         </section>
         <section>
           <form>
-            <label for="share-intention">Choose how you want to share</label>
+            <label htmlFor="share-intention">
+              Choose how you want to share
+            </label>
             <select name="share-type">
               <option value="text">Text</option>
               <option value="audio">Audio</option>

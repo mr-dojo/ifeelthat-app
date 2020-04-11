@@ -23,7 +23,7 @@ export default class ShareAudio extends React.Component {
             Copy the "Code" link and paste it below
             <form onSubmit={(e) => this.handleLinkSubmit(e)}>
               <label
-                for="embeded-audio-link"
+                htmlFor="embeded-audio-link"
                 aria-label="Embeded Audio Link Input"
               ></label>
               <input
