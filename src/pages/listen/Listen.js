@@ -3,6 +3,7 @@ import Button from "../../components/button/Button";
 import Player from "./player/Player";
 import ListenText from "./listenText/ListenText";
 import StoreContext from "../../StoreContext";
+import { Link } from "react-router-dom";
 import { API_ENDPOINT } from "../../config";
 import "./listen.css";
 
@@ -95,7 +96,9 @@ class Listen extends React.Component {
             buttonText="Next"
             onClick={(e) => this.handleNext(e)}
           ></Button>
-          <Button buttonText="Share"></Button>
+          <Link className="nav-link" to="/share">
+            <Button buttonText="Share" />
+          </Link>
         </section>
       </>
     );
