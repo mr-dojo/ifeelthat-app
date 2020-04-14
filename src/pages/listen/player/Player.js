@@ -1,21 +1,21 @@
 import React from "react";
 
-class Player extends React.Component {
-  soundCloudIframe = (
+function Player(props) {
+  const url = props.share.audio_share;
+  const fullURL = `${url}&color=%23201812&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`;
+  const iframe = (
     <iframe
-      title="unique title"
+      title="iframeplayer"
       width="100%"
-      height="300"
+      height="200"
       scrolling="no"
       frameBorder="no"
       allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/792329326%3Fsecret_token%3Ds-0fZdm04kM2i&color=%23201812&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+      src={fullURL}
     ></iframe>
   );
 
-  render() {
-    return <div id="player">{this.soundCloudIframe}</div>;
-  }
+  return <div id="player">{iframe}</div>;
 }
 
 export default Player;
