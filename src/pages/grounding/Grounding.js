@@ -14,13 +14,14 @@ class Grounding extends React.Component {
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
+    document.getElementById("breathe-again").scrollIntoView(true);
     this.setState({ emotion: e.target.emotion.value });
     // Scroll to the second breath section
-    document.getElementById("breathe-again").scrollIntoView(true);
   };
 
   handleColorSubmit = (e) => {
     e.preventDefault();
+    document.getElementById("grounding-buttons").scrollIntoView(true);
     this.setState({ color: e.target.color.value }, () => {
       postFeeling();
     });
@@ -47,7 +48,6 @@ class Grounding extends React.Component {
         .then((resJson) => {
           this.context.updateFeeling(resJson);
           // Scroll to the buttons at the bottom of the page
-          document.getElementById("grounding-buttons").scrollIntoView(true);
         });
     };
   };
@@ -113,7 +113,6 @@ class Grounding extends React.Component {
           </form>
         </section>
         <section id="grounding-buttons">
-          <Button buttonText="Go Deeper" />
           <Link className="nav-link" to="/listen">
             <Button buttonText="Listen" />
           </Link>
