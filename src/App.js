@@ -10,6 +10,8 @@ import "./App.css";
 import Footer from "./components/footer/Footer";
 import StoreContext from "./StoreContext";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 class App extends React.Component {
   state = {
     feeling: {},
@@ -39,6 +41,7 @@ class App extends React.Component {
     };
     return (
       <StoreContext.Provider value={contextValues}>
+        <ScrollToTop />
         <Nav></Nav>
         <main>
           <Route exact path="/" component={Landing} />
