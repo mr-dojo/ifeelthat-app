@@ -35,7 +35,6 @@ class Grounding extends React.Component {
         method: "POST",
         body: JSON.stringify(newFeeling),
         headers: {
-          "Access-Control-Allow-Origin": "https://ifeelthat-app.now.sh/",
           "content-type": "application/json",
         },
       })
