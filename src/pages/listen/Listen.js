@@ -11,23 +11,21 @@ class Listen extends React.Component {
 
   state = {
     shareQueue: [],
-    sharePosition: this.context.sharePosition,
+    // completeShare: {},
   };
 
   componentDidMount() {
     this.populateShares();
+    // this.addColorToShare(this.state.shareQueue[this.state.sharePosition]);
   }
 
   renderShare = () => {
-    const q = this.state.shareQueue;
-    for (let i = 0; i < q.length; i++) {
-      if (q[i].id === this.context.sharePosition + 1) {
-        if (q[i].share_type === "Audio") {
-          return <Player />;
-        } else if (q[i].share_type === "Text") {
-          return <ListenText />;
-        }
-      }
+    const currentShare = this.state.shareQueue[this.context.sharePosition];
+    console.log(currentShare);
+    if (currentShare.share_type === "Audio") {
+      return <Player share={currentShare} />;
+    } else if (currentShare.share_type === "Text") {
+      return <ListenText share={currentShare} />;
     }
   };
 
@@ -35,7 +33,6 @@ class Listen extends React.Component {
     const emotion = this.context.feeling.emotion;
     const position = this.context.sharePosition;
     const fullURL = `${API_ENDPOINT}share/find?emotion=${emotion}&position=${position}`;
-    console.log(fullURL);
     fetch(fullURL, {
       method: "GET",
       headers: {
@@ -52,13 +49,32 @@ class Listen extends React.Component {
         this.setState({
           shareQueue: resJson,
         });
-        console.log(resJson);
-      });
+      })
+      .catch();
   };
+  // addColorToShare = (item) => {
+  //   const shareId = item.feeling_id;
+  //   const fullURL = `${API_ENDPOINT}feeling/${shareId}`;
+  //   fetch(fullURL, {
+  //     method: "GET",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         return new Error(res.message);
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((feeling) => {
+  //       this.setState({ completeShare: { ...item, color: feeling.color } });
+  //       return;
+  //     });
+  // };
 
   handleNext = () => {
     this.context.updatePosition();
-    console.log("handleNext ran");
   };
 
   render() {
