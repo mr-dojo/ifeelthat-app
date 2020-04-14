@@ -4,6 +4,17 @@ import ShareAudio from "./shareAudio/ShareAudio";
 import Button from "../../components/button/Button";
 
 class Share extends React.Component {
+  state = {
+    shareType: "",
+  };
+
+  handleShareTypeSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      shareType: e.target.type.value,
+    });
+  };
+
   render() {
     return (
       <>
@@ -23,27 +34,24 @@ class Share extends React.Component {
           <p>Please be honest and speak from your heart</p>
         </section>
         <section>
-          <form>
+          <form onSubmit={(e) => this.handleShareTypeSubmit(e)}>
             <label htmlFor="share-intention">
               Choose how you want to share
             </label>
-            <select name="share-type">
-              <option value="text">Text</option>
-              <option value="audio">Audio</option>
+            <select name="share-type" id="type">
+              <option value="Text">Text</option>
+              <option value="Audio">Audio</option>
             </select>
             <Button buttonText="Select" buttonType="submit"></Button>
           </form>
         </section>
-        <ShareText />
-        <ShareAudio />
-        <section>
-          <p>
-            Take another deep breath and appreciate the lightness that comes
-            from expressing these feelings
-          </p>
-        </section>
-        <Button buttonText="Share it"></Button>
-        <Button buttonText="Burn it / Delete"></Button>
+        {this.state.shareType === "" ? (
+          ""
+        ) : this.state.shareType === "Text" ? (
+          <ShareText />
+        ) : (
+          <ShareAudio />
+        )}
       </>
     );
   }
