@@ -16,15 +16,18 @@ export default class ShareAudio extends React.Component {
     iframe.forEach((section) => {
       if (section.includes("http")) {
         url = section.split("&");
-        url = `<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="${url[0]}&color=%23201812&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"></iframe>`;
       }
     });
+
+    console.log(url[0]);
+
     const newShare = {
-      audio_share: url,
+      audio_share: url[0],
       share_type: "Audio",
       feeling_id: feeling.id,
       emotion: feeling.emotion,
     };
+
     fetch(`${API_ENDPOINT}share`, {
       method: "POST",
       body: JSON.stringify(newShare),
@@ -42,10 +45,6 @@ export default class ShareAudio extends React.Component {
         document.getElementById("another-breath").scrollIntoView(true);
       });
   };
-
-  //&color=%23201812&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
-  //<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/792366031%3Fsecret_token%3Ds-d720mgO62E7&color=%23201812&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-  //https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/792329326%3Fsecret_token%3Ds-0fZdm04kM2i&color=%23201812&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
 
   render() {
     return (
