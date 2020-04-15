@@ -84,7 +84,7 @@ class Listen extends React.Component {
           <h1>Listen</h1>
         </header>
         <section>
-          {this.state.shareQueue.length ? (
+          {this.context.sharePosition <= this.state.shareQueue.length - 1 ? (
             this.renderShare()
           ) : (
             <>
