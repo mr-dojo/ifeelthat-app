@@ -66,6 +66,7 @@ export default class ShareText extends React.Component {
             required
           ></textarea>
           <Button buttonText="Share" buttonType="submit"></Button>
+          <Button buttonText="Cancel" onClick={(e) => this.props.cancel()} />
           <Button
             buttonText="Burn it / Delete"
             onClick={(e) => this.handleTextDelete(e)}
@@ -86,6 +87,9 @@ export default class ShareText extends React.Component {
           </p>
           <Link className="nav-link" to="/listen">
             <Button buttonText="Listen" />
+          </Link>
+          <Link to="/breathe">
+            <Button buttonText="Breathe" />
           </Link>
         </section>
       </>

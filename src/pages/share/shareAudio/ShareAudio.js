@@ -2,10 +2,17 @@ import React from "react";
 import Button from "../../../components/button/Button";
 import { Link } from "react-router-dom";
 import { API_ENDPOINT } from "../../../config";
+import { withRouter } from "react-router-dom";
 import StoreContext from "../../../StoreContext";
 
-export default class ShareAudio extends React.Component {
+class ShareAudio extends React.Component {
   static contextType = StoreContext;
+
+  static defaultProps = {
+    match: {
+      params: {},
+    },
+  };
 
   handleLinkSubmit = (e) => {
     e.preventDefault();
@@ -18,8 +25,6 @@ export default class ShareAudio extends React.Component {
         url = section.split("&");
       }
     });
-
-    console.log(url[0]);
 
     const newShare = {
       audio_share: url[0],
@@ -44,6 +49,10 @@ export default class ShareAudio extends React.Component {
       .then((resJson) => {
         document.getElementById("another-breath").scrollIntoView(true);
       });
+  };
+
+  handleCancel = () => {
+    this.props.cancel();
   };
 
   render() {
@@ -72,6 +81,10 @@ export default class ShareAudio extends React.Component {
                   placeholder="Paste the code here"
                 ></input>
                 <Button buttonText="Share" buttonType="submit" />
+                <Button
+                  buttonText="Cancel"
+                  onClick={(e) => this.handleCancel()}
+                />
               </form>
             </li>
           </ol>
@@ -89,3 +102,5 @@ export default class ShareAudio extends React.Component {
     );
   }
 }
+
+export default withRouter(ShareAudio);

@@ -15,6 +15,12 @@ class Share extends React.Component {
     });
   };
 
+  handleCancel = () => {
+    this.setState({
+      shareType: "None",
+    });
+  };
+
   renderTypeForm = () => {
     return (
       <section>
@@ -51,9 +57,9 @@ class Share extends React.Component {
         {this.state.shareType === "None" ? (
           this.renderTypeForm()
         ) : this.state.shareType === "Text" ? (
-          <ShareText />
+          <ShareText cancel={this.handleCancel} />
         ) : (
-          <ShareAudio />
+          <ShareAudio cancel={this.handleCancel} />
         )}
       </>
     );
