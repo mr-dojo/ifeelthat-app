@@ -20,7 +20,7 @@ class Grounding extends React.Component {
 
   handleColorSubmit = (e) => {
     e.preventDefault();
-    this.setState({ section: 4, color: e.target.color.value }, () => {
+    this.setState({ section: 5, color: e.target.color.value }, () => {
       postFeeling();
     });
 
@@ -99,7 +99,7 @@ class Grounding extends React.Component {
         </p>
         <Button
           buttonText="Breathe..."
-          onClick={() => this.setState({ section: 5 })}
+          onClick={() => this.setState({ section: 4 })}
         />
       </section>
     );
@@ -134,6 +134,9 @@ class Grounding extends React.Component {
   renderButtons = () => {
     return (
       <section id="grounding-buttons">
+        <p>
+          A {this.state.color} feeling of {this.state.emotion}
+        </p>
         <Link className="nav-link" to="/listen">
           <Button buttonText="Listen" />
         </Link>
