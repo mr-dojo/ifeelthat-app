@@ -7,16 +7,16 @@ class Nav extends React.Component {
     return (
       <nav className="nav-element" role="navigation">
         <Link className="nav-link" to="/">
-          Landing Page
+          temp link to Landing page
         </Link>
         <Link className="nav-link" to="/breathe">
-          Feel
+          temp link to Breathe page
         </Link>
         <Link className="nav-link" to="/listen">
-          Listen
+          temp link to Listen page
         </Link>
         <Link className="nav-link" to="/share">
-          Share
+          temp link to Share page
         </Link>
       </nav>
     );
