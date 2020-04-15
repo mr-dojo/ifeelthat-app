@@ -16,7 +16,7 @@ export default function ListenText(props) {
     <>
       <h2>{props.share.emotion}</h2>
       <p>{props.share.text_share}</p>
-      <Button buttonText="Next" onClick={() => this.props.next()}></Button>
+      <Button buttonText="Next" onClick={() => props.next()}></Button>
       <Link className="nav-link" to="/share">
         <Button buttonText="Share" />
       </Link>

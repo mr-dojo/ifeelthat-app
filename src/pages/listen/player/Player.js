@@ -20,7 +20,7 @@ function Player(props) {
   return (
     <>
       <div id="player">{iframe}</div>
-      <Button buttonText="Next" onClick={() => this.props.next()}></Button>
+      <Button buttonText="Next" onClick={() => props.next()}></Button>
       <Link className="nav-link" to="/share">
         <Button buttonText="Share" />
       </Link>
