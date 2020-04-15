@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../../../components/button/Button";
+import { Link } from "react-router-dom";
 
 export default function ListenText(props) {
   // split the text value on /\n/g and divide into paragraph tags
@@ -11,9 +13,13 @@ export default function ListenText(props) {
   //   }
   // };
   return (
-    <section>
+    <>
       <h2>{props.share.emotion}</h2>
       <p>{props.share.text_share}</p>
-    </section>
+      <Button buttonText="Next" onClick={() => this.props.next()}></Button>
+      <Link className="nav-link" to="/share">
+        <Button buttonText="Share" />
+      </Link>
+    </>
   );
 }

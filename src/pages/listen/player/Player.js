@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../../../components/button/Button";
+import { Link } from "react-router-dom";
 
 function Player(props) {
   const url = props.share.audio_share;
@@ -15,7 +17,15 @@ function Player(props) {
     ></iframe>
   );
 
-  return <div id="player">{iframe}</div>;
+  return (
+    <>
+      <div id="player">{iframe}</div>
+      <Button buttonText="Next" onClick={() => this.props.next()}></Button>
+      <Link className="nav-link" to="/share">
+        <Button buttonText="Share" />
+      </Link>
+    </>
+  );
 }
 
 export default Player;

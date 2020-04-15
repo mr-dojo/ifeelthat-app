@@ -22,11 +22,10 @@ class Listen extends React.Component {
 
   renderShare = () => {
     const currentShare = this.state.shareQueue[this.context.sharePosition];
-    console.log(currentShare);
     if (currentShare.share_type === "Audio") {
-      return <Player share={currentShare} />;
+      return <Player share={currentShare} next={this.handleNext} />;
     } else if (currentShare.share_type === "Text") {
-      return <ListenText share={currentShare} />;
+      return <ListenText share={currentShare} next={this.handleNext} />;
     }
   };
 
@@ -88,17 +87,16 @@ class Listen extends React.Component {
           {this.state.shareQueue.length ? (
             this.renderShare()
           ) : (
-            <p>shareQueue was empty</p>
+            <>
+              <p>Looks like you've seen them all</p>
+              <Link to="/share">
+                <Button buttonText="Share" />
+              </Link>
+              <Link to="/breathe">
+                <Button buttonText="Breathe" />
+              </Link>
+            </>
           )}
-        </section>
-        <section>
-          <Button
-            buttonText="Next"
-            onClick={(e) => this.handleNext(e)}
-          ></Button>
-          <Link className="nav-link" to="/share">
-            <Button buttonText="Share" />
-          </Link>
         </section>
       </>
     );
