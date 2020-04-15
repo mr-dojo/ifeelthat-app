@@ -97,6 +97,9 @@ class ShareAudio extends React.Component {
           <Link className="nav-link" to="/listen">
             <Button buttonText="Listen" />
           </Link>
+          <Link to="/breathe">
+            <Button buttonText="Breathe" />
+          </Link>
         </section>
       </>
     );
