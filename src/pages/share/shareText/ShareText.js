@@ -7,6 +7,17 @@ import { API_ENDPOINT } from "../../../config";
 export default class ShareText extends React.Component {
   static contextType = StoreContext;
 
+  state = {
+    submitted: false,
+  };
+
+  handleTextDelete = (e) => {
+    e.preventDefault();
+    this.setState({
+      submitted: true,
+    });
+  };
+
   handleTextSubmit = (e) => {
     e.preventDefault();
     const { id, emotion } = this.context.feeling;
@@ -17,6 +28,10 @@ export default class ShareText extends React.Component {
       feeling_id: id,
       emotion: emotion,
     };
+
+    this.setState({
+      submitted: true,
+    });
 
     fetch(`${API_ENDPOINT}share`, {
       method: "POST",
@@ -36,25 +51,34 @@ export default class ShareText extends React.Component {
       });
   };
 
+  renderInputBox = () => {
+    return (
+      <section>
+        <form onSubmit={(e) => this.handleTextSubmit(e)}>
+          <label htmlFor="share-text">Express yourself</label>
+          <textarea
+            type="text"
+            rows="10"
+            columns="30"
+            name="share-text"
+            id="text"
+            placeholder="Speak to that [color] [emotion] you are experiencing..."
+            required
+          ></textarea>
+          <Button buttonText="Share" buttonType="submit"></Button>
+          <Button
+            buttonText="Burn it / Delete"
+            onClick={(e) => this.handleTextDelete(e)}
+          ></Button>
+        </form>
+      </section>
+    );
+  };
+
   render() {
     return (
       <>
-        <section>
-          <form onSubmit={(e) => this.handleTextSubmit(e)}>
-            <label htmlFor="share-text">Express yourself</label>
-            <textarea
-              type="text"
-              rows="10"
-              columns="30"
-              name="share-text"
-              id="text"
-              placeholder="Speak to that [color] [emotion] you are experiencing..."
-              required
-            ></textarea>
-            <Button buttonText="Share" buttonType="submit"></Button>
-            <Button buttonText="Burn it / Delete"></Button>
-          </form>
-        </section>
+        {!this.state.submitted ? this.renderInputBox() : ""}
         <section id="another-breath">
           <p>
             Take another deep breath and appreciate the lightness that comes
