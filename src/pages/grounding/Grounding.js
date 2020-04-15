@@ -8,21 +8,19 @@ class Grounding extends React.Component {
   static contextType = StoreContext;
 
   state = {
+    section: 1,
     emotion: "",
     color: "",
   };
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
-    document.getElementById("breathe-again").scrollIntoView(true);
-    this.setState({ emotion: e.target.emotion.value });
-    // Scroll to the second breath section
+    this.setState({ section: 3, emotion: e.target.emotion.value });
   };
 
   handleColorSubmit = (e) => {
     e.preventDefault();
-    document.getElementById("grounding-buttons").scrollIntoView(true);
-    this.setState({ color: e.target.color.value }, () => {
+    this.setState({ section: 4, color: e.target.color.value }, () => {
       postFeeling();
     });
 
@@ -47,9 +45,103 @@ class Grounding extends React.Component {
         })
         .then((resJson) => {
           this.context.updateFeeling(resJson);
-          // Scroll to the buttons at the bottom of the page
         });
     };
+  };
+
+  renderBreath = () => {
+    return (
+      <section>
+        <p>
+          From your belly and working up to your chest, take a deep breath...
+        </p>
+        <Button
+          buttonText="Breathe..."
+          onClick={() => this.setState({ section: 2 })}
+        />
+      </section>
+    );
+  };
+
+  renderEmotion = () => {
+    return (
+      <section>
+        <form
+          className="claim-emotion"
+          onSubmit={(e) => this.handleEmotionSubmit(e)}
+        >
+          <label htmlFor="claim-emotion">
+            What feeling is alive in you right now? What emotion are you
+            experiencing?
+          </label>
+          <select type="text" name="claim-emotion" id="emotion" required>
+            <option value="Joy">Joy</option>
+            <option value="Sadness">Sadness</option>
+            <option value="Fear">Fear</option>
+            <option value="Anger">Anger</option>
+            <option value="Anxiety">Anxiety</option>
+            <option value="Excitement">Excitement</option>
+            <option value="Guilt">Guilt</option>
+            <option value="Gratitude">Gratitude</option>
+          </select>
+          <Button buttonText="Save" buttonType="submit"></Button>
+        </form>
+      </section>
+    );
+  };
+
+  renderBreath2 = () => {
+    return (
+      <section id="breathe-again">
+        <p>
+          Take another deep breath and try to really feel that emotion for a
+          moment...
+        </p>
+        <Button
+          buttonText="Breathe..."
+          onClick={() => this.setState({ section: 5 })}
+        />
+      </section>
+    );
+  };
+
+  renderColor = () => {
+    return (
+      <section>
+        <form onSubmit={(e) => this.handleColorSubmit(e)}>
+          <label htmlFor="name-color">
+            What color would you associate with that feeling?
+          </label>
+          <select type="text" name="name-color" id="color" required>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Grey">Grey</option>
+            <option value="Red">Red</option>
+            <option value="Pink">Pink</option>
+            <option value="Orange">Orange</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Purple">Purple</option>
+            <option value="Other">*more to come*</option>
+          </select>
+          <Button buttonText="Save" buttonType="submit"></Button>
+        </form>
+      </section>
+    );
+  };
+
+  renderButtons = () => {
+    return (
+      <section id="grounding-buttons">
+        <Link className="nav-link" to="/listen">
+          <Button buttonText="Listen" />
+        </Link>
+        <Link className="nav-link" to="/share">
+          <Button buttonText="Share" />
+        </Link>
+      </section>
+    );
   };
 
   render() {
@@ -58,68 +150,11 @@ class Grounding extends React.Component {
         <header>
           <h1>Grounding</h1>
         </header>
-        <section>
-          <p>
-            From your belly and working up to your chest, take a deep breath...
-          </p>
-        </section>
-        <section>
-          <form
-            className="claim-emotion"
-            onSubmit={(e) => this.handleEmotionSubmit(e)}
-          >
-            <label htmlFor="claim-emotion">
-              What feeling is alive in you right now? What emotion are you
-              experiencing?
-            </label>
-            <select type="text" name="claim-emotion" id="emotion" required>
-              <option value="Joy">Joy</option>
-              <option value="Sadness">Sadness</option>
-              <option value="Fear">Fear</option>
-              <option value="Anger">Anger</option>
-              <option value="Anxiety">Anxiety</option>
-              <option value="Excitement">Excitement</option>
-              <option value="Guilt">Guilt</option>
-              <option value="Gratitude">Gratitude</option>
-            </select>
-            <Button buttonText="Save" buttonType="submit"></Button>
-          </form>
-        </section>
-        <section id="breathe-again">
-          <p>
-            Take another deep breath and try to really feel that emotion for a
-            moment...
-          </p>
-        </section>
-        <section>
-          <form onSubmit={(e) => this.handleColorSubmit(e)}>
-            <label htmlFor="name-color">
-              What color would you associate with that feeling?
-            </label>
-            <select type="text" name="name-color" id="color" required>
-              <option value="Black">Black</option>
-              <option value="White">White</option>
-              <option value="Grey">Grey</option>
-              <option value="Red">Red</option>
-              <option value="Pink">Pink</option>
-              <option value="Orange">Orange</option>
-              <option value="Yellow">Yellow</option>
-              <option value="Green">Green</option>
-              <option value="Blue">Blue</option>
-              <option value="Purple">Purple</option>
-              <option value="Other">*more to come*</option>
-            </select>
-            <Button buttonText="Save" buttonType="submit"></Button>
-          </form>
-        </section>
-        <section id="grounding-buttons">
-          <Link className="nav-link" to="/listen">
-            <Button buttonText="Listen" />
-          </Link>
-          <Link className="nav-link" to="/share">
-            <Button buttonText="Share" />
-          </Link>
-        </section>
+        {this.state.section === 1 ? this.renderBreath() : ""}
+        {this.state.section === 2 ? this.renderEmotion() : ""}
+        {this.state.section === 3 ? this.renderBreath2() : ""}
+        {this.state.section === 4 ? this.renderColor() : ""}
+        {this.state.section === 5 ? this.renderButtons() : ""}
       </>
     );
   }
