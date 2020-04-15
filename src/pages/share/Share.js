@@ -5,7 +5,7 @@ import Button from "../../components/button/Button";
 
 class Share extends React.Component {
   state = {
-    shareType: "",
+    shareType: "None",
   };
 
   handleShareTypeSubmit = (e) => {
@@ -13,6 +13,21 @@ class Share extends React.Component {
     this.setState({
       shareType: e.target.type.value,
     });
+  };
+
+  renderTypeForm = () => {
+    return (
+      <section>
+        <form onSubmit={(e) => this.handleShareTypeSubmit(e)}>
+          <label htmlFor="share-intention">Choose how you want to share</label>
+          <select name="share-type" id="type">
+            <option value="Text">Text</option>
+            <option value="Audio">Audio</option>
+          </select>
+          <Button buttonText="Select" buttonType="submit"></Button>
+        </form>
+      </section>
+    );
   };
 
   render() {
@@ -33,20 +48,8 @@ class Share extends React.Component {
           </p>
           <p>Please be honest and speak from your heart</p>
         </section>
-        <section>
-          <form onSubmit={(e) => this.handleShareTypeSubmit(e)}>
-            <label htmlFor="share-intention">
-              Choose how you want to share
-            </label>
-            <select name="share-type" id="type">
-              <option value="Text">Text</option>
-              <option value="Audio">Audio</option>
-            </select>
-            <Button buttonText="Select" buttonType="submit"></Button>
-          </form>
-        </section>
-        {this.state.shareType === "" ? (
-          ""
+        {this.state.shareType === "None" ? (
+          this.renderTypeForm()
         ) : this.state.shareType === "Text" ? (
           <ShareText />
         ) : (
