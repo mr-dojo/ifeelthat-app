@@ -33,6 +33,13 @@ class Safety extends React.Component {
             >
               Chat with somebody
             </a>
+            <a
+              href="https://suicidepreventionlifeline.org/help-yourself/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Help yourself
+            </a>
             <Button
               buttonText="Close"
               onClick={() => this.handleButtonPress()}
