@@ -26,7 +26,19 @@ class App extends React.Component {
     });
   };
 
-  updatePosition = () => {
+  updatePosition = (reset) => {
+    if (reset) {
+      this.setState({
+        sharePosition: 0,
+      });
+    } else {
+      this.setState({
+        sharePosition: this.state.sharePosition + 1,
+      });
+    }
+  };
+
+  resetPosition = () => {
     this.setState({
       sharePosition: this.state.sharePosition + 1,
     });

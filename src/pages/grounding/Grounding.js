@@ -15,24 +15,53 @@ class Grounding extends React.Component {
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
-    this.setState({ section: 3, emotion: e.target.emotion.value });
-  };
+    const newEmotion = e.target.emotion.value;
 
-  handleColorSubmit = (e) => {
-    e.preventDefault();
-    this.setState({ section: 5, color: e.target.color.value }, () => {
+    this.context.updatePosition(true);
+
+    this.setState({ section: 3, emotion: newEmotion }, () => {
       postFeeling();
     });
 
     const postFeeling = () => {
       const newFeeling = {
         emotion: this.state.emotion,
-        color: this.state.color,
       };
 
       fetch(`${API_ENDPOINT}feeling`, {
         method: "POST",
         body: JSON.stringify(newFeeling),
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            return new Error(res.message);
+          }
+          return res.json();
+        })
+        .then((resJson) => {
+          this.context.updateFeeling(resJson);
+        });
+    };
+  };
+
+  handleColorSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ section: 5, color: e.target.color.value }, () => {
+      patchColor();
+    });
+
+    const patchColor = () => {
+      const newColor = {
+        emotion: this.state.emotion,
+        color: this.state.color,
+      };
+
+      fetch(`${API_ENDPOINT}feeling/${this.context.feeling.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(newColor),
         headers: {
           "content-type": "application/json",
         },
