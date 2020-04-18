@@ -55,7 +55,8 @@ export default class ShareText extends React.Component {
     return (
       <section>
         <p>
-          A {this.context.feeling.color} of {this.context.feeling.emotion}
+          A {this.context.feeling.color} feeling of{" "}
+          {this.context.feeling.emotion}
         </p>
         <form onSubmit={(e) => this.handleTextSubmit(e)}>
           <label htmlFor="share-text">Express yourself</label>
