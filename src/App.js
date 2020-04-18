@@ -6,9 +6,9 @@ import Grounding from "./pages/grounding/Grounding";
 import Listen from "./pages/listen/Listen";
 import Share from "./pages/share/Share";
 import Safety from "./components/safety/Safety";
-import "./App.css";
 import Footer from "./components/footer/Footer";
 import StoreContext from "./StoreContext";
+import "./App.css";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -53,15 +53,17 @@ class App extends React.Component {
     };
     return (
       <StoreContext.Provider value={contextValues}>
-        <ScrollToTop />
-        <Nav></Nav>
-        <main>
-          <Route exact path="/" component={Landing} />
-          <Route path="/breathe" component={Grounding} />
-          <Route exact path="/listen" component={Listen} />
-          <Route exact path="/share" component={Share} />
-        </main>
-        <Safety></Safety>
+        <div className="content">
+          <ScrollToTop />
+          <Nav></Nav>
+          <main>
+            <Route exact path="/" component={Landing} />
+            <Route path="/breathe" component={Grounding} />
+            <Route exact path="/listen" component={Listen} />
+            <Route exact path="/share" component={Share} />
+          </main>
+          <Safety></Safety>
+        </div>
         <Footer></Footer>
       </StoreContext.Provider>
     );

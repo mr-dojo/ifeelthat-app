@@ -7,6 +7,15 @@ body {
   width: 100%;
 }
 
+div#root {
+  height: 100%;
+}
+
+div.content {
+  flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting
+  these items shrink to smaller than their content's default minimum size. */
+}
+
 main {
   padding-left: 10px;
   padding-right: 10px;
@@ -28,8 +37,6 @@ section {
 div {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 form {
