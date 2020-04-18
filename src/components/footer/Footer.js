@@ -4,7 +4,7 @@ import "./footer.css";
 function Footer(props) {
   return (
     <footer className="footer">
-      <p>footer</p>
+      <p>created with love by mr-dojo</p>
     </footer>
   );
 }
