@@ -6,7 +6,7 @@ function Landing(props) {
   return (
     <>
       <header role="banner">
-        <h1>Listen and Share</h1>
+        <h1>Listen.Share.</h1>
         <p>In the age of Social Media we are more dissconnected than ever</p>
         <h2>
           Express yourself anonymously with no profiles, no likes, no followers
