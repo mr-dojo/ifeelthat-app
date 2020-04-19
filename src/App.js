@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import ToolBar from "./components/toolBar/ToolBar";
 import Landing from "./pages/landing/Landing";
 import Grounding from "./pages/grounding/Grounding";
@@ -18,10 +18,18 @@ class App extends React.Component {
     feeling: {},
     sharePosition: 0,
     sideDrawerOpen: false,
+    refresh: false,
     updateFeeling: () => {},
     updatePosition: () => {},
     handleToggleSideDrawer: () => {},
   };
+
+  componentDidMount() {
+    // on refresh, go to /breathe
+    window.addEventListener("load", () => {
+      this.setState({ refresh: true });
+    });
+  }
 
   updateFeeling = (newFeeling) => {
     this.setState({
@@ -66,6 +74,7 @@ class App extends React.Component {
       <StoreContext.Provider value={contextValues}>
         <div className="content">
           <ScrollToTop />
+          {this.state.refresh ? <Redirect to="/breathe" /> : ""}
           <ToolBar />
           <SideDrawer />
           {this.state.sideDrawerOpen ? <Backdrop /> : ""}
