@@ -4,11 +4,13 @@
 
 ### Links
 
-Live App: [Click Here](https://ifeelthat-app.now.sh/)
-Live API: [Click Here](https://ifeelthat-api.herokuapp.com/)
+- Live App: [Click Here](https://ifeelthat-app.now.sh/)
 
-App Repo: [Click Here](https://github.com/mr-dojo/ifeelthat-app)
-API Repo: [Click Here](https://github.com/mr-dojo/ifeelthat-api)
+- Live API: [Click Here](https://ifeelthat-api.herokuapp.com/)
+
+- App Repo: [Click Here](https://github.com/mr-dojo/ifeelthat-app)
+
+- API Repo: [Click Here](https://github.com/mr-dojo/ifeelthat-api)
 
 ## How to use it
 
