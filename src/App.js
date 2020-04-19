@@ -68,7 +68,7 @@ class App extends React.Component {
         <div className="content">
           <ScrollToTop />
           <ToolBar />
-          {this.state.sideDrawerOpen ? <SideDrawer /> : ""}
+          <SideDrawer />
           {this.state.sideDrawerOpen ? <Backdrop /> : ""}
           <main>
             <Route exact path="/" component={Landing} />
