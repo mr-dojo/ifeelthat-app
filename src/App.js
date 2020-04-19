@@ -1,10 +1,11 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Nav from "./components/nav/Nav";
 import Landing from "./pages/landing/Landing";
 import Grounding from "./pages/grounding/Grounding";
 import Listen from "./pages/listen/Listen";
 import Share from "./pages/share/Share";
+import SideDrawer from "./components/sideDrawer/SideDrawer";
+import Backdrop from "./components/backdrop/Backdrop";
 import Safety from "./components/safety/Safety";
 import Footer from "./components/footer/Footer";
 import StoreContext from "./StoreContext";
@@ -16,6 +17,7 @@ class App extends React.Component {
   state = {
     feeling: {},
     sharePosition: 0,
+    navOpen: false,
     updateFeeling: () => {},
     updatePosition: () => {},
   };
@@ -48,6 +50,7 @@ class App extends React.Component {
     const contextValues = {
       feeling: this.state.feeling,
       sharePosition: this.state.sharePosition,
+      navOpen: this.state.navOpen,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
     };
@@ -55,7 +58,8 @@ class App extends React.Component {
       <StoreContext.Provider value={contextValues}>
         <div className="content">
           <ScrollToTop />
-          <Nav></Nav>
+          <SideDrawer />
+          <Backdrop />
           <main>
             <Route exact path="/" component={Landing} />
             <Route path="/breathe" component={Grounding} />
