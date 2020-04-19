@@ -74,7 +74,7 @@ class App extends React.Component {
       <StoreContext.Provider value={contextValues}>
         <div className="content">
           <ScrollToTop />
-          {this.state.refresh ? <Redirect to="/breathe" /> : ""}
+          {this.state.refresh ? <Redirect to="/" /> : ""}
           <ToolBar />
           <SideDrawer />
           {this.state.sideDrawerOpen ? <Backdrop /> : ""}
