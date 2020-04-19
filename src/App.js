@@ -7,7 +7,6 @@ import Listen from "./pages/listen/Listen";
 import Share from "./pages/share/Share";
 import SideDrawer from "./components/sideDrawer/SideDrawer";
 import Backdrop from "./components/backdrop/Backdrop";
-import Safety from "./components/safety/Safety";
 import Footer from "./components/footer/Footer";
 import StoreContext from "./StoreContext";
 import "./App.css";
@@ -76,7 +75,6 @@ class App extends React.Component {
             <Route exact path="/listen" component={Listen} />
             <Route exact path="/share" component={Share} />
           </main>
-          <Safety></Safety>
         </div>
         <Footer></Footer>
       </StoreContext.Provider>
