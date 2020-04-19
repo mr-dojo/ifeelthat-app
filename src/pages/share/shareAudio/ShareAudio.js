@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 import { API_ENDPOINT } from "../../../config";
 import { withRouter } from "react-router-dom";
 import StoreContext from "../../../StoreContext";
+import "./shareAudio.css";
 
 class ShareAudio extends React.Component {
   static contextType = StoreContext;
+
+  state = {
+    submitted: false,
+  };
 
   static defaultProps = {
     match: {
@@ -47,7 +52,9 @@ class ShareAudio extends React.Component {
         return res.json();
       })
       .then((resJson) => {
-        document.getElementById("another-breath").scrollIntoView(true);
+        return this.setState({
+          submitted: true,
+        });
       });
   };
 
@@ -55,16 +62,20 @@ class ShareAudio extends React.Component {
     this.props.cancel();
   };
 
-  render() {
-    return (
-      <>
+  handleBreathe = () => {
+    document.getElementById("another-breath").scrollIntoView(true);
+  };
+
+  renderForm = () => {
+    if (!this.state.submitted) {
+      return (
         <section>
           <h2>How</h2>
           <ol>
             <li>Record a 60 second clip using your favorite audio recorder</li>
             <li>
-              Upload it to SoundCloud as a private file and title it "[your
-              emotion]+[your color]"
+              Upload it to SoundCloud as a private file and title it "
+              {this.context.feeling.color}+{this.context.feeling.emotion}"
             </li>
             <li>Click "Go to your track" >>> "Share" >>> "Embed"</li>
             <li>
@@ -89,11 +100,36 @@ class ShareAudio extends React.Component {
             </li>
           </ol>
         </section>
-        <section id="another-breath">
+      );
+    } else {
+      return (
+        <section>
           <p>
             Take another deep breath and appreciate the lightness that comes
             from expressing these feelings
           </p>
+          <Button buttonText="Breathe" onClick={() => this.handleBreathe()} />
+        </section>
+      );
+    }
+  };
+
+  render() {
+    return (
+      <>
+        {this.renderForm()}
+        <section id="another-breath">
+          {this.state.submitted ? (
+            <p>
+              Listen to others expiences of {this.context.feeling.emotion}
+              <br />
+              or
+              <br />
+              Identify a new emotion by taking a breathe
+            </p>
+          ) : (
+            ""
+          )}
           <Link className="nav-link" to="/listen">
             <Button buttonText="Listen" />
           </Link>
