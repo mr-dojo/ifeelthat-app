@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../button/Button";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 
 class Safety extends React.Component {
   state = {
