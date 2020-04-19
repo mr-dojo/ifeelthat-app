@@ -12,11 +12,6 @@ div.content {
   these items shrink to smaller than their content's default minimum size. */
 }
 
-main {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
 section {
   display: flex;
   flex-direction: column;
