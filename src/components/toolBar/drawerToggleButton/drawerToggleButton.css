@@ -9,7 +9,7 @@ button.toggle-button {
   cursor: pointer;
   padding: 0;
   min-width: 30px;
-  margin: 0 20px 0 0;
+  margin: 20px 20px 0 0;
 }
 
 button.toggle-button:focus {
@@ -19,6 +19,6 @@ button.toggle-button:focus {
 div.toggle-button__line {
   width: 30px;
   height: 4px;
-  background-color: white;
+  background-color: black;
   border-radius: 1px;
 }

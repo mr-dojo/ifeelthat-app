@@ -6,9 +6,8 @@ class ToolBar extends React.Component {
   renderNav = (props) => {
     return (
       <div className="top-bar" role="navigation">
-        <DrawerToggleButton />
-        <div>LOGO</div>
         <div className="spacer" />
+        <DrawerToggleButton />
       </div>
     );
   };
