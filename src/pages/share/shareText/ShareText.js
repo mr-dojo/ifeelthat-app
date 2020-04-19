@@ -6,22 +6,33 @@ import { API_ENDPOINT } from "../../../config";
 
 export default class ShareText extends React.Component {
   static contextType = StoreContext;
-
-  state = {
-    submitted: false,
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      submitted: false,
+    };
+    this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleTextSubmit = this.handleTextSubmit.bind(this);
+  }
 
   handleTextDelete = (e) => {
     e.preventDefault();
     this.setState({
       submitted: true,
+      shareText: "",
+    });
+  };
+
+  handleTextChange = (e) => {
+    this.setState({
+      shareText: e.target.value,
     });
   };
 
   handleTextSubmit = (e) => {
     e.preventDefault();
     const { id, emotion } = this.context.feeling;
-    const text = e.target.text.value;
+    const text = this.state.shareText;
     const newShare = {
       text_share: text,
       share_type: "Text",
@@ -46,9 +57,11 @@ export default class ShareText extends React.Component {
         }
         return res.json();
       })
-      .then((resJson) => {
-        document.getElementById("another-breath").scrollIntoView(true);
-      });
+      .then((resJson) => {});
+  };
+
+  handleBreathe = () => {
+    document.getElementById("js-share-buttons").scrollIntoView(true);
   };
 
   renderInputBox = () => {
@@ -58,7 +71,7 @@ export default class ShareText extends React.Component {
           A {this.context.feeling.color} feeling of{" "}
           {this.context.feeling.emotion}
         </p>
-        <form onSubmit={(e) => this.handleTextSubmit(e)}>
+        <form onSubmit={this.handleTextSubmit} onChange={this.handleTextChange}>
           <label htmlFor="share-text">Express yourself</label>
           <textarea
             type="text"
@@ -66,15 +79,18 @@ export default class ShareText extends React.Component {
             columns="30"
             name="share-text"
             id="text"
-            placeholder="Speak to that [color] [emotion] you are experiencing..."
+            value={this.state.shareText}
             required
           ></textarea>
-          <Button buttonText="Share" buttonType="submit"></Button>
-          <Button buttonText="Cancel" onClick={(e) => this.props.cancel()} />
-          <Button
-            buttonText="Burn it / Delete"
-            onClick={(e) => this.handleTextDelete(e)}
-          ></Button>
+          <Button buttonText="Share it" buttonType="submit"></Button>
+          {!this.state.shareText ? (
+            <Button buttonText="Cancel" onClick={(e) => this.props.cancel()} />
+          ) : (
+            <Button
+              buttonText="Burn it"
+              onClick={(e) => this.handleTextDelete(e)}
+            ></Button>
+          )}
         </form>
       </section>
     );
@@ -83,12 +99,29 @@ export default class ShareText extends React.Component {
   render() {
     return (
       <>
-        {!this.state.submitted ? this.renderInputBox() : ""}
-        <section id="another-breath">
-          <p>
-            Take another deep breath and appreciate the lightness that comes
-            from expressing these feelings
-          </p>
+        {!this.state.submitted ? (
+          this.renderInputBox()
+        ) : (
+          <section>
+            <p>
+              Take another deep breath and appreciate the lightness that comes
+              from expressing these feelings
+            </p>
+            <Button buttonText="Breathe" onClick={() => this.handleBreathe()} />
+          </section>
+        )}
+        <section id="js-share-buttons">
+          {this.state.submitted ? (
+            <p>
+              Listen to others expiences of {this.context.feeling.emotion}
+              <br />
+              or
+              <br />
+              Identify a new emotion by taking a breathe
+            </p>
+          ) : (
+            ""
+          )}
           <Link className="nav-link" to="/listen">
             <Button buttonText="Listen" />
           </Link>
