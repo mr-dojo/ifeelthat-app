@@ -67,12 +67,12 @@ export default class ShareText extends React.Component {
   renderInputBox = () => {
     return (
       <section>
-        <p>
+        <h2>
           A {this.context.feeling.color} feeling of{" "}
           {this.context.feeling.emotion}
-        </p>
+        </h2>
         <form onSubmit={this.handleTextSubmit} onChange={this.handleTextChange}>
-          <label htmlFor="share-text">Express yourself</label>
+          <label htmlFor="share-text">Express yourself below</label>
           <textarea
             type="text"
             rows="10"
