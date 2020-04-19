@@ -1,17 +1,23 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
+import "./landing.css";
 
 function Landing(props) {
   return (
     <>
-      <header role="banner">
-        <h1>Listen.Share.</h1>
+      <header className="landing-header" role="banner">
+        <h1 className="app-name">Listen.Share.</h1>
+        <h2 className="tagline">
+          Identify and express your emotions in a <strong>healthy</strong> way
+        </h2>
+      </header>
+      <section>
         <p>In the age of Social Media we are more dissconnected than ever</p>
         <h2>
           Express yourself anonymously with no profiles, no likes, no followers
         </h2>
-      </header>
+      </section>
       <section>
         <p>
           This app is designed to help you process your emotions and empathise
