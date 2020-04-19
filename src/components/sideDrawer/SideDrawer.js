@@ -16,10 +16,10 @@ class SideDrawer extends React.Component {
     return (
       <nav className={drawerClasses}>
         <ul>
-          <li>
+          <li onClick={() => this.context.handleToggleSideDrawer()}>
             <Link to="/">About</Link>
           </li>
-          <li>
+          <li onClick={() => this.context.handleToggleSideDrawer()}>
             <Link to="/Breathe">Begin</Link>
           </li>
         </ul>
