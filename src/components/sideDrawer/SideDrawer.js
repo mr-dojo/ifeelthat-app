@@ -20,7 +20,7 @@ class SideDrawer extends React.Component {
             <Link to="/">About</Link>
           </li>
           <li onClick={() => this.context.handleToggleSideDrawer()}>
-            <Link to="/Breathe">Begin</Link>
+            <Link to="/breathe">Begin</Link>
           </li>
         </ul>
       </nav>
