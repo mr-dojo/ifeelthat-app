@@ -6,10 +6,11 @@ const StoreContext = React.createContext({
     emotion: "",
     color: "",
   },
-  navOpen: Boolean,
+  sideDrawerOpen: Boolean,
   sharePosition: Number,
   updateFeeling: () => {},
   updateSharePosition: () => {},
+  handleToggleSideDrawer: () => {},
 });
 
 export default StoreContext;
