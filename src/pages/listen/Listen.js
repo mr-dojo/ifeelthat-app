@@ -52,26 +52,6 @@ class Listen extends React.Component {
       })
       .catch();
   };
-  // addColorToShare = (item) => {
-  //   const shareId = item.feeling_id;
-  //   const fullURL = `${API_ENDPOINT}feeling/${shareId}`;
-  //   fetch(fullURL, {
-  //     method: "GET",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         return new Error(res.message);
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((feeling) => {
-  //       this.setState({ completeShare: { ...item, color: feeling.color } });
-  //       return;
-  //     });
-  // };
 
   handleNext = () => {
     this.context.updatePosition();
@@ -88,7 +68,8 @@ class Listen extends React.Component {
             this.renderShare()
           ) : (
             <>
-              <p>Looks like you've seen them all</p>
+              <h2>Looks like you've seen them all</h2>
+              <p>Each expression is special, and only seen once per session</p>
               <Link to="/share">
                 <Button buttonText="Share" />
               </Link>
