@@ -6,6 +6,7 @@ const StoreContext = React.createContext({
     emotion: "",
     color: "",
   },
+  navOpen: Boolean,
   sharePosition: Number,
   updateFeeling: () => {},
   updateSharePosition: () => {},
