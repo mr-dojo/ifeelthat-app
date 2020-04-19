@@ -1,10 +1,16 @@
 import React from "react";
+import "./button.css";
 
 function Button(props) {
-  const { buttonText, buttonType = "button", onClick = () => {} } = props;
+  const {
+    buttonText,
+    buttonType = "button",
+    buttonClass = "button",
+    onClick = () => {},
+  } = props;
   return (
-    <button className="button-element" onClick={onClick} type={buttonType}>
-      {buttonText}
+    <button className={buttonClass} onClick={onClick} type={buttonType}>
+      <span>{buttonText}</span>
     </button>
   );
 }
