@@ -2,11 +2,17 @@
   position: fixed;
   height: 100%;
   background: black;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 3px 0 7px rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
   width: 200px;
   z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease-out;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
 }
 
 .side-drawer ul {
