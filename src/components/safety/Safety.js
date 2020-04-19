@@ -1,16 +1,23 @@
 import React from "react";
 import Button from "../button/Button";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 class Safety extends React.Component {
   state = {
     buttonPressed: false,
   };
 
+  scrollToBottom = () => {
+    scroll.scrollToBottom();
+  };
+
   handleButtonPress = () => {
-    console.log("button was pressed");
-    this.setState({
-      buttonPressed: !this.state.buttonPressed,
-    });
+    this.setState(
+      (prevState) => ({
+        buttonPressed: !prevState.buttonPressed,
+      }),
+      () => this.scrollToBottom()
+    );
   };
 
   render() {
