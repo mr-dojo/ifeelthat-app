@@ -1,4 +1,4 @@
-.top-bar {
+.tool-bar {
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -13,4 +13,10 @@
 
 div.spacer {
   flex: 1;
+}
+
+span.tool-bar__app-name {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 20px 0 0;
 }

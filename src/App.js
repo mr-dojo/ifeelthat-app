@@ -24,6 +24,12 @@ class App extends React.Component {
     handleToggleSideDrawer: () => {},
   };
 
+  static defaultProps = {};
+
+  logProps = () => {
+    console.log();
+  };
+
   componentDidMount() {
     // on refresh, go to /breathe
     window.addEventListener("load", () => {
@@ -75,10 +81,10 @@ class App extends React.Component {
         <div className="content">
           <ScrollToTop />
           {this.state.refresh ? <Redirect to="/" /> : ""}
-          <ToolBar />
           <SideDrawer />
           {this.state.sideDrawerOpen ? <Backdrop /> : ""}
           <main>
+            <Route path="/" component={ToolBar} />
             <Route exact path="/" component={Landing} />
             <Route path="/breathe" component={Grounding} />
             <Route exact path="/listen" component={Listen} />
