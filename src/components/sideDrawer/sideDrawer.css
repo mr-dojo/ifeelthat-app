@@ -1,6 +1,6 @@
 .side-drawer {
   position: fixed;
-  height: 100%;
+  height: 100vh;
   background: black;
   box-shadow: 3px 0 7px rgba(0, 0, 0, 0.5);
   top: 0;
@@ -15,13 +15,16 @@
   transform: translateX(0);
 }
 
+.side-drawer img {
+  width: 100%;
+}
+
 .side-drawer ul {
   flex-direction: column;
   justify-content: center;
   list-style: none;
   display: flex;
   padding: 0;
-  height: 100%;
 }
 
 .side-drawer a {

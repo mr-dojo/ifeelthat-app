@@ -15,6 +15,10 @@ class SideDrawer extends React.Component {
 
     return (
       <nav className={drawerClasses}>
+        <img
+          src="/images/brain_Plus_Heart_White.png"
+          alt="Head plus heart icons"
+        />
         <ul>
           <li onClick={() => this.context.handleToggleSideDrawer()}>
             <Link to="/">About</Link>
