@@ -12,6 +12,13 @@ div.content {
   these items shrink to smaller than their content's default minimum size. */
 }
 
+header {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 section {
   display: flex;
   flex-direction: column;
@@ -76,7 +83,10 @@ h3 {
 }
 
 h1 {
+  font-weight: bold;
+  font-size: 45px;
   text-align: center;
+  margin: 35px 0;
 }
 
 h2 {
