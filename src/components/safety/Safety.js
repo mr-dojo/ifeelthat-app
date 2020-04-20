@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../button/Button";
 import { animateScroll as scroll } from "react-scroll";
+import "./safety.css";
 
 class Safety extends React.Component {
   state = {
@@ -25,8 +26,9 @@ class Safety extends React.Component {
       <>
         {this.state.buttonPressed ? (
           <section>
-            <h2>Reach out for help, you arn't alone</h2>
+            <h2>Reach out for help, you aren't alone</h2>
             <a
+              className="safety__link"
               href="tel:+18002738255"
               target="_blank"
               rel="noopener noreferrer"
@@ -34,6 +36,7 @@ class Safety extends React.Component {
               Call Lifeline
             </a>
             <a
+              className="safety__link"
               href="https://suicidepreventionlifeline.org/chat/"
               target="_blank"
               rel="noopener noreferrer"
@@ -41,6 +44,7 @@ class Safety extends React.Component {
               Chat with somebody
             </a>
             <a
+              className="safety__link"
               href="https://suicidepreventionlifeline.org/help-yourself/"
               target="_blank"
               rel="noopener noreferrer"
