@@ -11,6 +11,7 @@ class Grounding extends React.Component {
     section: 1,
     emotion: "",
     color: "",
+    breathButtonText: "Breathe",
   };
 
   handleEmotionSubmit = (e) => {
@@ -85,9 +86,29 @@ class Grounding extends React.Component {
           From your belly and working up to your chest, take a deep breath...
         </p>
         <Button
-          buttonText="Breathe..."
-          onClick={() => this.setState({ section: 2 })}
-        />
+          buttonText={this.state.breathButtonText}
+          onClick={() => {
+            let inCount = 5;
+            let outCount = 5;
+            let timer = setInterval(() => {
+              if (inCount !== 0) {
+                this.setState({ breathButtonText: `In ${inCount}` });
+                inCount = inCount - 1;
+              } else if (outCount !== 0) {
+                this.setState({
+                  breathButtonText: `Out ${outCount}`,
+                });
+                outCount--;
+              } else {
+                clearInterval(timer);
+                return this.setState({
+                  breathButtonText: "Breathe",
+                  section: 2,
+                });
+              }
+            }, 1000);
+          }}
+        ></Button>
       </section>
     );
   };
@@ -127,9 +148,29 @@ class Grounding extends React.Component {
           moment...
         </p>
         <Button
-          buttonText="Breathe..."
-          onClick={() => this.setState({ section: 4 })}
-        />
+          buttonText={this.state.breathButtonText}
+          onClick={() => {
+            let inCount = 5;
+            let outCount = 5;
+            let timer = setInterval(() => {
+              if (inCount !== 0) {
+                this.setState({ breathButtonText: `In ${inCount}` });
+                inCount = inCount - 1;
+              } else if (outCount !== 0) {
+                this.setState({
+                  breathButtonText: `Out ${outCount}`,
+                });
+                outCount--;
+              } else {
+                clearInterval(timer);
+                return this.setState({
+                  breathButtonText: "Breathe",
+                  section: 4,
+                });
+              }
+            }, 1000);
+          }}
+        ></Button>
       </section>
     );
   };
@@ -163,7 +204,7 @@ class Grounding extends React.Component {
   renderButtons = () => {
     return (
       <section id="grounding-buttons">
-        <p>
+        <p className="feeling-paragraph">
           A {this.state.color} feeling of {this.state.emotion}
         </p>
         <Link className="nav-link" to="/listen">
