@@ -18,5 +18,44 @@ div.spacer {
 span.tool-bar__app-name {
   font-size: 30px;
   font-weight: bold;
-  margin: 0 20px 0 0;
+  margin: 0 0 0 20px;
+}
+
+.tool-bar__nav {
+  display: none;
+}
+
+.tool-bar__nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0 10vw 0 0;
+}
+
+.tool-bar__nav a {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tool-bar__nav li {
+  text-decoration: underline;
+  padding: 0 0 0 20px;
+}
+
+@media screen and (min-width: 698px) {
+  span.tool-bar__app-name {
+    margin: 0 0 0 10vw;
+  }
+  .tool-bar__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  div.spacer {
+    display: none;
+  }
 }
