@@ -11,6 +11,7 @@ const StoreContext = React.createContext({
   updateFeeling: () => {},
   updateSharePosition: () => {},
   handleToggleSideDrawer: () => {},
+  setPositionFromLocalStorage: () => {},
 });
 
 export default StoreContext;
