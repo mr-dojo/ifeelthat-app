@@ -70,8 +70,9 @@ class Landing extends React.Component {
             followers
           </h2>
           <p className="medium-text">
-            In the age of Social Media we are more dissconnected than ever
+            In the age of Social Media we are more dissconected than ever
           </p>
+          <p className="small-text">This app aims to change that</p>
         </section>
         <section>
           <p className="medium-text">
@@ -155,7 +156,7 @@ class Landing extends React.Component {
             breathe and <strong>reach out for help</strong>
           </p>
           <p className="small-text">
-            Use the <bold>"Saftey"</bold> button if you are feeling like you may
+            Use the <bold>"Safety"</bold> button if you are feeling like you may
             harm yourself
           </p>
         </section>
