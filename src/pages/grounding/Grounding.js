@@ -14,6 +14,28 @@ class Grounding extends React.Component {
     breathButtonText: "Start",
   };
 
+  componentDidMount() {
+    if (window.localStorage.getItem("step")) {
+      const step = window.localStorage.getItem("step");
+      const stepObj = JSON.parse(step);
+      this.setState({
+        section: stepObj.section,
+      });
+    } else {
+      this.setLocalStorage();
+    }
+  }
+
+  setLocalStorage = () => {
+    window.localStorage.setItem(
+      "step",
+      JSON.stringify({
+        path: "/breathe",
+        section: this.state.section,
+      })
+    );
+  };
+
   handleEmotionSubmit = (e) => {
     e.preventDefault();
     const newEmotion = e.target.emotion.value;
@@ -22,6 +44,7 @@ class Grounding extends React.Component {
 
     this.setState({ section: 3, emotion: newEmotion }, () => {
       postFeeling();
+      this.setLocalStorage();
     });
 
     const postFeeling = () => {
@@ -52,6 +75,7 @@ class Grounding extends React.Component {
     e.preventDefault();
     this.setState({ section: 5, color: e.target.color.value }, () => {
       patchColor();
+      this.setLocalStorage();
     });
 
     const patchColor = () => {
@@ -107,10 +131,15 @@ class Grounding extends React.Component {
                 outCount--;
               } else {
                 clearInterval(timer);
-                return this.setState({
-                  breathButtonText: "Start",
-                  section: 2,
-                });
+                return this.setState(
+                  {
+                    breathButtonText: "Start",
+                    section: 2,
+                  },
+                  () => {
+                    this.setLocalStorage();
+                  }
+                );
               }
             }, 1000);
           }}
@@ -171,19 +200,24 @@ class Grounding extends React.Component {
             let outCount = 5;
             let timer = setInterval(() => {
               if (inCount !== 0) {
-                this.setState({ breathButtonText: `In ${inCount}` });
+                this.setState({ breathButtonText: `Breathe In ${inCount}` });
                 inCount = inCount - 1;
               } else if (outCount !== 0) {
                 this.setState({
-                  breathButtonText: `Out ${outCount}`,
+                  breathButtonText: `Breathe Out ${outCount}`,
                 });
                 outCount--;
               } else {
                 clearInterval(timer);
-                return this.setState({
-                  breathButtonText: "Start",
-                  section: 4,
-                });
+                return this.setState(
+                  {
+                    breathButtonText: "Start",
+                    section: 4,
+                  },
+                  () => {
+                    this.setLocalStorage();
+                  }
+                );
               }
             }, 1000);
           }}
