@@ -3,6 +3,7 @@ import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
+import "./grounding.css";
 
 class Grounding extends React.Component {
   static contextType = StoreContext;
@@ -11,7 +12,7 @@ class Grounding extends React.Component {
     section: 1,
     emotion: "",
     color: "",
-    breathButtonText: "Breathe",
+    breathButtonText: "Start",
   };
 
   handleEmotionSubmit = (e) => {
@@ -82,8 +83,14 @@ class Grounding extends React.Component {
   renderBreath = () => {
     return (
       <section>
-        <p>
-          From your belly and working up to your chest, take a deep breath...
+        <h2>
+          Let's start out by taking a breath and allowing yourself to feel
+        </h2>
+
+        <p className="small-text">
+          From your belly
+          <br /> Working up to your chest
+          <br /> take a deep breath
         </p>
         <Button
           buttonText={this.state.breathButtonText}
@@ -92,23 +99,26 @@ class Grounding extends React.Component {
             let outCount = 5;
             let timer = setInterval(() => {
               if (inCount !== 0) {
-                this.setState({ breathButtonText: `In ${inCount}` });
+                this.setState({ breathButtonText: `Breathe In ${inCount}` });
                 inCount = inCount - 1;
               } else if (outCount !== 0) {
                 this.setState({
-                  breathButtonText: `Out ${outCount}`,
+                  breathButtonText: `Breathe Out ${outCount}`,
                 });
                 outCount--;
               } else {
                 clearInterval(timer);
                 return this.setState({
-                  breathButtonText: "Breathe",
+                  breathButtonText: "Start",
                   section: 2,
                 });
               }
             }, 1000);
           }}
         ></Button>
+        <p className="small-text">
+          Mindful breathing will help you identify your emotions
+        </p>
       </section>
     );
   };
@@ -133,6 +143,14 @@ class Grounding extends React.Component {
             <option value="Excitement">Excitement</option>
             <option value="Guilt">Guilt</option>
             <option value="Gratitude">Gratitude</option>
+            <option value="Contentment">Contentment</option>
+            <option value="Shame">Shame</option>
+            <option value="Loneliness">Fear</option>
+            <option value="Pride">Pride</option>
+            <option value="Confusion">Confusion</option>
+            <option value="Power">Power</option>
+            <option value="Disappointment">Disappointment</option>
+            <option value="Nothing">Nothing</option>
           </select>
           <Button buttonText="Save" buttonType="submit"></Button>
         </form>
@@ -143,7 +161,7 @@ class Grounding extends React.Component {
   renderBreath2 = () => {
     return (
       <section id="breathe-again">
-        <p>
+        <p className="small-text">
           Take another deep breath and try to really feel that emotion for a
           moment...
         </p>
@@ -164,7 +182,7 @@ class Grounding extends React.Component {
               } else {
                 clearInterval(timer);
                 return this.setState({
-                  breathButtonText: "Breathe",
+                  breathButtonText: "Start",
                   section: 4,
                 });
               }
@@ -204,7 +222,7 @@ class Grounding extends React.Component {
   renderButtons = () => {
     return (
       <section id="grounding-buttons">
-        <p className="feeling-paragraph">
+        <p className="medium-text">
           A {this.state.color} feeling of {this.state.emotion}
         </p>
         <Link className="nav-link" to="/listen">
@@ -221,7 +239,7 @@ class Grounding extends React.Component {
     return (
       <>
         <header>
-          <h1>Grounding</h1>
+          <h1>Breathe</h1>
         </header>
         {this.state.section === 1 ? this.renderBreath() : ""}
         {this.state.section === 2 ? this.renderEmotion() : ""}
