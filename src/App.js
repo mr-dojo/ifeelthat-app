@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import ToolBar from "./components/toolBar/ToolBar";
 import Landing from "./pages/landing/Landing";
-import Grounding from "./pages/grounding/Grounding";
+import Breathe from "./pages/breathe/Breathe";
 import Listen from "./pages/listen/Listen";
 import Share from "./pages/share/Share";
 import SideDrawer from "./components/sideDrawer/SideDrawer";
@@ -113,7 +113,7 @@ class App extends React.Component {
           <main>
             <Route path="/" component={ToolBar} />
             <Route exact path="/" component={Landing} />
-            <Route path="/breathe" component={Grounding} />
+            <Route path="/breathe" component={Breathe} />
             <Route exact path="/listen" component={Listen} />
             <Route exact path="/share" component={Share} />
           </main>
