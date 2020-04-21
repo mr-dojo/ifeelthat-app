@@ -1,7 +1,7 @@
 .side-drawer {
   position: fixed;
   height: 100vh;
-  background: black;
+  background: #0d0d0d;
   box-shadow: 3px 0 7px rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
