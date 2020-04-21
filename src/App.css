@@ -24,7 +24,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 100vh;
   padding: 0 20px;
   background-color: transparent;
   margin-bottom: 20px;
@@ -104,4 +104,10 @@ h3 {
 .medium-text {
   font-size: 25px;
   margin: 30px 0;
+}
+
+.container_dark {
+  background-color: #0d0d0d;
+  color: white;
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.1);
 }

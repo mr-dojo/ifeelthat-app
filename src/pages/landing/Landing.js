@@ -58,27 +58,24 @@ class Landing extends React.Component {
           <div>
             <h1 className="app-name">AUTHENTIC</h1>
             <h2 className="tagline">
-              Identify and express your emotions in a <strong>healthy</strong>{" "}
-              way
+              Identify and express your emotions
+              <br /> in a <strong>healthy</strong> way
             </h2>
           </div>
         </header>
         {this.renderDownArrow()}
-        <section id="section-one_landing-page">
-          <h2>
+        <section id="section-one_landing-page" className="container_dark">
+          <h2>In the age of Social Media we are more dissconected than ever</h2>
+          {/* <h2>
             Express yourself anonymously with no profiles, no likes, no
             followers
-          </h2>
-          <p className="medium-text">
-            In the age of Social Media we are more dissconected than ever
-          </p>
-          <p className="small-text">This app aims to change that</p>
-        </section>
-        <section>
+          </h2> */}
           <p className="medium-text">
             This app is designed to help you process your emotions and empathise
             with others
           </p>
+        </section>
+        {/* <section>
           <ul>
             <li>
               <p className="small-text">
@@ -103,7 +100,7 @@ class Landing extends React.Component {
               </p>
             </li>
           </ul>
-        </section>
+        </section> */}
         <section>
           <header>
             <h3>Identify what you're feeling</h3>
@@ -117,7 +114,7 @@ class Landing extends React.Component {
             feelings you are experiencing
           </p>
         </section>
-        <section>
+        <section className="container_dark">
           <header>
             <h3>Listen to humans that are experiencing similar feelings</h3>
           </header>
@@ -145,7 +142,7 @@ class Landing extends React.Component {
             what's going on inside
           </p>
         </section>
-        <section>
+        <section className="container_dark">
           <p className="medium-text">
             Warning:
             <br /> This app is not for everybody. It contains content that may
