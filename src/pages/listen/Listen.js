@@ -12,13 +12,45 @@ class Listen extends React.Component {
 
   state = {
     shareQueue: [],
-    // completeShare: {},
+    localEmotion: null,
+    localPosition: null,
   };
 
   componentDidMount() {
-    this.populateShares();
-    // this.addColorToShare(this.state.shareQueue[this.state.sharePosition]);
+    if (window.localStorage.getItem("step")) {
+      const step = window.localStorage.getItem("step");
+      const stepObj = JSON.parse(step);
+
+      if (stepObj.path !== "/listen") {
+        this.setLocalStorage();
+        this.populateShares();
+      } else {
+        const localStorageFeeling = window.localStorage.getItem("feeling");
+        const feelingObj = JSON.parse(localStorageFeeling);
+        const localStoragePosition = window.localStorage.getItem(
+          feelingObj.emotion
+        );
+        this.populateShares(feelingObj.emotion);
+        this.context.setPositionFromLocalStorage(localStoragePosition);
+      }
+    } else {
+      this.setLocalStorage();
+      this.populateShares();
+    }
   }
+
+  setLocalStorage = () => {
+    window.localStorage.setItem(
+      "step",
+      JSON.stringify({
+        path: "/listen",
+      })
+    );
+    window.localStorage.setItem(
+      this.context.feeling.emotion,
+      this.context.sharePosition
+    );
+  };
 
   renderShare = () => {
     const currentShare = this.state.shareQueue[this.context.sharePosition];
@@ -29,10 +61,9 @@ class Listen extends React.Component {
     }
   };
 
-  populateShares = () => {
-    const emotion = this.context.feeling.emotion;
-    const position = this.context.sharePosition;
-    const fullURL = `${API_ENDPOINT}share/find?emotion=${emotion}&position=${position}`;
+  populateShares = (localStorageEmotion) => {
+    const emotion = localStorageEmotion || this.context.feeling.emotion;
+    const fullURL = `${API_ENDPOINT}share/find?emotion=${emotion}`;
     fetch(fullURL, {
       method: "GET",
       headers: {
