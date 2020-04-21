@@ -8,24 +8,57 @@ class Share extends React.Component {
     shareType: "None",
   };
 
+  componentDidMount() {
+    if (window.localStorage.getItem("step")) {
+      const step = window.localStorage.getItem("step");
+      const stepObj = JSON.parse(step);
+
+      if (stepObj.path === "/share") {
+        this.setState({
+          shareType: stepObj.shareType,
+        });
+      } else {
+        this.setLocalStorage();
+      }
+    }
+  }
+
+  setLocalStorage = () => {
+    window.localStorage.setItem(
+      "step",
+      JSON.stringify({
+        path: "/share",
+        shareType: this.state.shareType,
+      })
+    );
+  };
+
   handleShareTypeSubmit = (e) => {
     e.preventDefault();
-    this.setState({
-      shareType: e.target.type.value,
-    });
+    this.setState(
+      {
+        shareType: e.target.type.value,
+      },
+      () => this.setLocalStorage()
+    );
   };
 
   handleCancel = () => {
-    this.setState({
-      shareType: "None",
-    });
+    this.setState(
+      {
+        shareType: "None",
+      },
+      () => this.setLocalStorage()
+    );
   };
 
   renderTypeForm = () => {
     return (
       <section>
         <form onSubmit={(e) => this.handleShareTypeSubmit(e)}>
-          <label htmlFor="share-intention">Choose how you want to share</label>
+          <label htmlFor="share-intention" className="medium-text">
+            Choose how you want to share
+          </label>
           <select name="share-type" id="type">
             <option value="Text">Text</option>
             <option value="Audio">Audio</option>
@@ -44,15 +77,19 @@ class Share extends React.Component {
         </header>
         <section>
           <h2>Guidelines</h2>
-          <p>We keep this a safe place by self monitoring</p>
-          <p>
-            Please, when sharing, do <strong>not</strong> use names or details
+          <p className="medium-text">
+            We keep this a safe place by self monitoring
+          </p>
+          <p className="small-text">
+            Please, when sharing, <strong>do not</strong> use names or details
             of others
           </p>
-          <p>
+          <p className="small-text">
             Talk about <strong>your own</strong> experience
           </p>
-          <p>Please be honest and speak from your heart</p>
+          <p className="small-text">
+            Please be honest and speak from your heart
+          </p>
         </section>
         {this.state.shareType === "None" ? (
           this.renderTypeForm()
