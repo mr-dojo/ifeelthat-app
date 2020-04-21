@@ -25,8 +25,7 @@ section {
   justify-content: center;
   align-items: center;
   min-height: 500px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 0 20px;
   background-color: transparent;
   margin-bottom: 20px;
 }
@@ -86,7 +85,7 @@ h1 {
   font-weight: bold;
   font-size: 45px;
   text-align: center;
-  margin: 35px 0;
+  margin: 30px 0;
 }
 
 h2 {
@@ -97,6 +96,12 @@ h3 {
   font-size: 26px;
 }
 
-p.feeling-paragraph {
+.small-text {
+  font-size: 20px;
+  margin: 30px 0;
+}
+
+.medium-text {
   font-size: 25px;
+  margin: 30px 0;
 }
