@@ -18,28 +18,48 @@ class App extends React.Component {
     feeling: {},
     sharePosition: 0,
     sideDrawerOpen: false,
-    refresh: false,
+    redirect: "",
     updateFeeling: () => {},
     updatePosition: () => {},
     handleToggleSideDrawer: () => {},
+    setPositionFromLocalStorage: () => {},
   };
 
   static defaultProps = {};
 
-  logProps = () => {
-    console.log();
-  };
-
   componentDidMount() {
-    // on refresh, go to /breathe
-    window.addEventListener("load", () => {
-      this.setState({ refresh: true });
-    });
+    if (window.localStorage.getItem("feeling")) {
+      const localStorageFeeling = window.localStorage.getItem("feeling");
+      const feelingObj = JSON.parse(localStorageFeeling);
+      this.setState({
+        feeling: feelingObj,
+      });
+    }
+    if (window.localStorage.getItem("step")) {
+      const localStorageStep = window.localStorage.getItem("step");
+      const stepObj = JSON.parse(localStorageStep);
+      this.setState({
+        redirect: stepObj.path,
+      });
+    }
   }
 
   updateFeeling = (newFeeling) => {
+    this.setState(
+      {
+        feeling: newFeeling,
+      },
+      () =>
+        window.localStorage.setItem(
+          "feeling",
+          JSON.stringify(this.state.feeling)
+        )
+    );
+  };
+
+  setPositionFromLocalStorage = (position) => {
     this.setState({
-      feeling: newFeeling,
+      sharePosition: position,
     });
   };
 
@@ -49,16 +69,18 @@ class App extends React.Component {
         sharePosition: 0,
       });
     } else {
-      this.setState({
-        sharePosition: this.state.sharePosition + 1,
-      });
+      this.setState(
+        (prevState) => ({
+          sharePosition: parseInt(prevState.sharePosition) + 1,
+        }),
+        () => {
+          window.localStorage.setItem(
+            this.state.feeling.emotion,
+            this.state.sharePosition
+          );
+        }
+      );
     }
-  };
-
-  resetPosition = () => {
-    this.setState({
-      sharePosition: this.state.sharePosition + 1,
-    });
   };
 
   handleToggleSideDrawer = () => {
@@ -75,12 +97,17 @@ class App extends React.Component {
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
+      setPositionFromLocalStorage: this.setPositionFromLocalStorage,
     };
     return (
       <StoreContext.Provider value={contextValues}>
         <div className="content">
           <ScrollToTop />
-          {this.state.refresh ? <Redirect to="/" /> : ""}
+          {this.state.redirect !== "" ? (
+            <Redirect to={this.state.redirect} />
+          ) : (
+            ""
+          )}
           <SideDrawer />
           {this.state.sideDrawerOpen ? <Backdrop /> : ""}
           <main>
