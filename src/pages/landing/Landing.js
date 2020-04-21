@@ -156,8 +156,8 @@ class Landing extends React.Component {
             breathe and <strong>reach out for help</strong>
           </p>
           <p className="small-text">
-            Use the <bold>"Safety"</bold> button if you are feeling like you may
-            harm yourself
+            Use the "Safety" button if you are feeling like you may harm
+            yourself
           </p>
         </section>
         <section>
