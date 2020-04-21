@@ -28,6 +28,8 @@ class Grounding extends React.Component {
         );
       } else {
         this.setState({
+          emotion: this.context.feeling.emotion,
+          color: this.context.feeling.color,
           section: stepObj.section,
         });
       }
@@ -183,7 +185,7 @@ class Grounding extends React.Component {
             <option value="Gratitude">Gratitude</option>
             <option value="Contentment">Contentment</option>
             <option value="Shame">Shame</option>
-            <option value="Loneliness">Fear</option>
+            <option value="Loneliness">Loneliness</option>
             <option value="Pride">Pride</option>
             <option value="Confusion">Confusion</option>
             <option value="Power">Power</option>
@@ -266,7 +268,7 @@ class Grounding extends React.Component {
     return (
       <section id="grounding-buttons">
         <p className="medium-text">
-          A {this.state.color} feeling of {this.state.emotion}
+          {this.state.color} feeling of {this.state.emotion}
         </p>
         <Link className="nav-link" to="/listen">
           <Button buttonText="Listen" />
