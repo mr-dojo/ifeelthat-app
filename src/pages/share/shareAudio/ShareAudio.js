@@ -11,6 +11,7 @@ class ShareAudio extends React.Component {
 
   state = {
     submitted: false,
+    breathButtonText: "Start",
   };
 
   static defaultProps = {
@@ -104,11 +105,41 @@ class ShareAudio extends React.Component {
     } else {
       return (
         <section>
-          <p>
+          <p className="small-text">
             Take another deep breath and appreciate the lightness that comes
             from expressing these feelings
           </p>
-          <Button buttonText="Breathe" onClick={() => this.handleBreathe()} />
+          <Button
+            buttonText={this.state.breathButtonText}
+            onClick={() => {
+              let inCount = 5;
+              let outCount = 5;
+              let timer = setInterval(() => {
+                if (inCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe In ${inCount}`,
+                  });
+                  inCount = inCount - 1;
+                } else if (outCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe Out ${outCount}`,
+                  });
+                  outCount--;
+                } else {
+                  clearInterval(timer);
+                  return this.setState(
+                    {
+                      breathButtonText: "Start",
+                    },
+                    () => {
+                      this.setLocalStorage();
+                      this.handleBreathe();
+                    }
+                  );
+                }
+              }, 1000);
+            }}
+          ></Button>
         </section>
       );
     }
@@ -120,7 +151,7 @@ class ShareAudio extends React.Component {
         {this.renderForm()}
         <section id="another-breath">
           {this.state.submitted ? (
-            <p>
+            <p className="small-text">
               Listen to others expiences of {this.context.feeling.emotion}
               <br />
               or
