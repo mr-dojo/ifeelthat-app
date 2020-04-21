@@ -18,9 +18,19 @@ class Grounding extends React.Component {
     if (window.localStorage.getItem("step")) {
       const step = window.localStorage.getItem("step");
       const stepObj = JSON.parse(step);
-      this.setState({
-        section: stepObj.section,
-      });
+      if (stepObj.path !== "/breathe") {
+        window.localStorage.setItem(
+          "step",
+          JSON.stringify({
+            path: "/breathe",
+            section: 1,
+          })
+        );
+      } else {
+        this.setState({
+          section: stepObj.section,
+        });
+      }
     } else {
       this.setLocalStorage();
     }
