@@ -8,12 +8,6 @@ class ToolBar extends React.Component {
     return (
       <div className="tool-bar" role="navigation">
         <DrawerToggleButton />
-        {this.props.location.pathname !== "/" ? (
-          <span className="tool-bar__app-name">Listen.Share.</span>
-        ) : (
-          ""
-        )}
-        <div className="spacer" />
         <nav className="tool-bar__nav">
           <ul>
             <li>
@@ -24,6 +18,18 @@ class ToolBar extends React.Component {
             </li>
           </ul>
         </nav>
+        <div className="spacer" />
+        {this.props.location.pathname !== "/" ? (
+          <img
+            className="app-logo-toolbar_landing-page"
+            src="/images/brain_Plus_Heart_Black.png"
+            alt="icons of a brain, a plus sign and a heart"
+          />
+        ) : (
+          ""
+        )}
+        <div className="spacer" />
+        <div className="nav-spacer" />
       </div>
     );
   }
