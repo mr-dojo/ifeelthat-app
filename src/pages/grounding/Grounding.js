@@ -3,7 +3,6 @@ import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
-import "./grounding.css";
 
 class Grounding extends React.Component {
   static contextType = StoreContext;
