@@ -4,10 +4,12 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  text-align: center;
 }
 html,
 body {
   height: 100%;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
