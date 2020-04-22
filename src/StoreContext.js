@@ -8,10 +8,13 @@ const StoreContext = React.createContext({
   },
   sideDrawerOpen: Boolean,
   sharePosition: Number,
+  sessionStorage: {},
   updateFeeling: () => {},
   updateSharePosition: () => {},
   handleToggleSideDrawer: () => {},
+  setSessionStorage: () => {},
   setPositionFromLocalStorage: () => {},
+  handleRedirect: () => {},
 });
 
 export default StoreContext;

@@ -19,42 +19,70 @@ class App extends React.Component {
     sharePosition: 0,
     sideDrawerOpen: false,
     redirect: "",
+    sessionStorage: {},
     updateFeeling: () => {},
     updatePosition: () => {},
     handleToggleSideDrawer: () => {},
     setPositionFromLocalStorage: () => {},
+    setSessionStorage: () => {},
+    handleRedirect: () => {},
   };
 
   static defaultProps = {};
 
+  componentWillMount() {
+    console.log("<App> componentWillMount() ran");
+    this.syncFeeling();
+    this.syncStep();
+  }
+
   componentDidMount() {
-    if (window.localStorage.getItem("feeling")) {
-      const localStorageFeeling = window.localStorage.getItem("feeling");
+    console.log("<App> componentDidMount() ran");
+  }
+
+  syncFeeling = () => {
+    if (window.sessionStorage.getItem("feeling")) {
+      const localStorageFeeling = window.sessionStorage.getItem("feeling");
       const feelingObj = JSON.parse(localStorageFeeling);
       this.setState({
         feeling: feelingObj,
       });
+      console.log("syncFeeling() ran");
+    } else {
+      console.log("syncFeeling() ran and had nothing to update");
+      return;
     }
-    if (window.localStorage.getItem("step")) {
-      const localStorageStep = window.localStorage.getItem("step");
-      const stepObj = JSON.parse(localStorageStep);
+  };
+
+  syncStep = () => {
+    if (window.sessionStorage.getItem("step")) {
+      const sessionStorageStep = window.sessionStorage.getItem("step");
+      const stepObj = JSON.parse(sessionStorageStep);
       this.setState({
+        sessionStorage: stepObj,
         redirect: stepObj.path,
       });
+      console.log("syncStep() ran");
+    } else {
+      console.log("syncStep() ran and had nothing to update");
+      return;
     }
-  }
+  };
 
   updateFeeling = (newFeeling) => {
     this.setState(
       {
         feeling: newFeeling,
       },
-      () =>
-        window.localStorage.setItem(
-          "feeling",
-          JSON.stringify(this.state.feeling)
-        )
+      () => this.setSessionStorage("feeling", this.state.feeling)
     );
+  };
+
+  setSessionStorage = (key, valueObj) => {
+    window.sessionStorage.setItem(key, JSON.stringify(valueObj));
+    this.setState({
+      sessionStorage: valueObj,
+    });
   };
 
   setPositionFromLocalStorage = (position) => {
@@ -83,21 +111,28 @@ class App extends React.Component {
     }
   };
 
-  handleToggleSideDrawer = () => {
-    return this.setState((prevState) => {
+  handleToggleSideDrawer = () =>
+    this.setState((prevState) => {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
-  };
+
+  handleRedirect = (path) =>
+    this.setState({
+      redirect: path,
+    });
 
   render() {
     const contextValues = {
       feeling: this.state.feeling,
       sharePosition: this.state.sharePosition,
       sideDrawerOpen: this.state.sideDrawerOpen,
+      sessionStorage: this.state.sessionStorage,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
       setPositionFromLocalStorage: this.setPositionFromLocalStorage,
+      setSessionStorage: this.setSessionStorage,
+      handleRedirect: this.handleRedirect,
     };
     return (
       <StoreContext.Provider value={contextValues}>
