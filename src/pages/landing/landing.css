@@ -34,3 +34,11 @@
   height: 70px;
   width: 70px;
 }
+
+.warning_container {
+  background-color: #73020ba4;
+  border-radius: 5px;
+  padding: 15px;
+  max-width: 550px;
+  box-shadow: 0 5px 10px 5px rgb(0, 0, 0);
+}

@@ -121,3 +121,9 @@ h3 {
 .align-right {
   text-align: right;
 }
+
+.space-evenly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
