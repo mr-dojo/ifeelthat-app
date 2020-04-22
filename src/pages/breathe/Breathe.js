@@ -3,6 +3,7 @@ import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
+import "./breathe.css";
 
 class Breathe extends React.Component {
   static contextType = StoreContext;
@@ -240,27 +241,57 @@ class Breathe extends React.Component {
 
   renderColor = () => {
     return (
-      <section>
-        <form onSubmit={(e) => this.handleColorSubmit(e)}>
-          <label htmlFor="name-color">
-            What color would you associate with that feeling?
-          </label>
-          <select type="text" name="name-color" id="color" required>
-            <option value="Black">Black</option>
-            <option value="White">White</option>
-            <option value="Grey">Grey</option>
-            <option value="Red">Red</option>
-            <option value="Pink">Pink</option>
-            <option value="Orange">Orange</option>
-            <option value="Yellow">Yellow</option>
-            <option value="Green">Green</option>
-            <option value="Blue">Blue</option>
-            <option value="Purple">Purple</option>
-            <option value="Other">*more to come*</option>
-          </select>
-          <Button buttonText="Save" buttonType="submit"></Button>
-        </form>
-      </section>
+      <>
+        <section className="container-dark explain-color_section">
+          <div className="explain-color_div">
+            <h2 className="explain-color_h2 align-left">
+              Choose a color to represent your emotion.
+            </h2>
+            <p className="medium-text align-left">
+              By giving our emotion a color, it allows us to separate from it.
+              This helps us see our emotion as something we are{" "}
+              <strong>experiencing</strong> rather than something we{" "}
+              <strong>are</strong>
+            </p>
+          </div>
+        </section>
+        <section className="color_section">
+          <form onSubmit={(e) => this.handleColorSubmit(e)}>
+            <label htmlFor="select-color medium-text">
+              If you had to give your feeling of "{this.context.feeling.emotion}
+              " a color
+              <br />
+              what would it be?
+            </label>
+            <select type="text" name="select-color" id="color" required>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Grey">Grey</option>
+              <option value="Red">Red</option>
+              <option value="Pink">Pink</option>
+              <option value="Orange">Orange</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Green">Green</option>
+              <option value="Blue">Blue</option>
+              <option value="Purple">Purple</option>
+              <option value="Other">*more to come*</option>
+            </select>
+            <Button buttonText="Save" buttonType="submit"></Button>
+          </form>
+          <div className="quote-container">
+            <p className="xtra-small-text align-left quote-text">
+              <i>
+                "Anyone who has ever felt blue, seen red, blacked out, or turned
+                green knows we're prone to make emotional associations with
+                different shades"
+              </i>
+            </p>
+            <p className="xtra-small-text align-right quote-author">
+              - Winifred Gallagher
+            </p>
+          </div>
+        </section>
+      </>
     );
   };
 
@@ -283,8 +314,8 @@ class Breathe extends React.Component {
   render() {
     return (
       <>
-        <header>
-          <h1>Breathe</h1>
+        <header roll="header" className="breathe-header">
+          <h1 aria-label="Identify emotions">Breathe</h1>
         </header>
         {this.state.section === 1 ? this.renderBreath() : ""}
         {this.state.section === 2 ? this.renderEmotion() : ""}
