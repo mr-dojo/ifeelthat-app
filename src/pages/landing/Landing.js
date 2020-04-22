@@ -58,8 +58,8 @@ class Landing extends React.Component {
           <div>
             <h1 className="app-name">AUTHENTIC</h1>
             <h2 className="tagline">
-              Identify and express your emotions
-              <br /> in a <strong>healthy</strong> way
+              Identify and express your emotions in a{" "}
+              <span className="tagline_underline">healthy</span> way
             </h2>
           </div>
         </header>
@@ -68,46 +68,22 @@ class Landing extends React.Component {
           id="section-one_landing-page"
           className="container_dark space-evenly"
         >
-          <h2>
-            In an age of Social Media and instant communication, we are more
-            dissconected than ever
-          </h2>
+          <header>
+            <h2 className="align-left">
+              In an age of Social Media and instant communication,
+              <br /> we are more dissconected than ever.
+            </h2>
+          </header>
           <p className="medium-text">
             This app is designed to help you process your emotions and feel
-            connection with others
+            connection with others.
           </p>
         </section>
-        {/* <section>
-          <ul>
-            <li>
-              <p className="small-text">
-                First you will feel into your body and breathe
-              </p>
-            </li>
-            <li>
-              <p className="small-text">
-                Then you'll identify what you're feeling
-              </p>
-            </li>
-            <li>
-              <p className="small-text">
-                Next, You will get to listen to others express feelings similar
-                to yours
-              </p>
-            </li>
-            <li>
-              <p className="small-text">
-                Lastly, you'll have the option to share your emotional
-                experiences with other humans
-              </p>
-            </li>
-          </ul>
-        </section> */}
         <section className="space-evenly">
           <header>
             <h2>Breathe and Identify</h2>
           </header>
-          <p className="medium-text">
+          <p className="small-text">
             You'll go through a 3 minute process to get out of your head and
             into your feelings.
           </p>
@@ -118,50 +94,50 @@ class Landing extends React.Component {
         </section>
         <section className="container_dark space-evenly">
           <header>
-            <h3>Read about and listen to people expressing their emotions</h3>
+            <h2>Read and Listen</h2>
           </header>
-          <p className="small-text">
-            Find audio and stories of people experiencing the same emotion as
-            you
+          <p className="small-text ">
+            Hear and read stories of people experiencing the same emotion as
+            you.
           </p>
           <p className="small-text">
-            You may hear/read something you can relate to
+            You may hear/read something you can relate to.
           </p>
         </section>
         <section className="space-evenly">
           <header>
-            <h3>Share yourself with others</h3>
+            <h2>Share yourself with others</h2>
           </header>
           <p className="small-text">
             This gives you an opportunity to anonymously voice what you're going
-            through
-          </p>
-          <p className="small-text">
-            It can be a difficult, but rewarding thing to do
+            through.
           </p>
           <p className="small-text">
             You may feel a sense of relief when fully acknowledging and
-            expressing what's going on inside
+            expressing what's going on inside.
           </p>
+          <p className="small-text">It can be difficult, but rewarding.</p>
         </section>
         <section className="container_dark space-evenly">
           <div className="warning_container">
-            <strong className="medium-text">Warning:</strong>
+            <h3>
+              <strong className="medium-text">Warning:</strong>
+            </h3>
             <p className="small-text align-left">
               <br /> This app is not for everybody and contains content that may
-              be disturbing / upsetting
+              be disturbing and upsetting.
             </p>
             <p className="small-text align-left">
-              May also contain adult language and topics
+              May also contain adult language and topics.
             </p>
           </div>
           <p className="small-text">
             If at any point you feel yourself being triggered, take a deep
-            breathe and <strong>reach out for help</strong>
+            breathe and <strong>reach out for help.</strong>
           </p>
           <p className="small-text">
-            Use the "Safety" button if you are feeling like you may harm
-            yourself or others
+            Use the <strong>"Safety"</strong> button at the bottom of the page
+            if you are feeling like you may harm yourself or others.
           </p>
         </section>
         <section>

@@ -16,6 +16,10 @@
   width: 315px;
 }
 
+.tagline_underline {
+  text-decoration: underline;
+}
+
 .app-logo_landing-page {
   max-height: 18vh;
 }
