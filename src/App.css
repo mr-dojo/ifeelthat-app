@@ -96,18 +96,28 @@ h3 {
   font-size: 26px;
 }
 
+.xtra-small-text {
+  font-size: 18px;
+}
+
 .small-text {
   font-size: 20px;
-  margin: 30px 0;
 }
 
 .medium-text {
   font-size: 25px;
-  margin: 30px 0;
 }
 
 .container_dark {
   background-color: #0d0d0d;
   color: white;
   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
 }
