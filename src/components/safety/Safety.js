@@ -25,36 +25,38 @@ class Safety extends React.Component {
     return (
       <>
         {this.state.buttonPressed ? (
-          <section>
+          <section className="space-evenly">
             <h2>Reach out for help, you aren't alone</h2>
-            <a
-              className="safety__link"
-              href="tel:+18002738255"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Call Lifeline
-            </a>
-            <a
-              className="safety__link"
-              href="https://suicidepreventionlifeline.org/chat/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Chat with somebody
-            </a>
-            <a
-              className="safety__link"
-              href="https://suicidepreventionlifeline.org/help-yourself/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Help yourself
-            </a>
-            <Button
-              buttonText="Close"
-              onClick={() => this.handleButtonPress()}
-            />
+            <div>
+              <a
+                className="safety__link"
+                href="tel:+18002738255"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Call Lifeline
+              </a>
+              <a
+                className="safety__link"
+                href="https://suicidepreventionlifeline.org/chat/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Chat with somebody
+              </a>
+              <a
+                className="safety__link"
+                href="https://suicidepreventionlifeline.org/help-yourself/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Help yourself
+              </a>
+              <Button
+                buttonText="Close"
+                onClick={() => this.handleButtonPress()}
+              />
+            </div>
           </section>
         ) : (
           <Button
