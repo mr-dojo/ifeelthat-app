@@ -9,45 +9,36 @@ class Breathe extends React.Component {
   static contextType = StoreContext;
 
   state = {
-    section: 1,
+    section: this.context.sessionStorage.section || 1,
     emotion: "",
     color: "",
     breathButtonText: "Start",
   };
 
-  componentDidMount() {
-    if (window.localStorage.getItem("step")) {
-      const step = window.localStorage.getItem("step");
-      const stepObj = JSON.parse(step);
-      if (stepObj.path !== "/breathe") {
-        window.localStorage.setItem(
-          "step",
-          JSON.stringify({
-            path: "/breathe",
-            section: 1,
-          })
-        );
-      } else {
-        this.setState({
-          emotion: this.context.feeling.emotion,
-          color: this.context.feeling.color,
-          section: stepObj.section,
-        });
-      }
+  componentWillMount() {
+    console.log("<Breathe> componentWillMount() ran");
+    if (this.context.feeling.emotion) {
+      this.setState({
+        emotion: this.context.feeling.emotion,
+        color: this.context.feeling.color,
+      });
     } else {
-      this.setLocalStorage();
+      const stepObj = { path: "/breathe", section: this.state.section };
+      this.context.setSessionStorage("step", stepObj);
     }
   }
 
-  setLocalStorage = () => {
-    window.localStorage.setItem(
-      "step",
-      JSON.stringify({
-        path: "/breathe",
-        section: this.state.section,
-      })
-    );
-  };
+  componentDidMount() {
+    console.log("<Breathe> componentDidMount() ran");
+  }
+
+  componentWillUnmount() {
+    console.log("<Breathe> componentWillUnmount() ran");
+  }
+
+  componentWillUpdate() {
+    console.log("<Breathe> componentWillUpdate() ran");
+  }
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
@@ -57,7 +48,10 @@ class Breathe extends React.Component {
 
     this.setState({ section: 3, emotion: newEmotion }, () => {
       postFeeling();
-      this.setLocalStorage();
+      const stepObj = { path: "/breathe", section: this.state.section };
+      const feelingObj = { emotion: this.state.emotion };
+      this.context.setSessionStorage("step", stepObj);
+      this.context.setSessionStorage("feeling", feelingObj);
     });
 
     const postFeeling = () => {
@@ -88,7 +82,13 @@ class Breathe extends React.Component {
     e.preventDefault();
     this.setState({ section: 5, color: e.target.color.value }, () => {
       patchColor();
-      this.setLocalStorage();
+      const stepObj = { path: "/breathe", section: this.state.section };
+      const feelingObj = {
+        emotion: this.state.emotion,
+        color: this.state.color,
+      };
+      this.context.setSessionStorage("step", stepObj);
+      this.context.setSessionStorage("feeling", feelingObj);
     });
 
     const patchColor = () => {
@@ -150,7 +150,11 @@ class Breathe extends React.Component {
                     section: 2,
                   },
                   () => {
-                    this.setLocalStorage();
+                    const stepObj = {
+                      path: "/breathe",
+                      section: this.state.section,
+                    };
+                    this.context.setSessionStorage("step", stepObj);
                   }
                 );
               }
@@ -228,7 +232,11 @@ class Breathe extends React.Component {
                     section: 4,
                   },
                   () => {
-                    this.setLocalStorage();
+                    const stepObj = {
+                      path: "/breathe",
+                      section: this.state.section,
+                    };
+                    this.context.setSessionStorage("step", stepObj);
                   }
                 );
               }
@@ -258,7 +266,7 @@ class Breathe extends React.Component {
         <section className="color_section">
           <form onSubmit={(e) => this.handleColorSubmit(e)}>
             <label htmlFor="select-color medium-text">
-              If you had to give your feeling of "{this.context.feeling.emotion}
+              If you had to give your feeling of "{this.state.emotion}
               " a color
               <br />
               what would it be?
