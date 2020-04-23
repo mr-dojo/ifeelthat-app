@@ -18,39 +18,25 @@ class Listen extends React.Component {
 
   componentDidMount() {
     if (window.sessionStorage.getItem("step")) {
-      const step = window.sessionStorage.getItem("step");
-      const stepObj = JSON.parse(step);
-
-      if (stepObj.path !== "/listen") {
-        this.setLocalStorage();
-        this.populateShares();
-      } else {
-        const feelingString = window.sessionStorage.getItem("feeling");
-        const feelingObj = JSON.parse(feelingString);
-        const localStoragePosition = window.localStorage.getItem(
-          feelingObj.emotion
-        );
-        this.populateShares(feelingObj.emotion);
-        this.context.setPositionFromLocalStorage(localStoragePosition);
-      }
-    } else {
-      this.setLocalStorage();
+      const stepObj = { path: "/listen" };
+      // set session storage
+      this.context.setSessionStorage("step", stepObj);
+      // get feeling from session storage
+      const feelingString = window.sessionStorage.getItem("feeling");
+      const feelingObj = JSON.parse(feelingString);
+      // update feeling
+      this.context.updateFeeling(feelingObj);
+      // get position from local storage
+      const localStoragePosition = window.localStorage.getItem(
+        feelingObj.emotion
+      );
+      // update sharePosition in context
+      this.context.setPositionFromLocalStorage(localStoragePosition);
       this.populateShares();
+    } else {
+      this.context.handleRedirect("/");
     }
   }
-
-  setLocalStorage = () => {
-    window.sessionStorage.setItem(
-      "step",
-      JSON.stringify({
-        path: "/listen",
-      })
-    );
-    window.localStorage.setItem(
-      this.context.feeling.emotion,
-      this.context.sharePosition
-    );
-  };
 
   renderShare = () => {
     const currentShare = this.state.shareQueue[this.context.sharePosition];
@@ -61,8 +47,8 @@ class Listen extends React.Component {
     }
   };
 
-  populateShares = (localStorageEmotion) => {
-    const emotion = localStorageEmotion || this.context.feeling.emotion;
+  populateShares = () => {
+    const emotion = this.context.feeling.emotion;
     const fullURL = `${API_ENDPOINT}share/find?emotion=${emotion}`;
     fetch(fullURL, {
       method: "GET",
