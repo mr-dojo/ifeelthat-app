@@ -24,7 +24,16 @@ class SideDrawer extends React.Component {
             <Link to="/">About</Link>
           </li>
           <li onClick={() => this.context.handleToggleSideDrawer()}>
-            <Link to="/breathe">Begin</Link>
+            <Link
+              to="/breathe"
+              onClick={(e) => {
+                e.preventDefault();
+                window.sessionStorage.clear();
+                this.context.handleRedirect("/breathe");
+              }}
+            >
+              Begin
+            </Link>
           </li>
         </ul>
       </nav>

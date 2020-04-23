@@ -131,7 +131,6 @@ export default class ShareText extends React.Component {
                         breathButtonText: "Start",
                       },
                       () => {
-                        this.setLocalStorage();
                         this.handleBreathe();
                       }
                     );

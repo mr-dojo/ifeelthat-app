@@ -35,12 +35,18 @@ class Breathe extends React.Component {
     if (!window.sessionStorage.getItem("step")) {
       const stepObj = { path: "/breathe", section: 1 };
       this.context.setSessionStorage("step", stepObj);
-    } else {
+    }
+    if (window.sessionStorage.getItem("step")) {
       const stepString = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(stepString);
-      this.setState({
-        section: stepObj.section,
-      });
+
+      if (stepObj.path !== "/breathe") {
+        const stepObj = { path: "/breathe", section: 1 };
+        this.context.setSessionStorage("step", stepObj);
+        this.setState({
+          section: stepObj.section,
+        });
+      }
     }
   };
 
