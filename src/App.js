@@ -45,6 +45,9 @@ class App extends React.Component {
       });
       console.log("syncFeeling() ran");
     } else {
+      this.setState({
+        feeling: {},
+      });
       console.log("syncFeeling() ran and had nothing to update");
       return;
     }
@@ -60,6 +63,9 @@ class App extends React.Component {
       });
       console.log("syncStep() ran");
     } else {
+      this.setState({
+        sessionStorage: {},
+      });
       console.log("syncStep() ran and had nothing to update");
       return;
     }
@@ -115,6 +121,8 @@ class App extends React.Component {
     });
 
   handleRedirect = (path) => {
+    this.syncFeeling();
+    this.syncStep();
     this.setState({
       redirect: path,
     });

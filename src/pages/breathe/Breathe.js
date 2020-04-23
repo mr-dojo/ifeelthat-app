@@ -43,6 +43,11 @@ class Breathe extends React.Component {
         emotion: feelingObj.emotion,
         color: feelingObj.color,
       });
+    } else {
+      this.setState({
+        emotion: "",
+        color: "",
+      });
     }
   };
 
@@ -50,6 +55,9 @@ class Breathe extends React.Component {
     if (!window.sessionStorage.getItem("step")) {
       const stepObj = { path: "/breathe", section: 1 };
       this.context.setSessionStorage("step", stepObj);
+      this.setState({
+        section: 1,
+      });
     }
     if (window.sessionStorage.getItem("step")) {
       const stepString = window.sessionStorage.getItem("step");
