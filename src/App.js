@@ -116,7 +116,6 @@ class App extends React.Component {
     this.setState({
       redirect: path,
     });
-    this.forceUpdate();
   };
 
   render() {
