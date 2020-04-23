@@ -40,3 +40,18 @@ header.breathe-header {
   margin: 0;
   height: 50px;
 }
+
+.down-arrow_container_breathe-page {
+  display: flex;
+  position: fixed;
+  bottom: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+}
+
+.down-arrow_breathe-page {
+  height: 70px;
+  width: 70px;
+}

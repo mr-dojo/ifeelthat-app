@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
+import { animateScroll as scroll, scroller } from "react-scroll";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
 import "./breathe.css";
@@ -13,11 +14,27 @@ class Breathe extends React.Component {
     emotion: "",
     color: "",
     breathButtonText: "Start",
+    onTopOfPage: true,
   };
 
   componentDidMount() {
     this.syncFeeling();
     this.syncStep();
+    //find out if at currently at the top of page
+    window.onscroll = () => {
+      if (window.pageYOffset === 0 && !this.state.onTopOfPage) {
+        this.setState({
+          onTopOfPage: true,
+        });
+      } else if (window.pageYOffset !== 0 && this.state.onTopOfPage) {
+        this.setState({
+          onTopOfPage: false,
+        });
+      }
+    };
+  }
+  componentWillUnmount() {
+    window.onscroll = null;
   }
 
   syncFeeling = () => {
@@ -49,6 +66,14 @@ class Breathe extends React.Component {
       }
     }
   };
+
+  scrollToSection() {
+    scroller.scrollTo("choose-color_section", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
@@ -126,17 +151,34 @@ class Breathe extends React.Component {
     };
   };
 
+  renderDownArrow = () => {
+    return this.state.onTopOfPage ? (
+      <div
+        className="down-arrow_container_breathe-page"
+        onClick={() => this.scrollToSection()}
+      >
+        <img
+          className="down-arrow_breathe-page"
+          src="/images/Arrow_Down_Black1920765.png"
+          alt="icon of arrow pointing down"
+        />
+      </div>
+    ) : (
+      ""
+    );
+  };
+
   renderBreath = () => {
     return (
       <section className="space-evenly">
         <div className="div-container_eighty-vh section_margin">
-          <h2 className="align-left">
-            Take a breath and allow yourself to feel into your body.
-          </h2>
+          <h2 className="align-left">Breathe and Identify</h2>
 
-          <p className="small-text">Starting in your belly</p>
-          <p className="small-text">and working up to your chest</p>
-          <p className="small-text">take a deep breath</p>
+          <p className="small-text">
+            Starting in your belly and working up to your chest, take a deep
+            breath.
+          </p>
+
           <Button
             buttonText={this.state.breathButtonText}
             onClick={() => {
@@ -235,7 +277,8 @@ class Breathe extends React.Component {
             Feel that {this.context.feeling.emotion}
           </h2>
           <p className="small-text">
-            Take a few deep breaths and try to really experience that emotion.
+            Take a few more deep breaths and try to really experience that
+            emotion.
           </p>
           <Button
             buttonText={this.state.breathButtonText}
@@ -286,7 +329,7 @@ class Breathe extends React.Component {
               </h2>
             </header>
             <p className="medium-text align-left">
-              By giving your emotion a color, it helps you to separate from it.
+              Giving your emotion a color can help you feel it deeper.
             </p>
             <p className="small-text">
               This allows you to see your {this.context.feeling.emotion} as
@@ -295,7 +338,8 @@ class Breathe extends React.Component {
             </p>
           </div>
         </section>
-        <section>
+        {this.renderDownArrow()}
+        <section className="choose-color_section">
           <div className="div-container_eighty-vh">
             <p className="medium-text">What color comes to mind?</p>
             <form onSubmit={(e) => this.handleColorSubmit(e)}>
