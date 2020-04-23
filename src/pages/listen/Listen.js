@@ -17,16 +17,16 @@ class Listen extends React.Component {
   };
 
   componentDidMount() {
-    if (window.localStorage.getItem("step")) {
-      const step = window.localStorage.getItem("step");
+    if (window.sessionStorage.getItem("step")) {
+      const step = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(step);
 
       if (stepObj.path !== "/listen") {
         this.setLocalStorage();
         this.populateShares();
       } else {
-        const localStorageFeeling = window.localStorage.getItem("feeling");
-        const feelingObj = JSON.parse(localStorageFeeling);
+        const feelingString = window.sessionStorage.getItem("feeling");
+        const feelingObj = JSON.parse(feelingString);
         const localStoragePosition = window.localStorage.getItem(
           feelingObj.emotion
         );
@@ -40,7 +40,7 @@ class Listen extends React.Component {
   }
 
   setLocalStorage = () => {
-    window.localStorage.setItem(
+    window.sessionStorage.setItem(
       "step",
       JSON.stringify({
         path: "/listen",
