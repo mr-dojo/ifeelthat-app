@@ -4,6 +4,7 @@ import StoreContext from "../../StoreContext";
 import { scroller } from "react-scroll";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../../components/ScrollToTop";
 import "./breathe.css";
 
 class Breathe extends React.Component {
@@ -341,7 +342,9 @@ class Breathe extends React.Component {
         {this.renderDownArrow()}
         <section className="choose-color_section">
           <div className="div-container_eighty-vh">
-            <p className="medium-text">What color comes to mind?</p>
+            <p className="medium-text">
+              What color could represent that {this.context.feeling.emotion}.
+            </p>
             <form onSubmit={(e) => this.handleColorSubmit(e)}>
               <label htmlFor="color">Identify color</label>
               <select
@@ -390,6 +393,7 @@ class Breathe extends React.Component {
     return (
       <section id="breathe-buttons">
         <div className="div-container_eighty-vh section_margin">
+          <ScrollToTop />
           <header>
             <h2>
               {this.context.feeling.color} feeling of{" "}
