@@ -9,28 +9,40 @@ class Breathe extends React.Component {
   static contextType = StoreContext;
 
   state = {
-    section: this.context.sessionStorage.section || 1,
+    section: 1,
     emotion: "",
     color: "",
     breathButtonText: "Start",
   };
 
   componentDidMount() {
-    console.log("<Breathe> componentDidMount() ran");
-    if (this.context.feeling.emotion) {
-      this.setState({
-        emotion: this.context.feeling.emotion,
-        color: this.context.feeling.color,
-      });
-    } else {
-      const stepObj = { path: "/breathe", section: this.state.section };
-      this.context.setSessionStorage("step", stepObj);
-    }
+    this.syncFeeling();
+    this.syncStep();
   }
 
-  componentWillUnmount() {
-    console.log("<Breathe> componentWillUnmount() ran");
-  }
+  syncFeeling = () => {
+    if (window.sessionStorage.getItem("feeling")) {
+      const feelingString = window.sessionStorage.getItem("feeling");
+      const feelingObj = JSON.parse(feelingString);
+      this.setState({
+        emotion: feelingObj.emotion,
+        color: feelingObj.color,
+      });
+    }
+  };
+
+  syncStep = () => {
+    if (!window.sessionStorage.getItem("step")) {
+      const stepObj = { path: "/breathe", section: 1 };
+      this.context.setSessionStorage("step", stepObj);
+    } else {
+      const stepString = window.sessionStorage.getItem("step");
+      const stepObj = JSON.parse(stepString);
+      this.setState({
+        section: stepObj.section,
+      });
+    }
+  };
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
@@ -317,11 +329,11 @@ class Breathe extends React.Component {
         <header roll="header" className="breathe-header">
           <h1 aria-label="Identify emotions">Breathe</h1>
         </header>
-        {this.state.section === 1 ? this.renderBreath() : ""}
-        {this.state.section === 2 ? this.renderEmotion() : ""}
-        {this.state.section === 3 ? this.renderBreath2() : ""}
-        {this.state.section === 4 ? this.renderColor() : ""}
-        {this.state.section === 5 ? this.renderButtons() : ""}
+        {this.context.sessionStorage.section === 1 ? this.renderBreath() : ""}
+        {this.context.sessionStorage.section === 2 ? this.renderEmotion() : ""}
+        {this.context.sessionStorage.section === 3 ? this.renderBreath2() : ""}
+        {this.context.sessionStorage.section === 4 ? this.renderColor() : ""}
+        {this.context.sessionStorage.section === 5 ? this.renderButtons() : ""}
       </>
     );
   }

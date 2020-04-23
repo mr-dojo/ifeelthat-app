@@ -76,9 +76,11 @@ class App extends React.Component {
 
   setSessionStorage = (key, valueObj) => {
     window.sessionStorage.setItem(key, JSON.stringify(valueObj));
-    this.setState({
-      sessionStorage: valueObj,
-    });
+    if (key === "step") {
+      this.setState({
+        sessionStorage: valueObj,
+      });
+    }
   };
 
   setPositionFromLocalStorage = (position) => {
