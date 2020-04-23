@@ -133,3 +133,15 @@ p {
   flex-direction: column;
   justify-content: center;
 }
+
+.section_margin {
+  margin: 0 10px;
+}
+
+.div-container_eighty-vh {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 80vh;
+}

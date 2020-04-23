@@ -128,16 +128,14 @@ class Breathe extends React.Component {
 
   renderBreath = () => {
     return (
-      <section>
-        <h2>
-          Let's start out by taking a breath and allowing yourself to feel
+      <section className="space-evenly">
+        <h2 className="align-left">
+          Take a breath and allow yourself to feel into your body.
         </h2>
 
-        <p className="small-text">
-          From your belly
-          <br /> Working up to your chest
-          <br /> take a deep breath
-        </p>
+        <p className="small-text">Starting in your belly</p>
+        <p className="small-text">and working up to your chest</p>
+        <p className="small-text">take a deep breath</p>
         <Button
           buttonText={this.state.breathButtonText}
           onClick={() => {
@@ -215,44 +213,48 @@ class Breathe extends React.Component {
 
   renderBreath2 = () => {
     return (
-      <section id="breathe-again">
-        <p className="small-text">
-          Take another deep breath and try to really feel that emotion for a
-          moment...
-        </p>
-        <Button
-          buttonText={this.state.breathButtonText}
-          onClick={() => {
-            let inCount = 5;
-            let outCount = 5;
-            let timer = setInterval(() => {
-              if (inCount !== 0) {
-                this.setState({ breathButtonText: `Breathe In ${inCount}` });
-                inCount = inCount - 1;
-              } else if (outCount !== 0) {
-                this.setState({
-                  breathButtonText: `Breathe Out ${outCount}`,
-                });
-                outCount--;
-              } else {
-                clearInterval(timer);
-                return this.setState(
-                  {
-                    breathButtonText: "Start",
-                    section: 4,
-                  },
-                  () => {
-                    const stepObj = {
-                      path: "/breathe",
-                      section: this.state.section,
-                    };
-                    this.context.setSessionStorage("step", stepObj);
-                  }
-                );
-              }
-            }, 1000);
-          }}
-        ></Button>
+      <section id="breathe-again" className="section_margin space-evenly">
+        <div className="section_margin space-evenly div-container_eighty-vh">
+          <h2 className="align-left">
+            Feel that {this.context.feeling.emotion}
+          </h2>
+          <p className="small-text">
+            Take a few deep breaths and try to really experience that emotion.
+          </p>
+          <Button
+            buttonText={this.state.breathButtonText}
+            onClick={() => {
+              let inCount = 5;
+              let outCount = 5;
+              let timer = setInterval(() => {
+                if (inCount !== 0) {
+                  this.setState({ breathButtonText: `Breathe In ${inCount}` });
+                  inCount = inCount - 1;
+                } else if (outCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe Out ${outCount}`,
+                  });
+                  outCount--;
+                } else {
+                  clearInterval(timer);
+                  return this.setState(
+                    {
+                      breathButtonText: "Start",
+                      section: 4,
+                    },
+                    () => {
+                      const stepObj = {
+                        path: "/breathe",
+                        section: this.state.section,
+                      };
+                      this.context.setSessionStorage("step", stepObj);
+                    }
+                  );
+                }
+              }, 1000);
+            }}
+          ></Button>
+        </div>
       </section>
     );
   };
