@@ -15,8 +15,8 @@ class Breathe extends React.Component {
     breathButtonText: "Start",
   };
 
-  componentWillMount() {
-    console.log("<Breathe> componentWillMount() ran");
+  componentDidMount() {
+    console.log("<Breathe> componentDidMount() ran");
     if (this.context.feeling.emotion) {
       this.setState({
         emotion: this.context.feeling.emotion,
@@ -28,16 +28,8 @@ class Breathe extends React.Component {
     }
   }
 
-  componentDidMount() {
-    console.log("<Breathe> componentDidMount() ran");
-  }
-
   componentWillUnmount() {
     console.log("<Breathe> componentWillUnmount() ran");
-  }
-
-  componentWillUpdate() {
-    console.log("<Breathe> componentWillUpdate() ran");
   }
 
   handleEmotionSubmit = (e) => {
