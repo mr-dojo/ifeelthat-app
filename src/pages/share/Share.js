@@ -9,10 +9,9 @@ class Share extends React.Component {
   };
 
   componentDidMount() {
-    if (window.localStorage.getItem("step")) {
-      const step = window.localStorage.getItem("step");
+    if (window.sessionStorage.getItem("step")) {
+      const step = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(step);
-
       if (stepObj.path === "/share") {
         this.setState({
           shareType: stepObj.shareType,
@@ -24,7 +23,7 @@ class Share extends React.Component {
   }
 
   setLocalStorage = () => {
-    window.localStorage.setItem(
+    window.sessionStorage.setItem(
       "step",
       JSON.stringify({
         path: "/share",
