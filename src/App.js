@@ -30,14 +30,10 @@ class App extends React.Component {
 
   static defaultProps = {};
 
-  componentWillMount() {
-    console.log("<App> componentWillMount() ran");
-    this.syncFeeling();
-    this.syncStep();
-  }
-
   componentDidMount() {
     console.log("<App> componentDidMount() ran");
+    this.syncFeeling();
+    this.syncStep();
   }
 
   syncFeeling = () => {
@@ -116,10 +112,12 @@ class App extends React.Component {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
 
-  handleRedirect = (path) =>
+  handleRedirect = (path) => {
     this.setState({
       redirect: path,
     });
+    this.forceUpdate();
+  };
 
   render() {
     const contextValues = {
