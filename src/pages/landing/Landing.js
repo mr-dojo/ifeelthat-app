@@ -75,8 +75,8 @@ class Landing extends React.Component {
             </h2>
           </header>
           <p className="medium-text">
-            This app is designed to help you process your emotions and feel
-            connection with others.
+            This app is designed to help you find connection through shared
+            experiences.
           </p>
         </section>
         <section className="space-evenly">
@@ -89,7 +89,7 @@ class Landing extends React.Component {
           </p>
           <p className="small-text">
             Being mindful of your breathing will allow you to more easily
-            identify the emotions you are experiencing.
+            identify the emotions you're experiencing.
           </p>
         </section>
         <section className="container_dark space-evenly">
@@ -97,11 +97,11 @@ class Landing extends React.Component {
             <h2>Read and Listen</h2>
           </header>
           <p className="small-text ">
-            Hear and read stories of people experiencing the same emotion as
+            Hear and read stories of people experiencing the same emotions as
             you.
           </p>
           <p className="small-text">
-            You may hear/read something you can relate to.
+            You may find something you can relate to.
           </p>
         </section>
         <section className="space-evenly">
@@ -123,11 +123,11 @@ class Landing extends React.Component {
             <h3>
               <strong className="medium-text">Warning:</strong>
             </h3>
-            <p className="small-text align-left">
+            <p className="small-text">
               <br /> This app is not for everybody and contains content that may
               be disturbing and upsetting.
             </p>
-            <p className="small-text align-left">
+            <p className="small-text">
               May also contain adult language and topics.
             </p>
           </div>
