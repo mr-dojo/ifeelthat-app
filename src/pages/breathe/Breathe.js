@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
-import { animateScroll as scroll, scroller } from "react-scroll";
+import { scroller } from "react-scroll";
 import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
 import "./breathe.css";
