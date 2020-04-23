@@ -3,6 +3,7 @@ import Button from "../../../components/button/Button";
 import { Link } from "react-router-dom";
 import StoreContext from "../../../StoreContext";
 import { API_ENDPOINT } from "../../../config";
+import { scroller } from "react-scroll";
 
 export default class ShareText extends React.Component {
   static contextType = StoreContext;
@@ -61,38 +62,50 @@ export default class ShareText extends React.Component {
       .then((resJson) => {});
   };
 
-  handleBreathe = () => {
-    document.getElementById("js-share-buttons").scrollIntoView(true);
-  };
+  scrollToSection() {
+    scroller.scrollTo("share_buttons", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }
 
   renderInputBox = () => {
     return (
       <section>
-        <h2>
-          A {this.context.feeling.color} feeling of{" "}
-          {this.context.feeling.emotion}
-        </h2>
-        <form onSubmit={this.handleTextSubmit} onChange={this.handleTextChange}>
-          <label htmlFor="share-text">Express yourself below</label>
-          <textarea
-            type="text"
-            rows="10"
-            columns="30"
-            name="share-text"
-            id="text"
-            value={this.state.shareText}
-            required
-          ></textarea>
-          <Button buttonText="Share it" buttonType="submit"></Button>
-          {!this.state.shareText ? (
-            <Button buttonText="Cancel" onClick={(e) => this.props.cancel()} />
-          ) : (
-            <Button
-              buttonText="Burn it"
-              onClick={(e) => this.handleTextDelete(e)}
-            ></Button>
-          )}
-        </form>
+        <div className="div-container_eighty-vh section_margin">
+          <h2>
+            A {this.context.feeling.color} feeling of{" "}
+            {this.context.feeling.emotion}
+          </h2>
+          <form
+            onSubmit={this.handleTextSubmit}
+            onChange={this.handleTextChange}
+          >
+            <label htmlFor="share-text">Express yourself below</label>
+            <textarea
+              type="text"
+              rows="10"
+              columns="30"
+              name="share-text"
+              id="text"
+              value={this.state.shareText}
+              required
+            ></textarea>
+            <Button buttonText="Share it" buttonType="submit"></Button>
+            {!this.state.shareText ? (
+              <Button
+                buttonText="Cancel"
+                onClick={(e) => this.props.cancel()}
+              />
+            ) : (
+              <Button
+                buttonText="Burn it"
+                onClick={(e) => this.handleTextDelete(e)}
+              ></Button>
+            )}
+          </form>
+        </div>
       </section>
     );
   };
@@ -104,60 +117,65 @@ export default class ShareText extends React.Component {
           this.renderInputBox()
         ) : (
           <section>
-            <p className="small-text">
-              Take another deep breath and appreciate the lightness that comes
-              from expressing these feelings
-            </p>
-            <Button
-              buttonText={this.state.breathButtonText}
-              onClick={() => {
-                let inCount = 5;
-                let outCount = 5;
-                let timer = setInterval(() => {
-                  if (inCount !== 0) {
-                    this.setState({
-                      breathButtonText: `Breathe In ${inCount}`,
-                    });
-                    inCount = inCount - 1;
-                  } else if (outCount !== 0) {
-                    this.setState({
-                      breathButtonText: `Breathe Out ${outCount}`,
-                    });
-                    outCount--;
-                  } else {
-                    clearInterval(timer);
-                    return this.setState(
-                      {
-                        breathButtonText: "Start",
-                      },
-                      () => {
-                        this.handleBreathe();
-                      }
-                    );
-                  }
-                }, 1000);
-              }}
-            ></Button>
+            <div className="div-container_eighty-vh section_margin">
+              <p className="medium-text">
+                How you feel <strong>now?</strong>
+              </p>
+              <p className="small-text">What, if anything, is different?</p>
+              <p className="xtra-small-text">
+                Take another deep breath and be mindful of any feelings that
+                come up.
+              </p>
+              <Button
+                buttonText={this.state.breathButtonText}
+                onClick={() => {
+                  let inCount = 5;
+                  let outCount = 5;
+                  let timer = setInterval(() => {
+                    if (inCount !== 0) {
+                      this.setState({
+                        breathButtonText: `Breathe In ${inCount}`,
+                      });
+                      inCount = inCount - 1;
+                    } else if (outCount !== 0) {
+                      this.setState({
+                        breathButtonText: `Breathe Out ${outCount}`,
+                      });
+                      outCount--;
+                    } else {
+                      clearInterval(timer);
+                      return this.setState(
+                        {
+                          breathButtonText: "Start",
+                        },
+                        () => {
+                          this.scrollToSection();
+                        }
+                      );
+                    }
+                  }, 1000);
+                }}
+              ></Button>
+            </div>
           </section>
         )}
-        <section id="js-share-buttons">
-          {this.state.submitted ? (
-            <p className="small-text">
-              Listen to others expiences of {this.context.feeling.emotion}
-              <br />
-              or
-              <br />
-              Identify a new emotion by taking a breathe
+        <section id="js-share-buttons" className="share_buttons">
+          <div className="div-container_eighty-vh section_margin">
+            <p className="medium-text">
+              Select <strong>Listen</strong> to see other people's posts about{" "}
+              {this.context.feeling.emotion}.
             </p>
-          ) : (
-            ""
-          )}
-          <Link className="nav-link" to="/listen">
-            <Button buttonText="Listen" />
-          </Link>
-          <Link to="/breathe">
-            <Button buttonText="Breathe" />
-          </Link>
+            <Link className="nav-link" to="/listen">
+              <Button buttonText="Listen" />
+            </Link>
+            <p className="medium-text">
+              Select <strong>Breathe</strong> to ground into your body again and
+              identify another emotion.
+            </p>
+            <Link to="/breathe">
+              <Button buttonText="Breathe" />
+            </Link>
+          </div>
         </section>
       </>
     );

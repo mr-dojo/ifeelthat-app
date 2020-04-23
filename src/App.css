@@ -149,3 +149,16 @@ p {
 .drop-shadow {
   box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.1);
 }
+
+.flatten {
+  height: 0;
+}
+
+.push-off-page {
+  position: relative;
+  top: 999999px;
+}
+
+.display-none {
+  display: none;
+}
