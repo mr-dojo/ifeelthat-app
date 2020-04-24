@@ -20,8 +20,10 @@ class App extends React.Component {
     sideDrawerOpen: false,
     redirect: "",
     sessionStorage: {},
+    breatheSection: 1,
     updateFeeling: () => {},
     updatePosition: () => {},
+    updateBreatheSection: () => {},
     handleToggleSideDrawer: () => {},
     setPositionFromLocalStorage: () => {},
     setSessionStorage: () => {},
@@ -38,17 +40,28 @@ class App extends React.Component {
 
   syncFeeling = () => {
     if (window.sessionStorage.getItem("feeling")) {
-      const localStorageFeeling = window.sessionStorage.getItem("feeling");
-      const feelingObj = JSON.parse(localStorageFeeling);
+      const feelingString = window.sessionStorage.getItem("feeling");
+      const feelingObj = JSON.parse(feelingString);
       this.setState({
         feeling: feelingObj,
       });
-      console.log("syncFeeling() ran");
+      // Check if emotion has a sharePosition
+      if (window.localStorage.getItem(feelingObj.emotion)) {
+        const position = window.localStorage.getItem(feelingObj.emotion);
+        this.setState({
+          sharePosition: position,
+        });
+      } else {
+        this.setState({ sharePosition: 0 });
+      }
+      console.log(`syncFeeling() ran and feeling = ${feelingObj}`);
     } else {
       this.setState({
         feeling: {},
       });
-      console.log("syncFeeling() ran and had nothing to update");
+      console.log(
+        "syncFeeling() ran and had nothing to update so it set feeling = {}"
+      );
       return;
     }
   };
@@ -57,18 +70,37 @@ class App extends React.Component {
     if (window.sessionStorage.getItem("step")) {
       const sessionStorageStep = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(sessionStorageStep);
+      this.ifPathIsBreathe(stepObj);
       this.setState({
         sessionStorage: stepObj,
         redirect: stepObj.path,
       });
-      console.log("syncStep() ran");
+      console.log("syncStep() ran and setState");
     } else {
-      this.setState({
-        sessionStorage: {},
-      });
+      const stepObj = { path: "/" };
+      this.setState(
+        {
+          breatheSection: 1,
+        },
+        () => {
+          this.setSessionStorage("step", stepObj);
+        }
+      );
       console.log("syncStep() ran and had nothing to update");
       return;
     }
+  };
+
+  ifPathIsBreathe = (stepObj) => {
+    if (stepObj.path === "/breathe") {
+      console.log(this.context.breatheSection);
+      this.setState(
+        {
+          breatheSection: stepObj.section,
+        },
+        () => console.log(this.context.breatheSection)
+      );
+    } else return;
   };
 
   updateFeeling = (newFeeling) => {
@@ -80,19 +112,17 @@ class App extends React.Component {
     );
   };
 
-  setSessionStorage = (key, valueObj) => {
-    window.sessionStorage.setItem(key, JSON.stringify(valueObj));
-    if (key === "step") {
-      this.setState({
-        sessionStorage: valueObj,
-      });
-    }
-  };
-
-  setPositionFromLocalStorage = (position) => {
-    this.setState({
-      sharePosition: position,
-    });
+  updateBreatheSection = (section) => {
+    console.log("updateBreatheSection() ran");
+    this.setState(
+      {
+        breatheSection: section,
+      },
+      () => {
+        const newStep = { path: "/breathe", section: section };
+        window.sessionStorage.setItem("step", JSON.stringify(newStep));
+      }
+    );
   };
 
   updatePosition = (reset) => {
@@ -115,6 +145,21 @@ class App extends React.Component {
     }
   };
 
+  setSessionStorage = (key, valueObj) => {
+    window.sessionStorage.setItem(key, JSON.stringify(valueObj));
+    if (key === "step") {
+      this.setState({
+        sessionStorage: valueObj,
+      });
+    }
+  };
+
+  setPositionFromLocalStorage = (position) => {
+    this.setState({
+      sharePosition: position,
+    });
+  };
+
   handleToggleSideDrawer = () =>
     this.setState((prevState) => {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
@@ -134,8 +179,10 @@ class App extends React.Component {
       sharePosition: this.state.sharePosition,
       sideDrawerOpen: this.state.sideDrawerOpen,
       sessionStorage: this.state.sessionStorage,
+      breatheSection: this.state.breatheSection,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
+      updateBreatheSection: this.updateBreatheSection,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
       setPositionFromLocalStorage: this.setPositionFromLocalStorage,
       setSessionStorage: this.setSessionStorage,
