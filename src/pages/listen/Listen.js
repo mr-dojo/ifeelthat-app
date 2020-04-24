@@ -46,7 +46,7 @@ class Listen extends React.Component {
                 <Button
                   buttonText="Share"
                   onClick={() => {
-                    const stepObj = { path: "/share" };
+                    const stepObj = { path: "/share", shareType: "None" };
                     this.context.setSessionStorage("step", stepObj);
                   }}
                 />

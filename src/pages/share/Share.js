@@ -2,27 +2,21 @@ import React from "react";
 import ShareText from "./shareText/ShareText";
 import ShareAudio from "./shareAudio/ShareAudio";
 import Button from "../../components/button/Button";
+import StoreContext from "../../StoreContext";
 import { scroller } from "react-scroll";
 
 class Share extends React.Component {
+  static contextType = StoreContext;
+
   state = {
-    shareType: "None",
     onTopOfPage: true,
   };
 
   componentDidMount() {
-    if (window.sessionStorage.getItem("step")) {
-      const step = window.sessionStorage.getItem("step");
-      const stepObj = JSON.parse(step);
-      if (stepObj.path === "/share") {
-        this.setState({
-          shareType: stepObj.shareType,
-        });
-      } else {
-        this.setLocalStorage();
-      }
-    }
-    // Check if at the top of page
+    this.watchScrollPosition();
+  }
+
+  watchScrollPosition = () => {
     window.onscroll = () => {
       if (window.pageYOffset === 0 && !this.state.onTopOfPage) {
         this.setState({
@@ -34,16 +28,6 @@ class Share extends React.Component {
         });
       }
     };
-  }
-
-  setLocalStorage = () => {
-    window.sessionStorage.setItem(
-      "step",
-      JSON.stringify({
-        path: "/share",
-        shareType: this.state.shareType,
-      })
-    );
   };
 
   scrollToSection() {
@@ -56,21 +40,16 @@ class Share extends React.Component {
 
   handleShareTypeSubmit = (e) => {
     e.preventDefault();
-    this.setState(
-      {
-        shareType: e.target.type.value,
-      },
-      () => this.setLocalStorage()
-    );
+    const shareType = e.target.type.value;
+    const stepObj = { path: "/share", shareType: shareType, submitted: false };
+    this.context.setSessionStorage("step", stepObj);
+    this.context.updateShareType(shareType);
   };
 
   handleCancel = () => {
-    this.setState(
-      {
-        shareType: "None",
-      },
-      () => this.setLocalStorage()
-    );
+    const stepObj = { path: "/share", shareType: "None", submitted: false };
+    this.context.setSessionStorage("step", stepObj);
+    this.context.updateShareType("None");
   };
 
   renderDownArrow = () => {
@@ -143,9 +122,9 @@ class Share extends React.Component {
             <p className="small-text">Be honest and speak from your heart</p>
           </div>
         </section>
-        {this.state.shareType === "None" ? (
+        {this.context.shareType === "None" ? (
           this.renderTypeForm()
-        ) : this.state.shareType === "Text" ? (
+        ) : this.context.shareType === "Text" ? (
           <ShareText cancel={this.handleCancel} />
         ) : (
           <ShareAudio cancel={this.handleCancel} />

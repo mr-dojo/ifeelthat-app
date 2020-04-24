@@ -17,15 +17,18 @@ import ScrollToTop from "./components/ScrollToTop";
 class App extends React.Component {
   state = {
     feeling: {},
-    sharePosition: 0,
-    sideDrawerOpen: false,
-    redirect: "",
     sessionStorage: {},
     shareQueue: [],
+    sideDrawerOpen: false,
+    redirect: "",
     breatheSection: 1,
+    sharePosition: 0,
+    shareType: "",
+    shareSubmitted: false,
     updateFeeling: () => {},
     updatePosition: () => {},
     updateBreatheSection: () => {},
+    updateShareType: () => {},
     handleToggleSideDrawer: () => {},
     setPositionFromLocalStorage: () => {},
     setSessionStorage: () => {},
@@ -73,11 +76,11 @@ class App extends React.Component {
       const sessionStorageStep = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(sessionStorageStep);
       this.ifPathIsBreathe(stepObj);
+      this.ifPathIsShare(stepObj);
       this.setState({
         sessionStorage: stepObj,
         redirect: stepObj.path,
       });
-      console.log("syncStep() ran and setState");
     } else {
       const stepObj = { path: "/" };
       this.setState(
@@ -88,21 +91,31 @@ class App extends React.Component {
           this.setSessionStorage("step", stepObj);
         }
       );
-      console.log("syncStep() ran and had nothing to update");
       return;
     }
   };
 
   ifPathIsBreathe = (stepObj) => {
     if (stepObj.path === "/breathe") {
-      console.log(this.context.breatheSection);
-      this.setState(
-        {
-          breatheSection: stepObj.section,
-        },
-        () => console.log(this.context.breatheSection)
-      );
+      this.setState({
+        breatheSection: stepObj.section,
+      });
     } else return;
+  };
+
+  ifPathIsShare = (stepObj) => {
+    if (stepObj.path === "/share") {
+      this.setState({
+        shareType: stepObj.shareType,
+        shareSubmitted: stepObj.submitted,
+      });
+    } else return;
+  };
+
+  updateShareType = (shareType) => {
+    this.setState({
+      shareType: shareType,
+    });
   };
 
   updateFeeling = (newFeeling) => {
@@ -213,9 +226,11 @@ class App extends React.Component {
       sessionStorage: this.state.sessionStorage,
       breatheSection: this.state.breatheSection,
       shareQueue: this.state.shareQueue,
+      shareType: this.state.shareType,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       updateBreatheSection: this.updateBreatheSection,
+      updateShareType: this.updateShareType,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
       setPositionFromLocalStorage: this.setPositionFromLocalStorage,
       populateShares: this.populateShares,
