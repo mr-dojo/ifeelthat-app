@@ -166,14 +166,30 @@ export default class ShareText extends React.Component {
               {this.context.feeling.emotion}.
             </p>
             <Link className="nav-link" to="/listen">
-              <Button buttonText="Listen" />
+              <Button
+                buttonText="Listen"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const stepObj = { path: "/listen" };
+                  this.context.setSessionStorage("step", stepObj);
+                  this.context.handleRedirect("/listen");
+                }}
+              />
             </Link>
             <p className="medium-text">
               Select <strong>Breathe</strong> to ground into your body again and
               identify another emotion.
             </p>
             <Link to="/breathe">
-              <Button buttonText="Breathe" />
+              <Button
+                buttonText="Breathe"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const stepObj = { path: "/breathe", section: 1 };
+                  this.context.setSessionStorage("step", stepObj);
+                  this.context.handleRedirect("/breathe");
+                }}
+              />
             </Link>
           </div>
         </section>
