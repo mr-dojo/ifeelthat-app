@@ -1,9 +1,12 @@
 import React from "react";
 import Button from "../../components/button/Button";
+import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
 import "./landing.css";
 
 class Landing extends React.Component {
+  static contextType = StoreContext;
+
   state = {
     onTopOfPage: true,
   };
@@ -158,7 +161,13 @@ class Landing extends React.Component {
               <h3>Start your journey...</h3>
             </header>
             <Link to="/breathe">
-              <Button buttonText="Begin" />
+              <Button
+                buttonText="Begin"
+                onClick={() => {
+                  const stepObj = { path: "/breathe", section: 1 };
+                  this.context.setSessionStorage("step", stepObj);
+                }}
+              />
             </Link>
           </div>
         </section>
