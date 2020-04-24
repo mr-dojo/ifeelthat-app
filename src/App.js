@@ -35,10 +35,7 @@ class App extends React.Component {
     handleRedirect: () => {},
   };
 
-  static defaultProps = {};
-
   componentDidMount() {
-    console.log("<App> componentDidMount() ran");
     this.syncFeeling();
     this.syncStep();
   }
@@ -59,14 +56,10 @@ class App extends React.Component {
       } else {
         this.setState({ sharePosition: 0 });
       }
-      console.log(`syncFeeling() ran and feeling = ${feelingObj}`);
     } else {
       this.setState({
         feeling: {},
       });
-      console.log(
-        "syncFeeling() ran and had nothing to update so it set feeling = {}"
-      );
       return;
     }
   };
@@ -128,7 +121,6 @@ class App extends React.Component {
   };
 
   updateBreatheSection = (section) => {
-    console.log("updateBreatheSection() ran");
     this.setState(
       {
         breatheSection: section,
