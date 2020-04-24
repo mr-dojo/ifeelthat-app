@@ -11,17 +11,15 @@ class Breathe extends React.Component {
   static contextType = StoreContext;
 
   state = {
-    section: 1,
-    emotion: "",
-    color: "",
     breathButtonText: "Start",
     onTopOfPage: true,
   };
 
   componentDidMount() {
-    this.syncFeeling();
-    this.syncStep();
-    //find out if at currently at the top of page
+    this.watchScrollPosition();
+  }
+
+  watchScrollPosition = () => {
     window.onscroll = () => {
       if (window.pageYOffset === 0 && !this.state.onTopOfPage) {
         this.setState({
@@ -33,44 +31,6 @@ class Breathe extends React.Component {
         });
       }
     };
-  }
-
-  syncFeeling = () => {
-    if (window.sessionStorage.getItem("feeling")) {
-      const feelingString = window.sessionStorage.getItem("feeling");
-      const feelingObj = JSON.parse(feelingString);
-      this.setState({
-        emotion: feelingObj.emotion,
-        color: feelingObj.color,
-      });
-    } else {
-      this.setState({
-        emotion: "",
-        color: "",
-      });
-    }
-  };
-
-  syncStep = () => {
-    if (!window.sessionStorage.getItem("step")) {
-      const stepObj = { path: "/breathe", section: 1 };
-      this.context.setSessionStorage("step", stepObj);
-      this.setState({
-        section: 1,
-      });
-    }
-    if (window.sessionStorage.getItem("step")) {
-      const stepString = window.sessionStorage.getItem("step");
-      const stepObj = JSON.parse(stepString);
-
-      if (stepObj.path !== "/breathe") {
-        const stepObj = { path: "/breathe", section: 1 };
-        this.context.setSessionStorage("step", stepObj);
-        this.setState({
-          section: stepObj.section,
-        });
-      }
-    }
   };
 
   scrollToSection() {
@@ -84,77 +44,69 @@ class Breathe extends React.Component {
   handleEmotionSubmit = (e) => {
     e.preventDefault();
     const newEmotion = e.target.emotion.value;
+    const stepObj = { path: "/breathe", section: 3 };
 
     this.context.updatePosition(true);
+    this.context.updateFeeling(newEmotion);
+    this.context.updateBreatheSection(3);
+    this.context.setSessionStorage("step", stepObj);
+    this.postFeeling(newEmotion);
+  };
 
-    this.setState({ section: 3, emotion: newEmotion }, () => {
-      postFeeling();
-      const stepObj = { path: "/breathe", section: this.state.section };
-      const feelingObj = { emotion: this.state.emotion };
-      this.context.setSessionStorage("step", stepObj);
-      this.context.setSessionStorage("feeling", feelingObj);
-    });
-
-    const postFeeling = () => {
-      const newFeeling = {
-        emotion: this.state.emotion,
-      };
-
-      fetch(`${API_ENDPOINT}feeling`, {
-        method: "POST",
-        body: JSON.stringify(newFeeling),
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-        .then((res) => {
-          if (!res.ok) {
-            return new Error(res.message);
-          }
-          return res.json();
-        })
-        .then((resJson) => {
-          this.context.updateFeeling(resJson);
-        });
+  postFeeling = (emotion) => {
+    const newFeeling = {
+      emotion: emotion,
     };
+
+    fetch(`${API_ENDPOINT}feeling`, {
+      method: "POST",
+      body: JSON.stringify(newFeeling),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return new Error(res.message);
+        }
+        return res.json();
+      })
+      .then((resJson) => {
+        this.context.updateFeeling(resJson);
+      });
   };
 
   handleColorSubmit = (e) => {
     e.preventDefault();
-    this.setState({ section: 5, color: e.target.color.value }, () => {
-      patchColor();
-      const stepObj = { path: "/breathe", section: this.state.section };
-      const feelingObj = {
-        emotion: this.state.emotion,
-        color: this.state.color,
-      };
-      this.context.setSessionStorage("step", stepObj);
-      this.context.setSessionStorage("feeling", feelingObj);
-    });
-
-    const patchColor = () => {
-      const newColor = {
-        emotion: this.state.emotion,
-        color: this.state.color,
-      };
-
-      fetch(`${API_ENDPOINT}feeling/${this.context.feeling.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(newColor),
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-        .then((res) => {
-          if (!res.ok) {
-            return new Error(res.message);
-          }
-          return res.json();
-        })
-        .then((resJson) => {
-          this.context.updateFeeling(resJson);
-        });
+    const newObj = {
+      emotion: this.context.feeling.emotion,
+      color: e.target.color.value,
     };
+    const stepObj = { path: "/breathe", section: 5 };
+
+    this.context.updateBreatheSection(5);
+    this.context.updateFeeling(newObj);
+    this.context.setSessionStorage("step", stepObj);
+    this.patchColor(newObj);
+  };
+
+  patchColor = (newObj) => {
+    fetch(`${API_ENDPOINT}feeling/${this.context.feeling.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(newObj),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return new Error(res.message);
+        }
+        return res.json();
+      })
+      .then((resJson) => {
+        this.context.updateFeeling(resJson);
+      });
   };
 
   renderDownArrow = () => {
@@ -204,13 +156,10 @@ class Breathe extends React.Component {
                   return this.setState(
                     {
                       breathButtonText: "Start",
-                      section: 2,
                     },
                     () => {
-                      const stepObj = {
-                        path: "/breathe",
-                        section: this.state.section,
-                      };
+                      this.context.updateBreatheSection(2);
+                      const stepObj = { path: "/breathe", section: 2 };
                       this.context.setSessionStorage("step", stepObj);
                     }
                   );
@@ -305,13 +254,10 @@ class Breathe extends React.Component {
                   return this.setState(
                     {
                       breathButtonText: "Start",
-                      section: 4,
                     },
                     () => {
-                      const stepObj = {
-                        path: "/breathe",
-                        section: this.state.section,
-                      };
+                      const stepObj = { path: "./breathe", section: 4 };
+                      this.context.updateBreatheSection(4);
                       this.context.setSessionStorage("step", stepObj);
                     }
                   );
@@ -405,10 +351,6 @@ class Breathe extends React.Component {
               {this.context.feeling.emotion}
             </h2>
           </header>
-          {/* <p className="small-text">
-            If you are willing to listen and read with the intention of holding
-            space;
-          </p> */}
           <p className="medium-text">
             Select <strong>Listen</strong> to see other people's posts about{" "}
             {this.context.feeling.emotion}.
@@ -416,10 +358,6 @@ class Breathe extends React.Component {
           <Link className="nav-link" to="/listen">
             <Button buttonText="Listen" />
           </Link>
-          {/* <p className="small-text">
-            If you would like to express yourself with the intention of honesty
-            and introspection;
-          </p> */}
           <p className="medium-text">
             Select <strong>Share</strong> to create a post about your{" "}
             {this.context.feeling.emotion}.
@@ -438,11 +376,11 @@ class Breathe extends React.Component {
         <header roll="header" className="breathe-header">
           <h1 aria-label="Identify emotions">Breathe</h1>
         </header>
-        {this.context.sessionStorage.section === 1 ? this.renderBreath() : ""}
-        {this.context.sessionStorage.section === 2 ? this.renderEmotion() : ""}
-        {this.context.sessionStorage.section === 3 ? this.renderBreath2() : ""}
-        {this.context.sessionStorage.section === 4 ? this.renderColor() : ""}
-        {this.context.sessionStorage.section === 5 ? this.renderButtons() : ""}
+        {this.context.breatheSection === 1 ? this.renderBreath() : ""}
+        {this.context.breatheSection === 2 ? this.renderEmotion() : ""}
+        {this.context.breatheSection === 3 ? this.renderBreath2() : ""}
+        {this.context.breatheSection === 4 ? this.renderColor() : ""}
+        {this.context.breatheSection === 5 ? this.renderButtons() : ""}
       </>
     );
   }
