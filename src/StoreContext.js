@@ -7,6 +7,7 @@ const StoreContext = React.createContext({
     color: "",
   },
   sessionStorage: {},
+  shareQueue: [],
   breatheSection: Number,
   sideDrawerOpen: Boolean,
   sharePosition: Number,
@@ -16,6 +17,7 @@ const StoreContext = React.createContext({
   handleToggleSideDrawer: () => {},
   setSessionStorage: () => {},
   setPositionFromLocalStorage: () => {},
+  populateShares: () => {},
   handleRedirect: () => {},
 });
 

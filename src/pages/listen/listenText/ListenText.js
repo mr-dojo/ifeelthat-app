@@ -1,25 +1,27 @@
 import React from "react";
 import Button from "../../../components/button/Button";
+import StoreContext from "../../../StoreContext";
 import { Link } from "react-router-dom";
 
-export default function ListenText(props) {
-  // split the text value on /\n/g and divide into paragraph tags
-  // const distributeNewLines = () => {
-  //   let shareText = this.props.share.share_text;
-  //   shareText = shareText.split(/\n/);
-  //   console.log(shareText);
-  //   for (let i = 0; i < shareText.length; i++) {
-  //     return <p className="listen-text">{shareText[i]}</p>;
-  //   }
-  // };
-  return (
-    <>
-      <h2>{props.share.emotion}</h2>
-      <p>{props.share.text_share}</p>
-      <Button buttonText="Next" onClick={() => props.next()}></Button>
-      <Link className="nav-link" to="/share">
-        <Button buttonText="Share" />
-      </Link>
-    </>
-  );
+export default class ListenText extends React.Component {
+  static contextType = StoreContext;
+
+  render() {
+    return (
+      <>
+        <h2>{this.props.share.emotion}</h2>
+        <p>{this.props.share.text_share}</p>
+        <Button buttonText="Next" onClick={() => this.props.next()}></Button>
+        <Link className="nav-link" to="/share">
+          <Button
+            buttonText="Share"
+            onClick={() => {
+              const stepObj = { path: "/share" };
+              this.context.setSessionStorage("step", stepObj);
+            }}
+          />
+        </Link>
+      </>
+    );
+  }
 }

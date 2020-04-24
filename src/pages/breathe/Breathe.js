@@ -88,6 +88,8 @@ class Breathe extends React.Component {
     this.context.updateFeeling(newObj);
     this.context.setSessionStorage("step", stepObj);
     this.patchColor(newObj);
+    this.context.populateShares();
+    this.context.setPositionFromLocalStorage();
   };
 
   patchColor = (newObj) => {
@@ -356,14 +358,26 @@ class Breathe extends React.Component {
             {this.context.feeling.emotion}.
           </p>
           <Link className="nav-link" to="/listen">
-            <Button buttonText="Listen" />
+            <Button
+              buttonText="Listen"
+              onClick={() => {
+                const stepObj = { path: "/listen" };
+                this.context.setSessionStorage("step", stepObj);
+              }}
+            />
           </Link>
           <p className="medium-text">
             Select <strong>Share</strong> to create a post about your{" "}
             {this.context.feeling.emotion}.
           </p>
           <Link className="nav-link" to="/share">
-            <Button buttonText="Share" />
+            <Button
+              buttonText="Share"
+              onClick={() => {
+                const stepObj = { path: "/share" };
+                this.context.setSessionStorage("step", stepObj);
+              }}
+            />
           </Link>
         </div>
       </section>

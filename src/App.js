@@ -9,6 +9,7 @@ import SideDrawer from "./components/sideDrawer/SideDrawer";
 import Backdrop from "./components/backdrop/Backdrop";
 import Footer from "./components/footer/Footer";
 import StoreContext from "./StoreContext";
+import { API_ENDPOINT } from "./config";
 import "./App.css";
 
 import ScrollToTop from "./components/ScrollToTop";
@@ -20,6 +21,7 @@ class App extends React.Component {
     sideDrawerOpen: false,
     redirect: "",
     sessionStorage: {},
+    shareQueue: [],
     breatheSection: 1,
     updateFeeling: () => {},
     updatePosition: () => {},
@@ -154,10 +156,40 @@ class App extends React.Component {
     }
   };
 
-  setPositionFromLocalStorage = (position) => {
-    this.setState({
-      sharePosition: position,
-    });
+  setPositionFromLocalStorage = () => {
+    if (window.localStorage.getItem(this.state.feeling.emotion)) {
+      const sharePosition = window.localStorage.getItem(
+        this.state.feeling.emotion
+      );
+      this.setState({
+        sharePosition: sharePosition,
+      });
+    } else {
+      this.setState({ sharePosition: 0 });
+    }
+  };
+
+  populateShares = () => {
+    const emotion = this.state.feeling.emotion;
+    const fullURL = `${API_ENDPOINT}share/find?emotion=${emotion}`;
+    fetch(fullURL, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return new Error(res.message);
+        }
+        return res.json();
+      })
+      .then((resJson) => {
+        this.setState({
+          shareQueue: resJson,
+        });
+      })
+      .catch();
   };
 
   handleToggleSideDrawer = () =>
@@ -180,11 +212,13 @@ class App extends React.Component {
       sideDrawerOpen: this.state.sideDrawerOpen,
       sessionStorage: this.state.sessionStorage,
       breatheSection: this.state.breatheSection,
+      shareQueue: this.state.shareQueue,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       updateBreatheSection: this.updateBreatheSection,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
       setPositionFromLocalStorage: this.setPositionFromLocalStorage,
+      populateShares: this.populateShares,
       setSessionStorage: this.setSessionStorage,
       handleRedirect: this.handleRedirect,
     };
