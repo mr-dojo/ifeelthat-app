@@ -1,9 +1,11 @@
 import React from "react";
 import DrawerToggleButton from "./drawerToggleButton/DrawerToggleButton";
+import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
 import "./toolBar.css";
 
 class ToolBar extends React.Component {
+  static contextType = StoreContext;
   renderNav() {
     return (
       <div className="tool-bar" role="navigation">
@@ -11,10 +13,30 @@ class ToolBar extends React.Component {
         <nav className="tool-bar__nav">
           <ul>
             <li>
-              <Link to="/">About</Link>
+              <Link
+                to="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const stepObj = { path: "/" };
+                  this.context.setSessionStorage("step", stepObj);
+                  this.context.handleRedirect("/");
+                }}
+              >
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/breathe">Begin</Link>
+              <Link
+                to="/breathe"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const stepObj = { path: "/breathe", section: 1 };
+                  this.context.setSessionStorage("step", stepObj);
+                  this.context.handleRedirect("/breathe");
+                }}
+              >
+                Begin
+              </Link>
             </li>
           </ul>
         </nav>

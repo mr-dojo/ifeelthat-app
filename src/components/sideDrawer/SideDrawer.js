@@ -21,14 +21,25 @@ class SideDrawer extends React.Component {
         />
         <ul>
           <li onClick={() => this.context.handleToggleSideDrawer()}>
-            <Link to="/">About</Link>
+            <Link
+              to="/"
+              onClick={(e) => {
+                e.preventDefault();
+                const stepObj = { path: "/" };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/");
+              }}
+            >
+              About
+            </Link>
           </li>
           <li onClick={() => this.context.handleToggleSideDrawer()}>
             <Link
               to="/breathe"
               onClick={(e) => {
                 e.preventDefault();
-                window.sessionStorage.clear();
+                const stepObj = { path: "/breathe", section: 1 };
+                this.context.setSessionStorage("step", stepObj);
                 this.context.handleRedirect("/breathe");
               }}
             >
