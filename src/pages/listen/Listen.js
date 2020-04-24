@@ -9,13 +9,6 @@ import "./listen.css";
 class Listen extends React.Component {
   static contextType = StoreContext;
 
-  state = {
-    localEmotion: null,
-    localPosition: null,
-  };
-
-  componentDidMount() {}
-
   renderShare = () => {
     const currentShare = this.context.shareQueue[this.context.sharePosition];
     if (currentShare.share_type === "Audio") {
