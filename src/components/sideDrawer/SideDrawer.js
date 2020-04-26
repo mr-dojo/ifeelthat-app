@@ -28,6 +28,10 @@ class SideDrawer extends React.Component {
                 const stepObj = { path: "/" };
                 this.context.setSessionStorage("step", stepObj);
                 this.context.handleRedirect("/");
+                this.context.updateFeeling({
+                  emotion: "",
+                  color: "",
+                });
               }}
             >
               About
@@ -41,6 +45,7 @@ class SideDrawer extends React.Component {
                 const stepObj = { path: "/breathe", section: 1 };
                 this.context.setSessionStorage("step", stepObj);
                 this.context.handleRedirect("/breathe");
+                this.context.updateFeeling({ emotion: "", color: "" });
               }}
             >
               Begin
