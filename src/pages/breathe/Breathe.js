@@ -6,6 +6,7 @@ import { API_ENDPOINT } from "../../config";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTop";
 import "./breathe.css";
+import ColorSelector from "../../components/colorSelector/ColorSelector";
 
 class Breathe extends React.Component {
   static contextType = StoreContext;
@@ -61,41 +62,6 @@ class Breathe extends React.Component {
     fetch(`${API_ENDPOINT}feeling`, {
       method: "POST",
       body: JSON.stringify(newFeeling),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          return new Error(res.message);
-        }
-        return res.json();
-      })
-      .then((resJson) => {
-        this.context.updateFeeling(resJson);
-      });
-  };
-
-  handleColorSubmit = (e) => {
-    e.preventDefault();
-    const newObj = {
-      emotion: this.context.feeling.emotion,
-      color: e.target.color.value,
-    };
-    const stepObj = { path: "/breathe", section: 5 };
-
-    this.context.updateBreatheSection(5);
-    this.context.updateFeeling(newObj);
-    this.context.setSessionStorage("step", stepObj);
-    this.patchColor(newObj);
-    this.context.populateShares();
-    this.context.setPositionFromLocalStorage();
-  };
-
-  patchColor = (newObj) => {
-    fetch(`${API_ENDPOINT}feeling/${this.context.feeling.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(newObj),
       headers: {
         "content-type": "application/json",
       },
@@ -298,32 +264,7 @@ class Breathe extends React.Component {
             <p className="medium-text">
               What color could represent that {this.context.feeling.emotion}.
             </p>
-            <form onSubmit={(e) => this.handleColorSubmit(e)}>
-              <label htmlFor="color">Identify color</label>
-              <select
-                type="text"
-                name="select-color"
-                className="drop-shadow"
-                id="color"
-                required
-              >
-                <option value="" selected disabled>
-                  Select
-                </option>
-                <option value="Black">Black</option>
-                <option value="White">White</option>
-                <option value="Grey">Grey</option>
-                <option value="Red">Red</option>
-                <option value="Pink">Pink</option>
-                <option value="Orange">Orange</option>
-                <option value="Yellow">Yellow</option>
-                <option value="Green">Green</option>
-                <option value="Blue">Blue</option>
-                <option value="Purple">Purple</option>
-                <option value="Other">*more to come*</option>
-              </select>
-              <Button buttonText="Save" buttonType="submit"></Button>
-            </form>
+            <ColorSelector />
             <div className="quote-container">
               <p className="xtra-small-text align-left quote-text">
                 <i>
@@ -348,10 +289,7 @@ class Breathe extends React.Component {
         <div className="div-container_eighty-vh section_margin">
           <ScrollToTop />
           <header>
-            <h2>
-              {this.context.feeling.color} feeling of{" "}
-              {this.context.feeling.emotion}
-            </h2>
+            <h2>Feeling of {this.context.feeling.emotion}</h2>
           </header>
           <p className="medium-text">
             Select <strong>Listen</strong> to see other people's posts about{" "}
