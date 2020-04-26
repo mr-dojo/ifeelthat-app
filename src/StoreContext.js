@@ -17,6 +17,7 @@ const StoreContext = React.createContext({
   updateBreatheSection: () => {},
   updateShareType: () => {},
   handleToggleSideDrawer: () => {},
+  handleColorSubmit: () => {},
   setSessionStorage: () => {},
   setPositionFromLocalStorage: () => {},
   populateShares: () => {},
