@@ -77,7 +77,7 @@ class Landing extends React.Component {
             <header>
               <h2 className="align-left">
                 In an age of Social Media and instant communication,
-                <br /> we are more disconected than ever.
+                <br /> we are more disconnected than ever.
               </h2>
             </header>
             <p className="medium-text">
