@@ -1,0 +1,31 @@
+.color-chooser_container {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.color-chooser_form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+}
+
+.color-chooser_button {
+  position: relative;
+  border: 0;
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+}
+
+.color-chooser_form input {
+  position: fixed;
+  opacity: 0;
+  height: 100px;
+  width: 100px;
+  z-index: 1000;
+}
