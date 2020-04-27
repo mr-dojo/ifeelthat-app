@@ -70,14 +70,11 @@ export default class ShareText extends React.Component {
     });
   }
 
-  renderInputBox = () => {
+  renderTextForm = () => {
     return (
       <section>
         <div className="div-container_eighty-vh section_margin">
-          <h2>
-            A {this.context.feeling.color} feeling of{" "}
-            {this.context.feeling.emotion}
-          </h2>
+          <h2>Feeling of {this.context.feeling.emotion}</h2>
           <form
             onSubmit={this.handleTextSubmit}
             onChange={this.handleTextChange}
@@ -110,89 +107,103 @@ export default class ShareText extends React.Component {
     );
   };
 
+  renderAfterSubmit = () => {
+    return (
+      <section>
+        <div className="div-container_eighty-vh section_margin">
+          <p className="medium-text">
+            How you feel <strong>now?</strong>
+          </p>
+          <p className="small-text">What, if anything, is different?</p>
+          <p className="xtra-small-text">
+            Take another deep breath and be mindful of any feelings that come
+            up.
+          </p>
+          <Button
+            buttonText={this.state.breathButtonText}
+            onClick={() => {
+              let inCount = 5;
+              let outCount = 5;
+              let timer = setInterval(() => {
+                if (inCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe In ${inCount}`,
+                  });
+                  inCount = inCount - 1;
+                } else if (outCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe Out ${outCount}`,
+                  });
+                  outCount--;
+                } else {
+                  clearInterval(timer);
+                  return this.setState(
+                    {
+                      breathButtonText: "Start",
+                    },
+                    () => {
+                      this.scrollToSection();
+                    }
+                  );
+                }
+              }, 1000);
+            }}
+          ></Button>
+        </div>
+      </section>
+    );
+  };
+
+  renderNavOptions = () => {
+    return (
+      <section id="js-share-buttons" className="share_buttons">
+        <div className="div-container_eighty-vh section_margin">
+          <p className="medium-text">
+            Select <strong>Listen</strong> to see other people's posts about{" "}
+            {this.context.feeling.emotion}.
+          </p>
+          <Link className="nav-link" to="/listen">
+            <Button
+              buttonText="Listen"
+              onClick={(e) => {
+                e.preventDefault();
+                const stepObj = { path: "/listen" };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/listen");
+              }}
+            />
+          </Link>
+          <p className="medium-text">
+            Select <strong>Breathe</strong> to ground into your body again and
+            identify another emotion.
+          </p>
+          <Link to="/breathe">
+            <Button
+              buttonText="Breathe"
+              onClick={(e) => {
+                e.preventDefault();
+                const stepObj = { path: "/breathe", section: 1 };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/breathe");
+                this.context.updateFeeling({
+                  emotion: "",
+                  color: "",
+                });
+              }}
+            />
+          </Link>
+        </div>
+      </section>
+    );
+  };
+
   render() {
     return (
       <>
-        {!this.state.submitted ? (
-          this.renderInputBox()
-        ) : (
-          <section>
-            <div className="div-container_eighty-vh section_margin">
-              <p className="medium-text">
-                How you feel <strong>now?</strong>
-              </p>
-              <p className="small-text">What, if anything, is different?</p>
-              <p className="xtra-small-text">
-                Take another deep breath and be mindful of any feelings that
-                come up.
-              </p>
-              <Button
-                buttonText={this.state.breathButtonText}
-                onClick={() => {
-                  let inCount = 5;
-                  let outCount = 5;
-                  let timer = setInterval(() => {
-                    if (inCount !== 0) {
-                      this.setState({
-                        breathButtonText: `Breathe In ${inCount}`,
-                      });
-                      inCount = inCount - 1;
-                    } else if (outCount !== 0) {
-                      this.setState({
-                        breathButtonText: `Breathe Out ${outCount}`,
-                      });
-                      outCount--;
-                    } else {
-                      clearInterval(timer);
-                      return this.setState(
-                        {
-                          breathButtonText: "Start",
-                        },
-                        () => {
-                          this.scrollToSection();
-                        }
-                      );
-                    }
-                  }, 1000);
-                }}
-              ></Button>
-            </div>
-          </section>
-        )}
-        <section id="js-share-buttons" className="share_buttons">
-          <div className="div-container_eighty-vh section_margin">
-            <p className="medium-text">
-              Select <strong>Listen</strong> to see other people's posts about{" "}
-              {this.context.feeling.emotion}.
-            </p>
-            <Link className="nav-link" to="/listen">
-              <Button
-                buttonText="Listen"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const stepObj = { path: "/listen" };
-                  this.context.setSessionStorage("step", stepObj);
-                  this.context.handleRedirect("/listen");
-                }}
-              />
-            </Link>
-            <p className="medium-text">
-              Select <strong>Breathe</strong> to ground into your body again and
-              identify another emotion.
-            </p>
-            <Link to="/breathe">
-              <Button
-                buttonText="Breathe"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const stepObj = { path: "/breathe", section: 1 };
-                  this.context.setSessionStorage("step", stepObj);
-                  this.context.handleRedirect("/breathe");
-                }}
-              />
-            </Link>
-          </div>
-        </section>
+        {!this.state.submitted
+          ? this.renderTextForm()
+          : this.renderAfterSubmit()}
+        {this.renderNavOptions()}
       </>
     );
   }
