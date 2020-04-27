@@ -249,7 +249,7 @@ class Breathe extends React.Component {
               </h2>
             </header>
             <p className="small-text">
-              This allows you to see your {this.context.feeling.emotion} as
+              This helps you to see your {this.context.feeling.emotion} as
               something you are <strong>experiencing</strong> rather than
               something you <strong>are</strong>.
             </p>
