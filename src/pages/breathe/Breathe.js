@@ -309,7 +309,7 @@ class Breathe extends React.Component {
             <Button
               buttonText="Share"
               onClick={() => {
-                const stepObj = { path: "/share", shareType: "None" };
+                const stepObj = { path: "/share" };
                 this.context.setSessionStorage("step", stepObj);
               }}
             />

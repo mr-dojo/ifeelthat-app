@@ -10,6 +10,7 @@ class Share extends React.Component {
 
   state = {
     onTopOfPage: true,
+    shareType: "None",
   };
 
   componentDidMount() {
@@ -41,15 +42,21 @@ class Share extends React.Component {
   handleShareTypeSubmit = (e) => {
     e.preventDefault();
     const shareType = e.target.type.value;
-    const stepObj = { path: "/share", shareType: shareType, submitted: false };
+    const stepObj = { path: "/share", submitted: false };
     this.context.setSessionStorage("step", stepObj);
-    this.context.updateShareType(shareType);
+    this.updateShareType(shareType);
+  };
+
+  updateShareType = (shareType) => {
+    this.setState({
+      shareType: shareType,
+    });
   };
 
   handleCancel = () => {
-    const stepObj = { path: "/share", shareType: "None", submitted: false };
+    const stepObj = { path: "/share", submitted: false };
     this.context.setSessionStorage("step", stepObj);
-    this.context.updateShareType("None");
+    this.updateShareType("None");
   };
 
   renderDownArrow = () => {
@@ -119,9 +126,9 @@ class Share extends React.Component {
             <p className="small-text">Be honest and speak from your heart</p>
           </div>
         </section>
-        {this.context.shareType === "None" ? (
+        {this.state.shareType === "None" ? (
           this.renderTypeForm()
-        ) : this.context.shareType === "Text" ? (
+        ) : this.state.shareType === "Text" ? (
           <ShareText cancel={this.handleCancel} />
         ) : (
           <ShareAudio cancel={this.handleCancel} />

@@ -23,7 +23,6 @@ class App extends React.Component {
     redirect: "",
     breatheSection: 1,
     sharePosition: 0,
-    shareType: "",
     shareSubmitted: false,
   };
 
@@ -91,7 +90,6 @@ class App extends React.Component {
   ifPathIsShare = (stepObj) => {
     if (stepObj.path === "/share") {
       this.setState({
-        shareType: stepObj.shareType,
         shareSubmitted: stepObj.submitted,
       });
     } else return;
@@ -121,12 +119,6 @@ class App extends React.Component {
     // b = (255 - b).toString(16);
     // // pad each with zeros and return
     // return "#" + r.padStart(3) + g.padStart(3) + b.padStart(3);
-  };
-
-  updateShareType = (shareType) => {
-    this.setState({
-      shareType: shareType,
-    });
   };
 
   updateBreatheSection = (section) => {
@@ -270,7 +262,6 @@ class App extends React.Component {
       sessionStorage: this.state.sessionStorage,
       breatheSection: this.state.breatheSection,
       shareQueue: this.state.shareQueue,
-      shareType: this.state.shareType,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       updateBreatheSection: this.updateBreatheSection,
