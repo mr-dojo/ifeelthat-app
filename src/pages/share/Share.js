@@ -114,10 +114,7 @@ class Share extends React.Component {
             </p>
             <p className="small-text">
               Please, when sharing, <strong>do not</strong> use names or details
-              of others
-            </p>
-            <p className="small-text">
-              Talk about <strong>your own</strong> experience
+              of others. Talk about <strong>your own</strong> experience.
             </p>
             <p className="small-text">Be honest and speak from your heart</p>
           </div>
