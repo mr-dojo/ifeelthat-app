@@ -197,7 +197,7 @@ class Breathe extends React.Component {
       <section id="breathe-again" className="section_margin space-evenly">
         <div className="section_margin space-evenly div-container_eighty-vh">
           <h2 className="align-left">
-            Feel the {this.context.feeling.emotion}.
+            Feel that {this.context.feeling.emotion}.
           </h2>
           <p className="small-text">
             Take a few more deep breaths and try to really experience that
