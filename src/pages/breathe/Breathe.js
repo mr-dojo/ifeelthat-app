@@ -248,9 +248,6 @@ class Breathe extends React.Component {
                 Choose a color to represent your {this.context.feeling.emotion}.
               </h2>
             </header>
-            <p className="medium-text align-left">
-              Giving your emotion a color can help you feel it deeper.
-            </p>
             <p className="small-text">
               This allows you to see your {this.context.feeling.emotion} as
               something you are <strong>experiencing</strong> rather than
