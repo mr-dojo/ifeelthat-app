@@ -72,115 +72,141 @@ class ShareAudio extends React.Component {
     });
   }
 
-  renderForm = () => {
-    if (!this.state.submitted) {
-      return (
-        <section>
-          <div className="div-container_eighty-vh section_margin">
-            <h2>How</h2>
-            <ol>
-              <li>
-                Record a 60 second clip using your favorite audio recorder
-              </li>
-              <li>
-                Upload it to SoundCloud as a private file and title it "
-                {this.context.feeling.color}+{this.context.feeling.emotion}"
-              </li>
-              <li>Click "Go to your track" >>> "Share" >>> "Embed"</li>
-              <li>
-                Copy the "Code" link and paste it below
-                <form onSubmit={(e) => this.handleLinkSubmit(e)}>
-                  <label
-                    htmlFor="embeded-audio-link"
-                    aria-label="Embeded Audio Link Input"
-                  ></label>
-                  <input
-                    type="text"
-                    name="embeded-audio-link"
-                    id="iframe"
-                    placeholder="Paste the code here"
-                  ></input>
-                  <Button buttonText="Share" buttonType="submit" />
-                  <Button
-                    buttonText="Cancel"
-                    onClick={(e) => this.handleCancel()}
-                  />
-                </form>
-              </li>
-            </ol>
-          </div>
-        </section>
-      );
-    } else {
-      return (
-        <section>
-          <div className="div-container_eighty-vh section_margin">
-            <p className="medium-text">
-              How do you feel <strong>now?</strong>
-            </p>
-            <p className="small-text">What, if anything, is different?</p>
-            <p className="xtra-small-text">
-              Take another deep breath and be mindful of any feelings that come
-              up.
-            </p>
+  renderIframeForm = () => {
+    return (
+      <section>
+        <div className="div-container_eighty-vh section_margin">
+          <h2>How</h2>
+          <ol>
+            <li>Record a 60 second clip using your favorite audio recorder</li>
+            <li>
+              Upload it to SoundCloud as a private file and title it "
+              {this.context.feeling.color}+{this.context.feeling.emotion}"
+            </li>
+            <li>Click "Go to your track" >>> "Share" >>> "Embed"</li>
+            <li>
+              Copy the "Code" link and paste it below
+              <form onSubmit={(e) => this.handleLinkSubmit(e)}>
+                <label
+                  htmlFor="embeded-audio-link"
+                  aria-label="Embeded Audio Link Input"
+                ></label>
+                <input
+                  type="text"
+                  name="embeded-audio-link"
+                  id="iframe"
+                  placeholder="Paste the code here"
+                ></input>
+                <Button buttonText="Share" buttonType="submit" />
+                <Button
+                  buttonText="Cancel"
+                  onClick={(e) => this.handleCancel()}
+                />
+              </form>
+            </li>
+          </ol>
+        </div>
+      </section>
+    );
+  };
+
+  renderAfterSubmit = () => {
+    return (
+      <section>
+        <div className="div-container_eighty-vh section_margin">
+          <p className="medium-text">
+            How do you feel <strong>now?</strong>
+          </p>
+          <p className="small-text">What, if anything, is different?</p>
+          <p className="xtra-small-text">
+            Take another deep breath and be mindful of any feelings that come
+            up.
+          </p>
+          <Button
+            buttonText={this.state.breathButtonText}
+            onClick={() => {
+              let inCount = 5;
+              let outCount = 5;
+              let timer = setInterval(() => {
+                if (inCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe In ${inCount}`,
+                  });
+                  inCount = inCount - 1;
+                } else if (outCount !== 0) {
+                  this.setState({
+                    breathButtonText: `Breathe Out ${outCount}`,
+                  });
+                  outCount--;
+                } else {
+                  clearInterval(timer);
+                  return this.setState(
+                    {
+                      breathButtonText: "Start",
+                    },
+                    () => {
+                      this.scrollToSection();
+                    }
+                  );
+                }
+              }, 1000);
+            }}
+          ></Button>
+        </div>
+      </section>
+    );
+  };
+
+  renderNavOptions = () => {
+    return (
+      <section id="js-share-buttons" className="share_buttons">
+        <div className="div-container_eighty-vh section_margin">
+          <p className="medium-text">
+            Select <strong>Listen</strong> to see other people's posts about{" "}
+            {this.context.feeling.emotion}.
+          </p>
+          <Link className="nav-link" to="/listen">
             <Button
-              buttonText={this.state.breathButtonText}
-              onClick={() => {
-                let inCount = 5;
-                let outCount = 5;
-                let timer = setInterval(() => {
-                  if (inCount !== 0) {
-                    this.setState({
-                      breathButtonText: `Breathe In ${inCount}`,
-                    });
-                    inCount = inCount - 1;
-                  } else if (outCount !== 0) {
-                    this.setState({
-                      breathButtonText: `Breathe Out ${outCount}`,
-                    });
-                    outCount--;
-                  } else {
-                    clearInterval(timer);
-                    return this.setState(
-                      {
-                        breathButtonText: "Start",
-                      },
-                      () => {
-                        this.scrollToSection();
-                      }
-                    );
-                  }
-                }, 1000);
+              buttonText="Listen"
+              onClick={(e) => {
+                e.preventDefault();
+                const stepObj = { path: "/listen" };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/listen");
               }}
-            ></Button>
-          </div>
-        </section>
-      );
-    }
+            />
+          </Link>
+          <p className="medium-text">
+            Select <strong>Breathe</strong> to ground into your body again and
+            identify another emotion.
+          </p>
+          <Link to="/breathe">
+            <Button
+              buttonText="Breathe"
+              onClick={(e) => {
+                e.preventDefault();
+                const stepObj = { path: "/breathe", section: 1 };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/breathe");
+                this.context.updateFeeling({
+                  emotion: "",
+                  color: "",
+                });
+              }}
+            />
+          </Link>
+        </div>
+      </section>
+    );
   };
 
   render() {
     return (
       <>
-        {this.renderForm()}
-        <section id="another-breath" className="share_buttons">
-          <div className="div-container_eighty-vh section_margin">
-            <p className="medium-text">
-              Select <strong>Listen</strong> to see other people's posts about{" "}
-              {this.context.feeling.emotion}.
-            </p>
-            <Link className="nav-link" to="/listen">
-              <Button buttonText="Listen" />
-            </Link>
-            <p className="medium-text">
-              Select <strong>Breathe</strong> to ground into your body again and
-              identify another emotion.
-            </p>
-            <Link to="/breathe">
-              <Button buttonText="Breathe" />
-            </Link>
-          </div>
-        </section>
+        {!this.state.submitted
+          ? this.renderIframeForm()
+          : this.renderAfterSubmit}
+        {this.renderNavOptions()}
       </>
     );
   }
