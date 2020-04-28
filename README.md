@@ -30,7 +30,7 @@
 
 4. #### go through the breath timer again
 
-![Breathe Again](src/pictures/breathe_again_sceenshot.JPG)
+![Breathe Again](src/pictures/breathe_again_screenshot.JPG)
 
 5. #### select a color that will represent that emotion
 
