@@ -7,14 +7,14 @@ class DrawerToggleButton extends React.Component {
 
   render() {
     return (
-      <button
+      <div
         className="toggle-button"
         onClick={() => this.context.handleToggleSideDrawer()}
       >
         <div className="toggle-button__line" />
         <div className="toggle-button__line" />
         <div className="toggle-button__line" />
-      </button>
+      </div>
     );
   }
 }

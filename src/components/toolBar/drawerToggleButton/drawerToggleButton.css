@@ -1,4 +1,4 @@
-button.toggle-button {
+.toggle-button {
   display: none;
   flex-direction: column;
   justify-content: space-around;
@@ -12,7 +12,7 @@ button.toggle-button {
   margin: 0 0 0 20px;
 }
 
-button.toggle-button:focus {
+.toggle-button:focus {
   outline: none;
 }
 
@@ -24,7 +24,7 @@ div.toggle-button__line {
 }
 
 @media screen and (max-width: 698px) {
-  button.toggle-button {
+  .toggle-button {
     display: flex;
   }
 }
