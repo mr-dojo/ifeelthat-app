@@ -22,53 +22,49 @@
 
 2. #### go through the breath timer
 
-![]()
+![Begin](src/pictures/app_screenshot.JPG)
 
 3. #### select an emotion that you are feeling
 
-![]()
+![Identify](src/pictures/identify_emotion_screenshot.JPG)
 
 4. #### go through the breath timer again
 
-![]()
+![Breathe Again](src/pictures/breathe_again_sceenshot.JPG)
 
 5. #### select a color that will represent that emotion
 
-![]()
+![Choose Color](src/pictures/choose_color_screenshot.JPG)
 
 6. #### If you just want to listen to other people that are feeling the same emotion, click "Listen"
    #### If you want to express the emotion you are feeling, click "Share"
 
-![]()
+![Listen or Share](src/pictures/listen_or_share_screenshot.JPG)
 
 ### Listen to/Read other people's experiences around the emotion you identified
 
-1. #### If an audio player pops up, click the "Play" arrow
+1. #### Once you are done reading/listening and want to experience another, click "Next"
 
-![]()
-
-2. #### Once you are done reading/listening and want to experience another, click "Next"
-
-![]()
+![Read](src/pictures/listen_text.JPG)
 
 3. #### When you are ready to express yourself, click "Share"
 
-![]()
+![Share or Breathe](src/pictures/share_or_breathe.JPG)
 
 ### Share your experience around the emotion you identified with
 
 1. #### Read the guidelines then choose how you want to share, "Text" or "Audio"
 
-![]()
+![Read Guidelines](src/pictures/guidelines.JPG)
 
 2. #### If you choose "Text", write about that feeling you are experiencing
    #### If you choose "Audio", follow the instructions on the screen
 
-![]()
+![Choose Type](src/pictures/choose_type.JPG)
 
-3. #### Click "Share" if you want to submit, click "Burn it" if you want to delete it
+3. #### Click "Share" if you want to submit, click "Cancel" if you want to delete it
 
-![]()
+![Share Text](src/pictures/share_text.JPG)
 
 ## Endpoints
 
