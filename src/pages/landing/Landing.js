@@ -53,7 +53,7 @@ class Landing extends React.Component {
     return (
       <>
         <div className="div-container_eighty-vh section_margin">
-          <header className="header_landing-page" role="banner">
+          <header className="header_landing-page">
             <img
               className="app-logo_landing-page"
               src="/images/brain_Plus_Heart_Black.png"

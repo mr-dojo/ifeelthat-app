@@ -14,7 +14,7 @@ class SideDrawer extends React.Component {
     }
 
     return (
-      <nav className={drawerClasses}>
+      <nav className={drawerClasses} role="navigation">
         <img
           src="/images/brain_Plus_Heart_White.png"
           alt="Head plus heart icons"

@@ -8,9 +8,9 @@ class ToolBar extends React.Component {
   static contextType = StoreContext;
   renderNav() {
     return (
-      <div className="tool-bar" role="navigation">
+      <div className="tool-bar">
         <DrawerToggleButton />
-        <nav className="tool-bar__nav">
+        <nav className="tool-bar__nav" role="navigation">
           <ul>
             <li>
               <Link
