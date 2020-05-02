@@ -10,7 +10,7 @@ export default class ListenText extends React.Component {
     return (
       <>
         <h2>{this.props.share.emotion}</h2>
-        <p class="listen-text">{this.props.share.text_share}</p>
+        <p>{this.props.share.text_share}</p>
         <Button buttonText="Next" onClick={() => this.props.next()}></Button>
         <Link className="nav-link" to="/share">
           <Button
