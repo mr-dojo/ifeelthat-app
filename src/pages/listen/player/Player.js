@@ -34,6 +34,7 @@ class Player extends React.Component {
             onClick={() => {
               const stepObj = { path: "/share" };
               this.context.setSessionStorage("step", stepObj);
+              this.context.handleRedirect("/share");
             }}
           />
         </Link>
