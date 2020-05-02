@@ -41,6 +41,7 @@ class Listen extends React.Component {
                   onClick={() => {
                     const stepObj = { path: "/share" };
                     this.context.setSessionStorage("step", stepObj);
+                    this.context.handleRedirect("/share");
                   }}
                 />
               </Link>
@@ -50,6 +51,11 @@ class Listen extends React.Component {
                   onClick={() => {
                     const stepObj = { path: "/breathe", section: 1 };
                     this.context.setSessionStorage("step", stepObj);
+                    this.context.handleRedirect("/breathe");
+                    this.context.updateFeeling({
+                      emotion: "",
+                      color: "",
+                    });
                   }}
                 />
               </Link>
