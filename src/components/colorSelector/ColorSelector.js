@@ -9,12 +9,12 @@ class ColorSelector extends React.Component {
     colorOptions: [
       {
         name: "color",
-        hex: "#0E0E0E",
+        hex: "#262626",
         ariaLabel: "choose black",
       },
       {
         name: "color",
-        hex: "#6C6C6C",
+        hex: "#858585",
         ariaLabel: "choose grey",
       },
       {
@@ -24,52 +24,47 @@ class ColorSelector extends React.Component {
       },
       {
         name: "color",
-        hex: "#834627",
+        hex: "#a95a32",
         ariaLabel: "choose brown",
       },
       {
         name: "color",
-        hex: "#FE0000",
-        ariaLabel: "choose ",
+        hex: "#ff3333",
+        ariaLabel: "choose red",
       },
       {
         name: "color",
-        hex: "#FE7401",
+        hex: "#fe8f34",
         ariaLabel: "choose orange",
       },
       {
         name: "color",
-        hex: "#F45EB7",
+        hex: "#f78dcc",
         ariaLabel: "choose pink",
       },
       {
         name: "color",
-        hex: "#F0A12C",
+        hex: "#f4b75d",
         ariaLabel: "choose gold",
       },
       {
         name: "color",
-        hex: "#FFFE03",
+        hex: "#ffff66",
         ariaLabel: "choose yellow",
       },
       {
         name: "color",
-        hex: "#01CD02",
+        hex: "#01fe01",
         ariaLabel: "choose green",
       },
       {
         name: "color",
-        hex: "#1241AC",
+        hex: "#1856e7",
         ariaLabel: "choose blue",
       },
       {
         name: "color",
-        hex: "#151B4A",
-        ariaLabel: "choose navy",
-      },
-      {
-        name: "color",
-        hex: "#7308AC",
+        hex: "#a20bf4",
         ariaLabel: "choose purple",
       },
     ],
