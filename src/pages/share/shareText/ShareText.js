@@ -112,7 +112,7 @@ export default class ShareText extends React.Component {
       <section>
         <div className="div-container_eighty-vh section_margin">
           <p className="medium-text">
-            How you feel <strong>now?</strong>
+            How do you feel <strong>now?</strong>
           </p>
           <p className="small-text">What, if anything, is different?</p>
           <p className="xtra-small-text">
