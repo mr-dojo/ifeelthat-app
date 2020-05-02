@@ -159,7 +159,7 @@ export default class ShareText extends React.Component {
       <section id="js-share-buttons" className="share_buttons">
         <div className="div-container_eighty-vh section_margin">
           <p className="medium-text">
-            Select <strong>Listen</strong> to see other people's posts about{" "}
+            Select <strong>Listen</strong> to find other people's posts about{" "}
             {this.context.feeling.emotion}.
           </p>
           <Link className="nav-link" to="/listen">

@@ -189,7 +189,8 @@ class App extends React.Component {
           return new Error(res.message);
         }
         if (res.status === 204) {
-          return console.log(`No posts yet under "${emotion}"`);
+          console.log(`No posts yet under "${emotion}"`);
+          return [];
         }
         return res.json();
       })
