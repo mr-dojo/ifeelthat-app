@@ -109,6 +109,7 @@ h3 {
 
 p {
   text-align: left;
+  max-width: 500px;
 }
 
 .xtra-small-text {
