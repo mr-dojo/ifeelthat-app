@@ -289,7 +289,7 @@ class Breathe extends React.Component {
             <h2>Feeling of {this.context.feeling.emotion}</h2>
           </header>
           <p className="medium-text">
-            Select <strong>Listen</strong> to see other people's posts about{" "}
+            Select <strong>Listen</strong> to find other people's posts about{" "}
             {this.context.feeling.emotion}.
           </p>
           <Link className="nav-link" to="/listen">
