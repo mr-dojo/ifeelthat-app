@@ -89,6 +89,11 @@ class Landing extends React.Component {
         <section className="space-evenly">
           <div className="div-container_eighty-vh section_margin">
             <header>
+              <img
+                className="landing-page-icon"
+                src="/images/noun_emotions_black582951.png"
+                alt="faces with different emotions"
+              />
               <h2>Breathe and Identify</h2>
             </header>
             <p className="small-text">
@@ -104,6 +109,11 @@ class Landing extends React.Component {
         <section className="container_dark space-evenly">
           <div className="div-container_eighty-vh section_margin">
             <header>
+              <img
+                className="landing-page-icon"
+                src="/images/noun_Ear_white1853757.png"
+                alt="icon of an ear"
+              />
               <h2>Read and Listen</h2>
             </header>
             <p className="small-text ">
@@ -118,6 +128,11 @@ class Landing extends React.Component {
         <section className="space-evenly">
           <div className="div-container_eighty-vh section_margin">
             <header>
+              <img
+                className="landing-page-icon"
+                src="/images/noun_speak_black1433088.png"
+                alt="icon of a person speaking"
+              />
               <h2>Share yourself with others</h2>
             </header>
             <p className="small-text">
@@ -134,14 +149,18 @@ class Landing extends React.Component {
         <section className="container_dark space-evenly">
           <div className="div-container_eighty-vh section_margin">
             <div className="warning_container">
+              <img
+                className="landing-page-icon"
+                src="/images/noun_Warning_white936848.png"
+                alt="icon of a warning sign"
+              />
               <h3>
                 <strong className="medium-text">Warning:</strong>
               </h3>
               <p className="small-text">
                 <br /> This app is not for everybody and contains content that
                 may be disturbing and upsetting.
-              </p>
-              <p className="small-text">
+                <br />
                 May also contain adult language and topics.
               </p>
             </div>
@@ -158,6 +177,11 @@ class Landing extends React.Component {
         <section>
           <div className="div-container_eighty-vh section_margin">
             <header>
+              <img
+                className="landing-page-icon"
+                src="/images/noun_Hiking_black1779379.png"
+                alt="icon of a person hiking"
+              />
               <h3>Start your journey...</h3>
             </header>
             <Link to="/breathe">
