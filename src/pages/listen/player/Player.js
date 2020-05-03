@@ -3,6 +3,7 @@ import Button from "../../../components/button/Button";
 import StoreContext from "../../../StoreContext";
 import { Link } from "react-router-dom";
 
+/* Renders an audio share */
 class Player extends React.Component {
   static contextType = StoreContext;
 

@@ -6,6 +6,8 @@ import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
 import "./listen.css";
 
+/* This component renders previous user shares 
+based on the emotion of the current user*/
 class Listen extends React.Component {
   static contextType = StoreContext;
 

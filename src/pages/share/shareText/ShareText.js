@@ -5,6 +5,7 @@ import StoreContext from "../../../StoreContext";
 import { API_ENDPOINT } from "../../../config";
 import { scroller } from "react-scroll";
 
+/* Renders a text input form */
 export default class ShareText extends React.Component {
   static contextType = StoreContext;
   constructor(props) {

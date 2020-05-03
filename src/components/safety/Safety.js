@@ -3,6 +3,7 @@ import Button from "../button/Button";
 import { animateScroll as scroll } from "react-scroll";
 import "./safety.css";
 
+/* Renders buttons with external links to the suicide prevention hotline */
 class Safety extends React.Component {
   state = {
     buttonPressed: false,

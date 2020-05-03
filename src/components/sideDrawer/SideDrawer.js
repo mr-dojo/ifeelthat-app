@@ -3,6 +3,7 @@ import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
 import "./sideDrawer.css";
 
+/* Side menue */
 class SideDrawer extends React.Component {
   static contextType = StoreContext;
 

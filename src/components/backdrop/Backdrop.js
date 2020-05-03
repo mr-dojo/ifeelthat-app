@@ -2,6 +2,7 @@ import React from "react";
 import StoreContext from "../../StoreContext";
 import "./backdrop.css";
 
+/* Renders a clickable opaque white overlay */
 class Backdrop extends React.Component {
   static contextType = StoreContext;
   render() {

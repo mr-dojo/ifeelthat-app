@@ -4,6 +4,7 @@ import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
 import "./toolBar.css";
 
+/* Top menu */
 class ToolBar extends React.Component {
   static contextType = StoreContext;
   renderNav() {

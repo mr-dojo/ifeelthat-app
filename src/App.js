@@ -31,6 +31,7 @@ class App extends React.Component {
     this.syncStep();
   }
 
+  /*Updates feeling from Session Storage*/
   syncFeeling = () => {
     if (window.sessionStorage.getItem("feeling")) {
       const feelingString = window.sessionStorage.getItem("feeling");
@@ -55,6 +56,7 @@ class App extends React.Component {
     }
   };
 
+  /*Updates previous endpoint and variables from Session Storage*/
   syncStep = () => {
     if (window.sessionStorage.getItem("step")) {
       const sessionStorageStep = window.sessionStorage.getItem("step");
@@ -95,6 +97,21 @@ class App extends React.Component {
     } else return;
   };
 
+  setPositionFromLocalStorage = () => {
+    if (window.localStorage.getItem(this.state.feeling.emotion)) {
+      const sharePosition = window.localStorage.getItem(
+        this.state.feeling.emotion
+      );
+      this.setState({
+        sharePosition: sharePosition,
+      });
+    } else {
+      this.setState({ sharePosition: 0 });
+    }
+  };
+
+  /*Finds if font color should be black or white
+  based on the state.feeling.color*/
   contrastTextColor = (hex, bw) => {
     if (hex.indexOf("#") === 0) {
       hex = hex.slice(1);
@@ -113,12 +130,6 @@ class App extends React.Component {
       // http://stackoverflow.com/a/3943023/112731
       return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "#000000" : "#FFFFFF";
     }
-    // // invert color components
-    // r = (255 - r).toString(16);
-    // g = (255 - g).toString(16);
-    // b = (255 - b).toString(16);
-    // // pad each with zeros and return
-    // return "#" + r.padStart(3) + g.padStart(3) + b.padStart(3);
   };
 
   updateBreatheSection = (section) => {
@@ -133,6 +144,7 @@ class App extends React.Component {
     );
   };
 
+  /*updates the share that the user is currently on*/
   updatePosition = (reset) => {
     if (reset) {
       this.setState({
@@ -159,19 +171,6 @@ class App extends React.Component {
       this.setState({
         sessionStorage: valueObj,
       });
-    }
-  };
-
-  setPositionFromLocalStorage = () => {
-    if (window.localStorage.getItem(this.state.feeling.emotion)) {
-      const sharePosition = window.localStorage.getItem(
-        this.state.feeling.emotion
-      );
-      this.setState({
-        sharePosition: sharePosition,
-      });
-    } else {
-      this.setState({ sharePosition: 0 });
     }
   };
 

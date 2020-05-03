@@ -7,6 +7,7 @@ import StoreContext from "../../../StoreContext";
 import { scroller } from "react-scroll";
 import "./shareAudio.css";
 
+/* Renders a soundcloud iframe input form */
 class ShareAudio extends React.Component {
   static contextType = StoreContext;
 

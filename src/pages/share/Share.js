@@ -5,6 +5,7 @@ import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { scroller } from "react-scroll";
 
+/* Renders either a text or soundcloud iframe form based on user input */
 class Share extends React.Component {
   static contextType = StoreContext;
 

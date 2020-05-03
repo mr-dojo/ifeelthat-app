@@ -8,6 +8,8 @@ import ScrollToTop from "../../components/ScrollToTop";
 import "./breathe.css";
 import ColorSelector from "../../components/colorSelector/ColorSelector";
 
+/* This component takes the user through a linear progression
+based on this.context.breatheSection (1-5)*/
 class Breathe extends React.Component {
   static contextType = StoreContext;
 
@@ -20,6 +22,8 @@ class Breathe extends React.Component {
     this.watchScrollPosition();
   }
 
+  /* If the user is on the top of the page
+  render the down arrow */
   watchScrollPosition = () => {
     window.onscroll = () => {
       if (window.pageYOffset === 0 && !this.state.onTopOfPage) {
