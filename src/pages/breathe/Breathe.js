@@ -262,9 +262,6 @@ class Breathe extends React.Component {
         {this.renderDownArrow()}
         <section className="choose-color_section">
           <div className="div-container_eighty-vh">
-            <p className="medium-text">
-              What color could represent that {this.context.feeling.emotion}.
-            </p>
             <ColorSelector />
             <div className="quote-container">
               <p className="xtra-small-text align-left quote-text">
