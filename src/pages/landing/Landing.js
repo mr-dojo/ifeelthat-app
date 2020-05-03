@@ -75,6 +75,11 @@ class Landing extends React.Component {
         >
           <div className="div-container_eighty-vh section_margin">
             <header>
+              <img
+                className="landing-page-icon"
+                src="/images/noun_couple using phone_2718283.png"
+                alt="two people in bed on their phones"
+              />
               <h2 className="align-left">
                 In an age of Social Media and instant communication,
                 <br /> we are more disconnected than ever.
