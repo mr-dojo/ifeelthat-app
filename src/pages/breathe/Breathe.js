@@ -51,10 +51,10 @@ class Breathe extends React.Component {
     const newEmotion = e.target.emotion.value;
     const stepObj = { path: "/breathe", section: 3 };
 
-    this.context.updatePosition(true);
     this.context.updateFeeling(newEmotion);
     this.context.updateBreatheSection(3);
     this.context.setSessionStorage("step", stepObj);
+    this.context.updatePosition(true);
     this.postFeeling(newEmotion);
   };
 
