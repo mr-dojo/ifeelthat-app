@@ -26,7 +26,7 @@ class Safety extends React.Component {
     return (
       <>
         {this.state.buttonPressed ? (
-          <section className="space-evenly">
+          <section className="safety-section space-evenly">
             <h2>Reach out for help, you aren't alone</h2>
             <div>
               <a

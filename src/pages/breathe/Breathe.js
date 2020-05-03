@@ -169,9 +169,7 @@ class Breathe extends React.Component {
             className="claim-emotion"
             onSubmit={(e) => this.handleEmotionSubmit(e)}
           >
-            <label htmlFor="emotion" aria-label="choose emotion">
-              Identify emotion
-            </label>
+            <label htmlFor="emotion" aria-label="choose emotion"></label>
             <select
               type="text"
               name="claim-emotion"
@@ -216,7 +214,7 @@ class Breathe extends React.Component {
             alt="icon of a person taking a breathe"
           />
           <h2 className="align-left">
-            Feel that {this.context.feeling.emotion}.
+            Feel that{` ${this.context.feeling.emotion}`}.
           </h2>
           <p className="small-text">
             Take a few more deep breaths and try to really experience that

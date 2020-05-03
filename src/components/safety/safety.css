@@ -25,3 +25,12 @@ a.safety__link:hover {
 a.safety__link:active {
   box-shadow: none;
 }
+
+section.safety-section {
+  min-height: 60vh;
+  margin-top: 40px;
+}
+
+section.safety-section h2 {
+  margin-bottom: 20px;
+}
