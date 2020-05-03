@@ -81,7 +81,7 @@ class Landing extends React.Component {
                 alt="two people in bed on their phones"
               />
               <h2 className="align-left">
-                In an age of Social Media and instant communication,
+                In an age of Social Media,
                 <br /> we are more disconnected than ever.
               </h2>
             </header>
