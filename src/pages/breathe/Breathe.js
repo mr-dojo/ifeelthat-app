@@ -102,6 +102,11 @@ class Breathe extends React.Component {
     return (
       <section className="space-evenly">
         <div className="div-container_eighty-vh section_margin">
+          <img
+            className="icon"
+            src="/images/noun_breathe_black2588014.png"
+            alt="icon of a person taking a breathe"
+          />
           <h2 className="align-left">Breathe and Identify</h2>
 
           <p className="small-text">
@@ -152,6 +157,11 @@ class Breathe extends React.Component {
       <section>
         <div className="section_margin div-container_eighty-vh">
           <header>
+            <img
+              className="icon"
+              src="/images/noun_emotions_black582951.png"
+              alt="faces with different emotions"
+            />
             <h2 className="align-left">Notice how you're feeling</h2>
           </header>
           <p className="medium-text">Can you name the strongest emotion?</p>
@@ -200,6 +210,11 @@ class Breathe extends React.Component {
     return (
       <section id="breathe-again" className="section_margin space-evenly">
         <div className="section_margin space-evenly div-container_eighty-vh">
+          <img
+            className="icon"
+            src="/images/noun_breathe_black2588014.png"
+            alt="icon of a person taking a breathe"
+          />
           <h2 className="align-left">
             Feel that {this.context.feeling.emotion}.
           </h2>
@@ -248,6 +263,11 @@ class Breathe extends React.Component {
         <section className="container-dark explain-color_section">
           <div className="div-container_eighty-vh">
             <header>
+              <img
+                className="icon"
+                src="/images/noun_choose_black1197910.png"
+                alt="finger hovering over buttons"
+              />
               <h2 className="explain-color_h2 align-left">
                 Choose a color to represent your {this.context.feeling.emotion}.
               </h2>

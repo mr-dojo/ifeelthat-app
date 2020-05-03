@@ -178,3 +178,8 @@ p {
 .display-none {
   display: none;
 }
+
+img.icon {
+  height: 130px;
+  width: 130px;
+}
