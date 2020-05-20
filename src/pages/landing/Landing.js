@@ -56,8 +56,8 @@ class Landing extends React.Component {
           <header className="header_landing-page">
             <img
               className="app-logo_landing-page"
-              src="/images/brain_Plus_Heart_Black.png"
-              alt="icons of a brain, a plus sign and a heart"
+              src="/images/noun_Fingerprint_286941.png"
+              alt="fingerprint"
             />
             <div>
               <h1 className="app-name">AUTHENTIC</h1>
@@ -77,17 +77,21 @@ class Landing extends React.Component {
             <header>
               <img
                 className="landing-page-icon"
-                src="/images/noun_couple using phone_2718283.png"
-                alt="two people in bed on their phones"
+                src="/images/noun_empathy_2295254.png"
+                alt="empathy"
               />
-              <h2 className="align-left">
-                In an age of Social Media,
-                <br /> we are more disconnected than ever.
-              </h2>
+              <h2>Connection without conversation</h2>
             </header>
             <p className="medium-text">
               This app is designed to help you find connection through shared
               experiences.
+            </p>
+            <p className="small-text">
+              It works best if you have 5 minutes,
+              <br />
+              by yourself,
+              <br />
+              in a quiet place.
             </p>
           </div>
         </section>
@@ -99,9 +103,9 @@ class Landing extends React.Component {
                 src="/images/noun_emotions_black582951.png"
                 alt="faces with different emotions"
               />
-              <h2>Breathe and Identify</h2>
+              <h2>Breathe and identify</h2>
             </header>
-            <p className="small-text">
+            <p className="medium-text">
               You'll go through a 3 minute process to get out of your head and
               into your feelings.
             </p>
@@ -119,11 +123,10 @@ class Landing extends React.Component {
                 src="/images/noun_Ear_white1853757.png"
                 alt="icon of an ear"
               />
-              <h2>Read and Listen</h2>
+              <h2>Listen to others</h2>
             </header>
-            <p className="small-text ">
-              Hear and read stories of people experiencing the same emotions as
-              you.
+            <p className="medium-text ">
+              Read stories of people experiencing the same emotions as you.
             </p>
             <p className="small-text">
               You may find something you can relate to.
@@ -140,15 +143,14 @@ class Landing extends React.Component {
               />
               <h2>Share yourself with others</h2>
             </header>
-            <p className="small-text">
-              This gives you an opportunity to anonymously voice what you're
+            <p className="medium-text">
+              This gives you an opportunity to anonymously express what you're
               going through.
             </p>
             <p className="small-text">
-              You may feel a sense of relief when fully acknowledging and
-              expressing what's going on inside.
+              It can be difficult, but you may feel a sense of relief when fully
+              acknowledging and processing what's going on inside.
             </p>
-            <p className="small-text">It can be difficult, but rewarding.</p>
           </div>
         </section>
         <section className="container_dark space-evenly">
@@ -162,7 +164,7 @@ class Landing extends React.Component {
               <h3>
                 <strong className="medium-text">Warning:</strong>
               </h3>
-              <p className="small-text">
+              <p className="small-text align-left">
                 <br /> This app is not for everybody and contains content that
                 may be disturbing and upsetting.
                 <br />
