@@ -220,8 +220,8 @@ class Breathe extends React.Component {
               : ` emotion`}
           </h2>
           <p className="small-text">
-            Take a few more deep breaths and try to really experience that
-            emotion.
+            Take a few more deep breaths and try to <strong>really</strong>
+            experience it.
           </p>
           <Button
             buttonText={this.state.breathButtonText}
