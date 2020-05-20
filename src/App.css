@@ -108,7 +108,7 @@ h3 {
 }
 
 p {
-  text-align: left;
+  text-align: center;
   max-width: 500px;
 }
 
@@ -136,6 +136,10 @@ p {
 
 .align-right {
   text-align: right;
+}
+
+.align-center {
+  text-align: center;
 }
 
 .space-evenly {

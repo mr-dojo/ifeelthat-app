@@ -214,7 +214,10 @@ class Breathe extends React.Component {
             alt="icon of a person taking a breathe"
           />
           <h2 className="align-left">
-            Feel that{` ${this.context.feeling.emotion}`}.
+            Feel that
+            {this.context.feeling.emotion
+              ? ` ${this.context.feeling.emotion}`
+              : ` emotion`}
           </h2>
           <p className="small-text">
             Take a few more deep breaths and try to really experience that
@@ -267,12 +270,19 @@ class Breathe extends React.Component {
                 alt="finger hovering over buttons"
               />
               <h2 className="explain-color_h2 align-left">
-                Choose a color to represent your {this.context.feeling.emotion}.
+                Choose a color to represent
+                {this.context.feeling.emotion
+                  ? ` your ${this.context.feeling.emotion}`
+                  : ` this emotion`}
+                .
               </h2>
             </header>
             <p className="small-text">
-              This helps you to see your {this.context.feeling.emotion} as
-              something you are <strong>experiencing</strong> rather than
+              This helps you to see your
+              {this.context.feeling.emotion
+                ? ` ${this.context.feeling.emotion} `
+                : ` emotions `}
+              as something you are <strong>experiencing</strong> rather than
               something you <strong>are</strong>.
             </p>
           </div>
@@ -305,11 +315,18 @@ class Breathe extends React.Component {
         <div className="div-container_eighty-vh section_margin">
           <ScrollToTop />
           <header>
-            <h2>Feeling of {this.context.feeling.emotion}</h2>
+            <h2>
+              {this.context.feeling.emotion
+                ? `Feeling of ${this.context.feeling.emotion}`
+                : `You've identified your emotion, now...`}
+            </h2>
           </header>
           <p className="medium-text">
-            Select <strong>Listen</strong> to find other people's posts about{" "}
-            {this.context.feeling.emotion}.
+            Select <strong>Listen</strong> to find other people's posts about
+            {this.context.feeling.emotion
+              ? ` their ${this.context.feeling.emotion}.`
+              : ` the feeling you are experiencing.`}
+            .
           </p>
           <Link className="nav-link" to="/listen">
             <Button
@@ -321,8 +338,10 @@ class Breathe extends React.Component {
             />
           </Link>
           <p className="medium-text">
-            Select <strong>Share</strong> to create a post about your{" "}
-            {this.context.feeling.emotion}.
+            Select <strong>Share</strong> to create a post about
+            {this.context.feeling.emotion
+              ? ` your ${this.context.feeling.emotion}.`
+              : ` the feeling you are experiencing.`}
           </p>
           <Link className="nav-link" to="/share">
             <Button

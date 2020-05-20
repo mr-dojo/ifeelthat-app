@@ -1,10 +1,10 @@
-# Listen/Share
+# Authentic
 
 ### A place to identify your emotions and express them in a healthy way
 
 ### Links
 
-- Live App: [Click Here](https://ifeelthat-app.now.sh/)
+- Live App: [Click Here](https://beauthentic.app/)
 
 - Live API: [Click Here](https://ifeelthat-api.herokuapp.com/)
 
