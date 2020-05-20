@@ -87,7 +87,7 @@ class Landing extends React.Component {
               experiences.
             </p>
             <p className="small-text">
-              It works best if you have 5 minutes,
+              It works best if you have at least 5 minutes,
               <br />
               by yourself,
               <br />

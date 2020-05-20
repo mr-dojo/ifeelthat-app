@@ -53,8 +53,8 @@ class ToolBar extends React.Component {
         {this.props.location.pathname !== "/" ? (
           <img
             className="app-logo-toolbar_landing-page"
-            src="/images/brain_Plus_Heart_Black.png"
-            alt="icons of a brain, a plus sign and a heart"
+            src="/images/noun_Fingerprint_286941.png"
+            alt="fingerprint"
           />
         ) : (
           ""
