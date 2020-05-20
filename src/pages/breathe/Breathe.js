@@ -107,7 +107,7 @@ class Breathe extends React.Component {
             src="/images/noun_breathe_black2588014.png"
             alt="icon of a person taking a breathe"
           />
-          <h2 className="align-left">Breathe and Identify</h2>
+          <h2>Breathe and Identify</h2>
 
           <p className="small-text">
             Starting in your belly and working up to your chest, take a deep
@@ -162,7 +162,7 @@ class Breathe extends React.Component {
               src="/images/noun_emotions_black582951.png"
               alt="faces with different emotions"
             />
-            <h2 className="align-left">Notice how you're feeling</h2>
+            <h2>Notice how you're feeling</h2>
           </header>
           <p className="medium-text">Can you name the strongest emotion?</p>
           <form
@@ -213,7 +213,7 @@ class Breathe extends React.Component {
             src="/images/noun_breathe_black2588014.png"
             alt="icon of a person taking a breathe"
           />
-          <h2 className="align-left">
+          <h2>
             Feel that
             {this.context.feeling.emotion
               ? ` ${this.context.feeling.emotion}`
@@ -269,7 +269,7 @@ class Breathe extends React.Component {
                 src="/images/noun_choose_black1197910.png"
                 alt="finger hovering over buttons"
               />
-              <h2 className="explain-color_h2 align-left">
+              <h2 className="explain-color_h2">
                 Choose a color to represent
                 {this.context.feeling.emotion
                   ? ` your ${this.context.feeling.emotion}`
