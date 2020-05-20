@@ -35,12 +35,6 @@ p.quote-author {
   font-weight: bold;
 }
 
-header.breathe-header {
-  color: transparent;
-  margin: 0;
-  height: 50px;
-}
-
 .down-arrow_container_breathe-page {
   display: flex;
   position: fixed;

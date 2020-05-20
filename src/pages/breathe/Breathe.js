@@ -360,8 +360,10 @@ class Breathe extends React.Component {
   render() {
     return (
       <>
-        <header roll="header" className="breathe-header">
-          <h1 aria-label="Identify emotions">Breathe</h1>
+        <header roll="header" className="flatten">
+          <h1 className="transparent flatten" aria-label="Identify emotions">
+            Breathe
+          </h1>
         </header>
         {this.context.breatheSection === 1 ? this.renderBreath() : ""}
         {this.context.breatheSection === 2 ? this.renderEmotion() : ""}

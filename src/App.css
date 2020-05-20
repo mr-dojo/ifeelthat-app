@@ -9,19 +9,6 @@ div.content {
   z-index: 1; */
 }
 
-/* div.after-content {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #ffffff;
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 250ms;
-} */
-
 header {
   margin-top: 50px;
   display: flex;
@@ -172,15 +159,12 @@ p {
 
 .flatten {
   height: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.push-off-page {
-  position: relative;
-  top: 999999px;
-}
-
-.display-none {
-  display: none;
+.transparent {
+  color: transparent;
 }
 
 img.icon {

@@ -19,7 +19,7 @@ class ColorSelector extends React.Component {
       },
       {
         name: "color",
-        hex: "#FFFFFF",
+        hex: "#FAFAFA",
         ariaLabel: "choose white",
       },
       {

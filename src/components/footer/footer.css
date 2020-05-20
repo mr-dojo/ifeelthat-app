@@ -4,6 +4,6 @@
   align-items: center;
   flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these 
   items shrink to smaller than their content's default minimum size. */
-  background-color: #ffffff;
+  background-color: #fafafa;
   padding: 1px;
 }

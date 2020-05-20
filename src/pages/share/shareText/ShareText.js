@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import StoreContext from "../../../StoreContext";
 import { API_ENDPOINT } from "../../../config";
 import { scroller } from "react-scroll";
+import "./shareText.css";
 
 /* Renders a text input form */
 export default class ShareText extends React.Component {
@@ -93,13 +94,18 @@ export default class ShareText extends React.Component {
             onSubmit={this.handleTextSubmit}
             onChange={this.handleTextChange}
           >
-            <label htmlFor="share-text">Express yourself below</label>
+            <label
+              htmlFor="share-text"
+              aria-label="Express yourself below"
+            ></label>
             <textarea
+              className="share-text_input-box"
               type="text"
               rows="10"
               columns="30"
               name="share-text"
               id="text"
+              placeholder="Just let the expression flow, stick with that feeling..."
               value={this.state.shareText}
               required
             ></textarea>

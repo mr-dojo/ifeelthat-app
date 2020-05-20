@@ -58,8 +58,8 @@ class Share extends React.Component {
   render() {
     return (
       <>
-        <header className="display-none">
-          <h1>Share yourself with others</h1>
+        <header className="flatten">
+          <h1 className="flatten transparent">Share yourself with others</h1>
         </header>
         <section>
           <div className="div-container_eighty-vh section_margin">

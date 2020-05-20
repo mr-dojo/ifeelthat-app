@@ -27,8 +27,8 @@ class Listen extends React.Component {
   render() {
     return (
       <>
-        <header className="flatten push-off-page">
-          <h1>Listen and Read</h1>
+        <header className="flatten">
+          <h1 className="flatten transparent">Listen</h1>
         </header>
         <section>
           {this.context.sharePosition <= this.context.shareQueue.length - 1 ? (

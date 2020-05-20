@@ -284,7 +284,9 @@ class App extends React.Component {
             color: this.state.feeling.color
               ? this.contrastTextColor(this.state.feeling.color, true)
               : "#000000",
-            backgroundColor: this.state.feeling.color,
+            backgroundColor: this.state.feeling.color
+              ? this.state.feeling.color
+              : "#FAFAFA",
           }}
         >
           <ScrollToTop />
