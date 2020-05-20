@@ -1,7 +1,5 @@
 import React from "react";
 import ShareText from "./shareText/ShareText";
-import ShareAudio from "./shareAudio/ShareAudio";
-import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { scroller } from "react-scroll";
 
@@ -11,7 +9,7 @@ class Share extends React.Component {
 
   state = {
     onTopOfPage: true,
-    shareType: "None",
+    shareType: "Text",
   };
 
   componentDidMount() {
@@ -40,26 +38,6 @@ class Share extends React.Component {
     });
   }
 
-  handleShareTypeSubmit = (e) => {
-    e.preventDefault();
-    const shareType = e.target.type.value;
-    const stepObj = { path: "/share", submitted: false };
-    this.context.setSessionStorage("step", stepObj);
-    this.updateShareType(shareType);
-  };
-
-  updateShareType = (shareType) => {
-    this.setState({
-      shareType: shareType,
-    });
-  };
-
-  handleCancel = () => {
-    const stepObj = { path: "/share", submitted: false };
-    this.context.setSessionStorage("step", stepObj);
-    this.updateShareType("None");
-  };
-
   renderDownArrow = () => {
     return this.state.onTopOfPage ? (
       <div
@@ -74,37 +52,6 @@ class Share extends React.Component {
       </div>
     ) : (
       ""
-    );
-  };
-
-  renderTypeForm = () => {
-    return (
-      <section className="choose-type_section">
-        <div className="div-container_eighty-vh section_margin">
-          <p className="medium-text">
-            You can choose to share with <strong>text,</strong>
-            <br />
-            or <strong>audio.</strong>{" "}
-            <span className="xtra-small-text">
-              <i>(using SoundCloud)</i>
-            </span>
-          </p>
-          <form onSubmit={(e) => this.handleShareTypeSubmit(e)}>
-            <label htmlFor="type" className="small-text">
-              How do you want to share?
-            </label>
-            <select name="share-type" id="type" className="drop-shadow">
-              <option value="" selected disabled>
-                Choose
-              </option>
-              <option value="Text">Text</option>
-              <option value="Audio">Audio</option>
-            </select>
-            <Button buttonText="Select" buttonType="submit"></Button>
-          </form>
-        </div>
-        {this.renderDownArrow()}
-      </section>
     );
   };
 
@@ -127,13 +74,7 @@ class Share extends React.Component {
             <p className="small-text">Be honest and speak from your heart</p>
           </div>
         </section>
-        {this.state.shareType === "None" ? (
-          this.renderTypeForm()
-        ) : this.state.shareType === "Text" ? (
-          <ShareText cancel={this.handleCancel} />
-        ) : (
-          <ShareAudio cancel={this.handleCancel} />
-        )}
+        <ShareText />
       </>
     );
   }

@@ -12,6 +12,7 @@ export default class ShareText extends React.Component {
     super();
     this.state = {
       submitted: false,
+      canceled: false,
       breathButtonText: "Start",
     };
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -71,11 +72,23 @@ export default class ShareText extends React.Component {
     });
   }
 
+  handleCancel = () => {
+    this.setState({
+      canceled: true,
+    });
+    const stepObj = { path: "/share", submitted: false };
+    this.context.setSessionStorage("step", stepObj);
+  };
+
   renderTextForm = () => {
     return (
       <section>
         <div className="div-container_eighty-vh section_margin">
-          <h2>Feeling of {this.context.feeling.emotion}</h2>
+          <h2>
+            {this.context.feeling.emotion
+              ? `Feeling of ${this.context.feeling.emotion}`
+              : ""}
+          </h2>
           <form
             onSubmit={this.handleTextSubmit}
             onChange={this.handleTextChange}
@@ -94,7 +107,7 @@ export default class ShareText extends React.Component {
             {!this.state.shareText ? (
               <Button
                 buttonText="Cancel"
-                onClick={(e) => this.props.cancel()}
+                onClick={(e) => this.handleCancel()}
               />
             ) : (
               <Button
@@ -110,48 +123,51 @@ export default class ShareText extends React.Component {
 
   renderAfterSubmit = () => {
     return (
-      <section>
-        <div className="div-container_eighty-vh section_margin">
-          <p className="medium-text">
-            How do you feel <strong>now?</strong>
-          </p>
-          <p className="small-text">What, if anything, is different?</p>
-          <p className="xtra-small-text">
-            Take another deep breath and be mindful of any feelings that come
-            up.
-          </p>
-          <Button
-            buttonText={this.state.breathButtonText}
-            onClick={() => {
-              let inCount = 5;
-              let outCount = 5;
-              let timer = setInterval(() => {
-                if (inCount !== 0) {
-                  this.setState({
-                    breathButtonText: `Breathe In ${inCount}`,
-                  });
-                  inCount = inCount - 1;
-                } else if (outCount !== 0) {
-                  this.setState({
-                    breathButtonText: `Breathe Out ${outCount}`,
-                  });
-                  outCount--;
-                } else {
-                  clearInterval(timer);
-                  return this.setState(
-                    {
-                      breathButtonText: "Start",
-                    },
-                    () => {
-                      this.scrollToSection();
-                    }
-                  );
-                }
-              }, 1000);
-            }}
-          ></Button>
-        </div>
-      </section>
+      <>
+        <section>
+          <div className="div-container_eighty-vh section_margin">
+            <p className="medium-text">
+              How do you feel <strong>now?</strong>
+            </p>
+            <p className="small-text">What, if anything, is different?</p>
+            <p className="xtra-small-text">
+              Take another deep breath and be mindful of any feelings that come
+              up.
+            </p>
+            <Button
+              buttonText={this.state.breathButtonText}
+              onClick={() => {
+                let inCount = 5;
+                let outCount = 5;
+                let timer = setInterval(() => {
+                  if (inCount !== 0) {
+                    this.setState({
+                      breathButtonText: `Breathe In ${inCount}`,
+                    });
+                    inCount = inCount - 1;
+                  } else if (outCount !== 0) {
+                    this.setState({
+                      breathButtonText: `Breathe Out ${outCount}`,
+                    });
+                    outCount--;
+                  } else {
+                    clearInterval(timer);
+                    return this.setState(
+                      {
+                        breathButtonText: "Start",
+                      },
+                      () => {
+                        this.scrollToSection();
+                      }
+                    );
+                  }
+                }, 1000);
+              }}
+            ></Button>
+          </div>
+        </section>
+        {this.renderNavOptions()}
+      </>
     );
   };
 
@@ -161,7 +177,10 @@ export default class ShareText extends React.Component {
         <div className="div-container_eighty-vh section_margin">
           <p className="medium-text">
             Select <strong>Listen</strong> to find other people's posts about{" "}
-            {this.context.feeling.emotion}.
+            {this.context.feeling.emotion
+              ? this.context.feeling.emotion
+              : "the emotion you are experiencing"}
+            .
           </p>
           <Link className="nav-link" to="/listen">
             <Button
@@ -202,9 +221,10 @@ export default class ShareText extends React.Component {
     return (
       <>
         {!this.state.submitted
-          ? this.renderTextForm()
+          ? !this.state.canceled
+            ? this.renderTextForm()
+            : this.renderNavOptions()
           : this.renderAfterSubmit()}
-        {this.renderNavOptions()}
       </>
     );
   }
