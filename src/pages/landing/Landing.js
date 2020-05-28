@@ -52,14 +52,14 @@ class Landing extends React.Component {
   render() {
     return (
       <>
-        <div className="div-container_eighty-vh section_margin">
+        <div className="div-container_eighty-vh section_margin container_header">
           <header className="header_landing-page">
             <img
               className="app-logo_landing-page"
               src="/images/noun_Fingerprint_286941.png"
               alt="fingerprint"
             />
-            <div>
+            <div className="container_header-content">
               <h1 className="app-name">AUTHENTIC</h1>
               <h2 className="tagline">
                 Identify and express your emotions in a{" "}

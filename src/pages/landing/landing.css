@@ -1,8 +1,21 @@
 .header_landing-page {
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  width: 100vw;
   height: 100vh;
   margin: 0;
+}
+
+.container_header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+div.container_header {
+  width: 100vw;
+  margin: 50px 0 0 0;
 }
 
 .app-name {
@@ -22,7 +35,7 @@
 }
 
 .app-logo_landing-page {
-  max-height: 18vh;
+  max-height: 40vh;
 }
 
 .landing-page-icon {
@@ -37,7 +50,7 @@
   justify-content: center;
   align-items: center;
   height: 70px;
-  width: 100%;
+  width: 100vw;
 }
 
 .down-arrow_landing-page {
@@ -55,4 +68,18 @@
   padding: 0 30px 30px 30px;
   max-width: 550px;
   box-shadow: 0 5px 10px 5px rgb(0, 0, 0);
+}
+
+@media screen and (min-width: 700px) {
+  .app-name {
+    font-size: 100px;
+    margin: -10px 0 0 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .app-name {
+    font-size: 150px;
+    margin: -50px 0 -20px 0;
+  }
 }
