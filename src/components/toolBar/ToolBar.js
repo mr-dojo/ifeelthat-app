@@ -16,6 +16,7 @@ class ToolBar extends React.Component {
             <li>
               <Link
                 to="/"
+                aria-label="learn about Authentic"
                 onClick={(e) => {
                   e.preventDefault();
                   const stepObj = { path: "/" };
@@ -27,12 +28,17 @@ class ToolBar extends React.Component {
                   });
                 }}
               >
-                About
+                <img
+                  className="app-logo-toolbar_landing-page"
+                  src="/svg-images/question_black_207269.svg"
+                  alt="about button"
+                />
               </Link>
             </li>
             <li>
               <Link
                 to="/breathe"
+                aria-label="start the process"
                 onClick={(e) => {
                   e.preventDefault();
                   const stepObj = { path: "/breathe", section: 1 };
@@ -44,18 +50,37 @@ class ToolBar extends React.Component {
                   });
                 }}
               >
-                Begin
+                <img
+                  className="app-logo-toolbar_landing-page"
+                  src="/svg-images/play_black_207259.svg"
+                  alt="start button"
+                />
               </Link>
             </li>
           </ul>
         </nav>
         <div className="spacer" />
         {this.props.location.pathname !== "/" ? (
-          <img
-            className="app-logo-toolbar_landing-page"
-            src="/images/noun_Fingerprint_286941.png"
-            alt="fingerprint"
-          />
+          <Link
+            to="/"
+            aria-label="learn about Authentic"
+            onClick={(e) => {
+              e.preventDefault();
+              const stepObj = { path: "/" };
+              this.context.setSessionStorage("step", stepObj);
+              this.context.handleRedirect("/");
+              this.context.updateFeeling({
+                emotion: "",
+                color: "",
+              });
+            }}
+          >
+            <img
+              className="app-logo-toolbar_landing-page"
+              src="/images/noun_Fingerprint_286941.png"
+              alt="fingerprint"
+            />
+          </Link>
         ) : (
           ""
         )}
