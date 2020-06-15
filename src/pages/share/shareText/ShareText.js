@@ -49,7 +49,7 @@ export default class ShareText extends React.Component {
       submitted: true,
     });
 
-    fetch(`${API_ENDPOINT}share`, {
+    fetch(`${API_ENDPOINT}pending`, {
       method: "POST",
       body: JSON.stringify(newShare),
       headers: {
