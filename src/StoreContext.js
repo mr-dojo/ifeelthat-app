@@ -9,18 +9,9 @@ const StoreContext = React.createContext({
   sessionStorage: {},
   shareQueue: [],
   breatheSection: Number,
+  shareSection: Number,
   sideDrawerOpen: Boolean,
   sharePosition: Number,
-  updateFeeling: () => {},
-  updateSharePosition: () => {},
-  updateBreatheSection: () => {},
-  updateShareType: () => {},
-  handleToggleSideDrawer: () => {},
-  handleColorSubmit: () => {},
-  setSessionStorage: () => {},
-  setPositionFromLocalStorage: () => {},
-  populateShares: () => {},
-  handleRedirect: () => {},
 });
 
 export default StoreContext;
