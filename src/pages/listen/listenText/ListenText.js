@@ -9,7 +9,7 @@ export default class ListenText extends React.Component {
 
   render() {
     return (
-      <>
+      <section>
         <h2>{this.props.share.emotion}</h2>
         <p>{this.props.share.text_share}</p>
         <Button buttonText="Next" onClick={() => this.props.next()}></Button>
@@ -23,7 +23,7 @@ export default class ListenText extends React.Component {
             }}
           />
         </Link>
-      </>
+      </section>
     );
   }
 }
