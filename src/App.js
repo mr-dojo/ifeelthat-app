@@ -64,7 +64,6 @@ class App extends React.Component {
       const sessionStorageStep = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(sessionStorageStep);
       this.ifPathIsBreathe(stepObj);
-      // this.ifPathIsShare(stepObj);
       this.setState({
         sessionStorage: stepObj,
         redirect: stepObj.path,
