@@ -14,7 +14,7 @@ class Breathe extends React.Component {
   static contextType = StoreContext;
 
   state = {
-    breathButtonText: "Start",
+    breathButtonText: "Breathe",
     onTopOfPage: true,
   };
 
@@ -132,7 +132,7 @@ class Breathe extends React.Component {
                   clearInterval(timer);
                   return this.setState(
                     {
-                      breathButtonText: "Start",
+                      breathButtonText: "Breathe",
                     },
                     () => {
                       this.context.updateBreatheSection(2);
@@ -241,7 +241,7 @@ class Breathe extends React.Component {
                   clearInterval(timer);
                   return this.setState(
                     {
-                      breathButtonText: "Start",
+                      breathButtonText: "Breathe",
                     },
                     () => {
                       const stepObj = { path: "./breathe", section: 4 };
@@ -278,12 +278,11 @@ class Breathe extends React.Component {
               </h2>
             </header>
             <p className="small-text">
-              This helps you to see your
+              This may help you feel and experience your
               {this.context.feeling.emotion
                 ? ` ${this.context.feeling.emotion} `
                 : ` emotions `}
-              as something you are <strong>experiencing</strong> rather than
-              something you <strong>are</strong>.
+              at a deeper level.
             </p>
           </div>
         </section>
@@ -338,7 +337,7 @@ class Breathe extends React.Component {
             />
           </Link>
           <p className="medium-text">
-            Select <strong>Share</strong> to create a post about
+            Select <strong>Share</strong> to create an an anonymous post about
             {this.context.feeling.emotion
               ? ` your ${this.context.feeling.emotion}.`
               : ` the feeling you are experiencing.`}
