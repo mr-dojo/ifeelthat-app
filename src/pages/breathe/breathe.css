@@ -49,3 +49,7 @@ p.quote-author {
   height: 70px;
   width: 70px;
 }
+
+.buttons-header_margin {
+  margin-bottom: 50px;
+}

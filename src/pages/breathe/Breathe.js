@@ -312,7 +312,7 @@ class Breathe extends React.Component {
       <section id="breathe-buttons">
         <div className="div-container_eighty-vh section_margin">
           <ScrollToTop />
-          <header>
+          <header className="buttons-header_margin">
             <h2>
               {this.context.feeling.emotion
                 ? `Feeling of ${this.context.feeling.emotion}`
@@ -331,6 +331,7 @@ class Breathe extends React.Component {
             onClick={() => {
               const stepObj = { path: "/listen" };
               this.context.setSessionStorage("step", stepObj);
+              this.context.handleRedirect("/listen");
             }}
           />
 
@@ -346,6 +347,7 @@ class Breathe extends React.Component {
             onClick={() => {
               const stepObj = { path: "/share" };
               this.context.setSessionStorage("step", stepObj);
+              this.context.handleRedirect("/share");
             }}
           />
         </div>
