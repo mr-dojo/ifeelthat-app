@@ -3,7 +3,6 @@ import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { scroller } from "react-scroll";
 import { API_ENDPOINT } from "../../config";
-import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTop";
 import "./breathe.css";
 import ColorSelector from "../../components/colorSelector/ColorSelector";
@@ -326,30 +325,29 @@ class Breathe extends React.Component {
               ? ` ${this.context.feeling.emotion}.`
               : ` the feeling you are experiencing.`}
           </p>
-          <Link className="nav-link" to="/listen">
-            <Button
-              buttonText="Listen"
-              onClick={() => {
-                const stepObj = { path: "/listen" };
-                this.context.setSessionStorage("step", stepObj);
-              }}
-            />
-          </Link>
+
+          <Button
+            buttonText="Listen"
+            onClick={() => {
+              const stepObj = { path: "/listen" };
+              this.context.setSessionStorage("step", stepObj);
+            }}
+          />
+
           <p className="medium-text">
             Select <strong>Share</strong> to create an an anonymous post about
             {this.context.feeling.emotion
               ? ` your ${this.context.feeling.emotion}.`
               : ` the feeling you are experiencing.`}
           </p>
-          <Link className="nav-link" to="/share">
-            <Button
-              buttonText="Share"
-              onClick={() => {
-                const stepObj = { path: "/share" };
-                this.context.setSessionStorage("step", stepObj);
-              }}
-            />
-          </Link>
+
+          <Button
+            buttonText="Share"
+            onClick={() => {
+              const stepObj = { path: "/share" };
+              this.context.setSessionStorage("step", stepObj);
+            }}
+          />
         </div>
       </section>
     );
