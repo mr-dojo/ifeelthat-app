@@ -17,8 +17,10 @@
 
 .button:hover {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .button:active {
   box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.01);
 }
