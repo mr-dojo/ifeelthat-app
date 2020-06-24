@@ -323,9 +323,8 @@ class Breathe extends React.Component {
           <p className="medium-text">
             Select <strong>Listen</strong> to find other people's posts about
             {this.context.feeling.emotion
-              ? ` their ${this.context.feeling.emotion}.`
+              ? ` ${this.context.feeling.emotion}.`
               : ` the feeling you are experiencing.`}
-            .
           </p>
           <Link className="nav-link" to="/listen">
             <Button
