@@ -1,15 +1,17 @@
 import React from "react";
-import Button from "../../components/button/Button";
 import Player from "./player/Player";
 import ListenText from "./listenText/ListenText";
+import NavButtons from "../../components/navButtons/NavButtons";
 import StoreContext from "../../StoreContext";
-import { Link } from "react-router-dom";
-import "./listen.css";
 
 /* This component renders previous user shares 
 based on the emotion of the current user*/
 class Listen extends React.Component {
   static contextType = StoreContext;
+
+  handleNext = () => {
+    this.context.updatePosition();
+  };
 
   renderShare = () => {
     const currentShare = this.context.shareQueue[this.context.sharePosition];
@@ -20,50 +22,25 @@ class Listen extends React.Component {
     }
   };
 
-  handleNext = () => {
-    this.context.updatePosition();
-  };
-
   render() {
     return (
       <>
         <header className="flatten">
           <h1 className="flatten transparent">Listen</h1>
         </header>
-        <section>
-          {this.context.sharePosition <= this.context.shareQueue.length - 1 ? (
-            this.renderShare()
-          ) : (
-            <>
+        {this.context.sharePosition <= this.context.shareQueue.length - 1 ? (
+          this.renderShare()
+        ) : (
+          <section>
+            <div className="div-container_eighty-vh section_margin">
               <h2>Looks like you've seen them all</h2>
-              <p>Each expression is special, and only seen once</p>
-              <Link to="/share">
-                <Button
-                  buttonText="Share"
-                  onClick={() => {
-                    const stepObj = { path: "/share" };
-                    this.context.setSessionStorage("step", stepObj);
-                    this.context.handleRedirect("/share");
-                  }}
-                />
-              </Link>
-              <Link to="/breathe">
-                <Button
-                  buttonText="Breathe"
-                  onClick={() => {
-                    const stepObj = { path: "/breathe", section: 1 };
-                    this.context.setSessionStorage("step", stepObj);
-                    this.context.handleRedirect("/breathe");
-                    this.context.updateFeeling({
-                      emotion: "",
-                      color: "",
-                    });
-                  }}
-                />
-              </Link>
-            </>
-          )}
-        </section>
+              <p className="small-text">
+                Each expression is special, and only seen once
+              </p>
+              <NavButtons share={true} identify={true} survey={true} />
+            </div>
+          </section>
+        )}
       </>
     );
   }

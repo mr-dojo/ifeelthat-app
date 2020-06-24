@@ -9,7 +9,7 @@ export default class ListenText extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="div-container_eighty-vh section_margin">
         <h2>{this.props.share.emotion}</h2>
         <p>{this.props.share.text_share}</p>
         <Button buttonText="Next" onClick={() => this.props.next()}></Button>
