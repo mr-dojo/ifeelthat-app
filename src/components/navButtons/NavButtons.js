@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
-import { Link } from "react-router-dom";
 import "./navButtons.css";
 
 class NavButtons extends React.Component {
@@ -10,21 +9,19 @@ class NavButtons extends React.Component {
   renderIdentifyButton = () => {
     return (
       <div className="nav-button_container">
-        <Link to="/breathe">
-          <Button
-            buttonText="Identify"
-            onClick={(e) => {
-              e.preventDefault();
-              const stepObj = { path: "/breathe", section: 1 };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/breathe");
-              this.context.updateFeeling({
-                emotion: "",
-                color: "",
-              });
-            }}
-          />
-        </Link>
+        <Button
+          buttonText="Identify"
+          onClick={(e) => {
+            e.preventDefault();
+            const stepObj = { path: "/breathe", section: 1 };
+            this.context.setSessionStorage("step", stepObj);
+            this.context.handleRedirect("/breathe");
+            this.context.updateFeeling({
+              emotion: "",
+              color: "",
+            });
+          }}
+        />
         <p className="extra-small-text nav-button_text">
           Ground into your body again and identify another emotion.
         </p>
@@ -35,17 +32,15 @@ class NavButtons extends React.Component {
   renderListenButton = () => {
     return (
       <div className="nav-button_container">
-        <Link className="nav-link" to="/listen">
-          <Button
-            buttonText="Listen"
-            onClick={(e) => {
-              e.preventDefault();
-              const stepObj = { path: "/listen" };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/listen");
-            }}
-          />
-        </Link>
+        <Button
+          buttonText="Listen"
+          onClick={(e) => {
+            e.preventDefault();
+            const stepObj = { path: "/listen" };
+            this.context.setSessionStorage("step", stepObj);
+            this.context.handleRedirect("/listen");
+          }}
+        />
         <p className="extra-small-text nav-button_text">
           Read other people's posts about{" "}
           {this.context.feeling.emotion
@@ -60,16 +55,14 @@ class NavButtons extends React.Component {
   renderShareButton = () => {
     return (
       <div className="nav-button_container">
-        <Link to="/share">
-          <Button
-            buttonText="Share"
-            onClick={() => {
-              const stepObj = { path: "/share" };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/share");
-            }}
-          />
-        </Link>
+        <Button
+          buttonText="Share"
+          onClick={() => {
+            const stepObj = { path: "/share" };
+            this.context.setSessionStorage("step", stepObj);
+            this.context.handleRedirect("/share");
+          }}
+        />
         <p className="extra-small-text nav-button_text">
           Anonymously talk about{" "}
           {this.context.feeling.emotion
@@ -84,16 +77,14 @@ class NavButtons extends React.Component {
   renderSurveyButton = () => {
     return (
       <div className="nav-button_container">
-        <Link to="/survey">
-          <Button
-            buttonText="Give Feedback"
-            onClick={() => {
-              const stepObj = { path: "/survey" };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/survey");
-            }}
-          />
-        </Link>
+        <Button
+          buttonText="Give Feedback"
+          onClick={() => {
+            const stepObj = { path: "/survey" };
+            this.context.setSessionStorage("step", stepObj);
+            this.context.handleRedirect("/survey");
+          }}
+        />
         <p className="extra-small-text nav-button_text">
           Fill out an anonymous survey. (takes aprox. 1 minute)
         </p>
