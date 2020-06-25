@@ -101,13 +101,14 @@ class Breathe extends React.Component {
     return (
       <section className="space-evenly">
         <div className="div-container_eighty-vh section_margin">
-          <img
-            className="icon"
-            src="/images/noun_breathe_black2588014.png"
-            alt="icon of a person taking a breathe"
-          />
-          <h2>Breathe and Identify</h2>
-
+          <header>
+            <img
+              className="icon"
+              src="/images/noun_breathe_black2588014.png"
+              alt="icon of a person taking a breathe"
+            />
+            <h2>Breathe and Identify</h2>
+          </header>
           <p className="small-text">
             Starting in your belly and working up to your chest, take a deep
             breath.
@@ -207,17 +208,19 @@ class Breathe extends React.Component {
     return (
       <section id="breathe-again" className="section_margin space-evenly">
         <div className="section_margin space-evenly div-container_eighty-vh">
-          <img
-            className="icon"
-            src="/images/noun_breathe_black2588014.png"
-            alt="icon of a person taking a breathe"
-          />
-          <h2>
-            Feel that
-            {this.context.feeling.emotion
-              ? ` ${this.context.feeling.emotion}`
-              : ` emotion`}
-          </h2>
+          <header>
+            <img
+              className="icon"
+              src="/images/noun_breathe_black2588014.png"
+              alt="icon of a person taking a breathe"
+            />
+            <h2>
+              Feel that
+              {this.context.feeling.emotion
+                ? ` ${this.context.feeling.emotion}`
+                : ` emotion`}
+            </h2>
+          </header>
           <p className="small-text">
             Take a few more deep breaths and try to <strong>really</strong>{" "}
             experience it.
@@ -312,44 +315,48 @@ class Breathe extends React.Component {
       <section id="breathe-buttons">
         <div className="div-container_eighty-vh section_margin">
           <ScrollToTop />
-          <header className="buttons-header_margin">
+          <header>
             <h2>
               {this.context.feeling.emotion
                 ? `Feeling of ${this.context.feeling.emotion}`
                 : `You've identified your emotion, now...`}
             </h2>
           </header>
-          <p className="medium-text">
-            Select <strong>Listen</strong> to find other people's posts about
-            {this.context.feeling.emotion
-              ? ` ${this.context.feeling.emotion}.`
-              : ` the feeling you are experiencing.`}
-          </p>
+          <div className="breathe-page_button-container">
+            <p className="small-text">
+              Select <strong>Listen</strong> to find other people's posts about
+              {this.context.feeling.emotion
+                ? ` ${this.context.feeling.emotion}.`
+                : ` the feeling you are experiencing.`}
+            </p>
 
-          <Button
-            buttonText="Listen"
-            onClick={() => {
-              const stepObj = { path: "/listen" };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/listen");
-            }}
-          />
+            <Button
+              buttonText="Listen"
+              onClick={() => {
+                const stepObj = { path: "/listen" };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/listen");
+              }}
+            />
+          </div>
 
-          <p className="medium-text">
-            Select <strong>Share</strong> to create an an anonymous post about
-            {this.context.feeling.emotion
-              ? ` your ${this.context.feeling.emotion}.`
-              : ` the feeling you are experiencing.`}
-          </p>
+          <div className="breathe-page_button-container">
+            <p className="small-text">
+              Select <strong>Share</strong> to create an an anonymous post about
+              {this.context.feeling.emotion
+                ? ` your ${this.context.feeling.emotion}.`
+                : ` the feeling you are experiencing.`}
+            </p>
 
-          <Button
-            buttonText="Share"
-            onClick={() => {
-              const stepObj = { path: "/share" };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/share");
-            }}
-          />
+            <Button
+              buttonText="Share"
+              onClick={() => {
+                const stepObj = { path: "/share" };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/share");
+              }}
+            />
+          </div>
         </div>
       </section>
     );

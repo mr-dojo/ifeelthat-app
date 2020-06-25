@@ -50,6 +50,12 @@ p.quote-author {
   width: 70px;
 }
 
-.buttons-header_margin {
-  margin-bottom: 50px;
+.breathe-page_button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.breathe-page_button-container p {
+  margin-bottom: px;
 }
