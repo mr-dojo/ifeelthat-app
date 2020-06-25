@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../../../components/button/Button";
 import StoreContext from "../../../StoreContext";
-import { Link } from "react-router-dom";
 
 /* Renders a text share */
 export default class ListenText extends React.Component {
