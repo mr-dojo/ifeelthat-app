@@ -33,10 +33,12 @@ class Listen extends React.Component {
         ) : (
           <section>
             <div className="div-container_eighty-vh section_margin">
-              <h2>Looks like you've seen them all</h2>
-              <p className="small-text">
-                Each expression is special, and only seen once
-              </p>
+              <header>
+                <h2>Looks like you've seen them all</h2>
+                <p className="small-text">
+                  Each expression is special, and only seen once
+                </p>
+              </header>
               <NavButtons share={true} identify={true} survey={true} />
             </div>
           </section>
