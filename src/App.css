@@ -10,7 +10,6 @@ div.content {
 }
 
 header {
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,7 +149,8 @@ p {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  min-height: 80vh;
+  padding-top: 50px;
+  min-height: 100vh;
 }
 
 .drop-shadow {
