@@ -109,6 +109,7 @@ class Breathe extends React.Component {
             />
             <h2>Breathe and Identify</h2>
           </header>
+
           <p className="small-text">
             Starting in your belly and working up to your chest, take a deep
             breath.
@@ -221,10 +222,12 @@ class Breathe extends React.Component {
                 : ` emotion`}
             </h2>
           </header>
+
           <p className="small-text">
             Take a few more deep breaths and try to <strong>really</strong>{" "}
             experience it.
           </p>
+
           <Button
             buttonText={this.state.breathButtonText}
             onClick={() => {
@@ -322,6 +325,7 @@ class Breathe extends React.Component {
                 : `You've identified your emotion, now...`}
             </h2>
           </header>
+
           <div className="breathe-page_button-container">
             <p className="small-text">
               Select <strong>Listen</strong> to find other people's posts about

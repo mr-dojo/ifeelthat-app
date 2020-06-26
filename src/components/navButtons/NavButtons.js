@@ -9,6 +9,13 @@ class NavButtons extends React.Component {
   renderIdentifyButton = () => {
     return (
       <div className="nav-button_container">
+        <div className="nav-button_icon-container">
+          <img
+            className="nav-button_icon"
+            src="/images/noun_emotions_black582951.png"
+            alt="faces with different emotions"
+          />
+        </div>
         <Button
           buttonText="Identify"
           onClick={(e) => {
@@ -16,15 +23,13 @@ class NavButtons extends React.Component {
             const stepObj = { path: "/breathe", section: 1 };
             this.context.setSessionStorage("step", stepObj);
             this.context.handleRedirect("/breathe");
+            this.context.updateBreatheSection(1);
             this.context.updateFeeling({
               emotion: "",
               color: "",
             });
           }}
         />
-        <p className="extra-small-text nav-button_text">
-          Ground into your body again and identify another emotion.
-        </p>
       </div>
     );
   };
@@ -32,6 +37,13 @@ class NavButtons extends React.Component {
   renderListenButton = () => {
     return (
       <div className="nav-button_container">
+        <div className="nav-button_icon-container">
+          <img
+            className="nav-button_icon"
+            src="/images/noun_Ear_black1853757.png"
+            alt="icon of an ear"
+          />
+        </div>
         <Button
           buttonText="Listen"
           onClick={(e) => {
@@ -41,13 +53,6 @@ class NavButtons extends React.Component {
             this.context.handleRedirect("/listen");
           }}
         />
-        <p className="extra-small-text nav-button_text">
-          Read other people's posts about{" "}
-          {this.context.feeling.emotion
-            ? this.context.feeling.emotion
-            : "the emotion you are experiencing"}
-          .
-        </p>
       </div>
     );
   };
@@ -55,21 +60,22 @@ class NavButtons extends React.Component {
   renderShareButton = () => {
     return (
       <div className="nav-button_container">
+        <div className="nav-button_icon-container">
+          <img
+            className="nav-button_icon"
+            src="/images/noun_speak_black1433088.png"
+            alt="icon of a person speaking"
+          />
+        </div>
         <Button
           buttonText="Share"
           onClick={() => {
             const stepObj = { path: "/share" };
             this.context.setSessionStorage("step", stepObj);
             this.context.handleRedirect("/share");
+            this.context.updateShareSection(1);
           }}
         />
-        <p className="extra-small-text nav-button_text">
-          Anonymously talk about{" "}
-          {this.context.feeling.emotion
-            ? `your ${this.context.feeling.emotion}`
-            : "the emotion you are experiencing"}
-          .
-        </p>
       </div>
     );
   };
@@ -85,9 +91,6 @@ class NavButtons extends React.Component {
             this.context.handleRedirect("/survey");
           }}
         />
-        <p className="extra-small-text nav-button_text">
-          Fill out an anonymous survey. (takes aprox. 1 minute)
-        </p>
       </div>
     );
   };
@@ -96,11 +99,13 @@ class NavButtons extends React.Component {
     return (
       <>
         <header className="flatten">
-          <h1 className="flatten transparent">Navigation</h1>
+          <h2 className="flatten transparent">Navigation</h2>
         </header>
-        {this.props.identify ? this.renderIdentifyButton() : ""}
-        {this.props.listen ? this.renderListenButton() : ""}
-        {this.props.share ? this.renderShareButton() : ""}
+        <div className="nav-button_dynamic-container">
+          {this.props.identify ? this.renderIdentifyButton() : ""}
+          {this.props.listen ? this.renderListenButton() : ""}
+          {this.props.share ? this.renderShareButton() : ""}
+        </div>
         {this.props.survey ? this.renderSurveyButton() : ""}
       </>
     );

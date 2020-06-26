@@ -18,7 +18,9 @@ class Share extends React.Component {
     return (
       <section>
         <div className="div-container_eighty-vh section_margin">
-          <h2>Guidelines</h2>
+          <header>
+            <h2>Guidelines</h2>
+          </header>
           <p className="medium-text">
             We keep this a safe place by self monitoring
           </p>
@@ -27,11 +29,11 @@ class Share extends React.Component {
             of others. Talk about <strong>your own</strong> experience.
           </p>
           <p className="small-text">Be honest and speak from your heart</p>
+          <Button
+            buttonText="Agree"
+            onClick={(e) => this.context.updateShareSection(2)}
+          />
         </div>
-        <Button
-          buttonText="Agree"
-          onClick={(e) => this.context.updateShareSection(2)}
-        />
       </section>
     );
   };
@@ -40,9 +42,11 @@ class Share extends React.Component {
     return (
       <section>
         <div className="div-container_eighty-vh section_margin">
-          <p className="medium-text">
-            How do you feel <strong>now?</strong>
-          </p>
+          <header>
+            <h2 className="medium-text">
+              How do you feel <strong>now?</strong>
+            </h2>
+          </header>
           <p className="small-text">What, if anything, is different?</p>
           <p className="xtra-small-text">
             Take another deep breath and be mindful of any feelings that come
