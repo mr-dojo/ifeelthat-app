@@ -85,7 +85,6 @@ export default class ShareText extends React.Component {
     return (
       <section>
         <div className="div-container_eighty-vh section_margin">
-<<<<<<< Updated upstream
           <h2>
             {this.context.feeling.emotion
               ? `Feeling of ${this.context.feeling.emotion}`
@@ -95,16 +94,6 @@ export default class ShareText extends React.Component {
             onSubmit={this.handleTextSubmit}
             onChange={this.handleTextChange}
           >
-=======
-          <header>
-            <h2>
-              {this.context.feeling.emotion
-                ? `Feeling of ${this.context.feeling.emotion}`
-                : ""}
-            </h2>
-          </header>
-          <form onSubmit={this.handleTextSubmit}>
->>>>>>> Stashed changes
             <label
               htmlFor="share-text"
               aria-label="Express yourself below"

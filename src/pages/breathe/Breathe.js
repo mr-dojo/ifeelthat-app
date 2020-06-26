@@ -102,23 +102,12 @@ class Breathe extends React.Component {
     return (
       <section className="space-evenly">
         <div className="div-container_eighty-vh section_margin">
-<<<<<<< Updated upstream
           <img
             className="icon"
             src="/images/noun_breathe_black2588014.png"
             alt="icon of a person taking a breathe"
           />
           <h2>Breathe and Identify</h2>
-=======
-          <header>
-            <img
-              className="icon"
-              src="/images/noun_breathe_black2588014.png"
-              alt="icon of a person taking a breathe"
-            />
-            <h2>Breathe and Identify</h2>
-          </header>
->>>>>>> Stashed changes
 
           <p className="small-text">
             Starting in your belly and working up to your chest, take a deep
@@ -219,7 +208,6 @@ class Breathe extends React.Component {
     return (
       <section id="breathe-again" className="section_margin space-evenly">
         <div className="section_margin space-evenly div-container_eighty-vh">
-<<<<<<< Updated upstream
           <img
             className="icon"
             src="/images/noun_breathe_black2588014.png"
@@ -231,27 +219,10 @@ class Breathe extends React.Component {
               ? ` ${this.context.feeling.emotion}`
               : ` emotion`}
           </h2>
-=======
-          <header>
-            <img
-              className="icon"
-              src="/images/noun_breathe_black2588014.png"
-              alt="icon of a person taking a breathe"
-            />
-            <h2>
-              Feel that
-              {this.context.feeling.emotion
-                ? ` ${this.context.feeling.emotion}`
-                : ` emotion`}
-            </h2>
-          </header>
-
->>>>>>> Stashed changes
           <p className="small-text">
             Take a few more deep breaths and try to <strong>really</strong>{" "}
             experience it.
           </p>
-
           <Button
             buttonText={this.state.breathButtonText}
             onClick={() => {
@@ -350,7 +321,6 @@ class Breathe extends React.Component {
                 : `You've identified your emotion, now...`}
             </h2>
           </header>
-<<<<<<< Updated upstream
           <p className="medium-text">
             Select <strong>Listen</strong> to find other people's posts about
             {this.context.feeling.emotion
@@ -359,17 +329,6 @@ class Breathe extends React.Component {
             .
           </p>
           <Link className="nav-link" to="/listen">
-=======
-
-          <div className="breathe-page_button-container">
-            <p className="small-text">
-              Select <strong>Listen</strong> to find other people's posts about
-              {this.context.feeling.emotion
-                ? ` ${this.context.feeling.emotion}.`
-                : ` the feeling you are experiencing.`}
-            </p>
-
->>>>>>> Stashed changes
             <Button
               buttonText="Listen"
               onClick={() => {
