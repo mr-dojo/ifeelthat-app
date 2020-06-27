@@ -279,7 +279,7 @@ class App extends React.Component {
     return (
       <StoreContext.Provider value={contextValues}>
         <div
-          className="content"
+          className="content section-1"
           style={{
             color: this.state.feeling.color
               ? this.contrastTextColor(this.state.feeling.color, true)

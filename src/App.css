@@ -167,6 +167,11 @@ p {
   color: transparent;
 }
 
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: 500ms ease;
+}
+
 img.icon {
   height: 130px;
   width: 130px;
