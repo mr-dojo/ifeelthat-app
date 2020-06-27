@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
+import { scroller } from "react-scroll";
 import "./landing.css";
 
 class Landing extends React.Component {
@@ -9,6 +10,7 @@ class Landing extends React.Component {
 
   state = {
     onTopOfPage: true,
+    arrowSection: 1,
   };
 
   componentDidMount() {
@@ -28,24 +30,56 @@ class Landing extends React.Component {
     window.onscroll = null;
   }
 
+  scrollToSection(section) {
+    scroller.scrollTo(section, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }
+
   renderDownArrow = () => {
-    return this.state.onTopOfPage ? (
+    const incrementArrowSection = (currentArrowSection) => {
+      if (currentArrowSection < 7) {
+        this.setState((prevState) => ({
+          arrowSection: prevState.arrowSection + 1,
+        }));
+      } else {
+        this.setState({
+          arrowSection: 1,
+        });
+      }
+    };
+
+    return (
       <div
         className="down-arrow_container_landing-page"
-        onClick={() =>
-          document
-            .getElementById("section-one_landing-page")
-            .scrollIntoView(true)
-        }
+        onClick={() => {
+          incrementArrowSection(this.state.arrowSection);
+          this.scrollToSection(`section-${this.state.arrowSection}`);
+        }}
       >
-        <img
-          className="down-arrow_landing-page"
-          src="/images/Arrow_Down_Black1920765.png"
-          alt="icon of arrow pointing down"
-        />
+        {this.state.onTopOfPage ? (
+          <div>
+            <p className="extra-small-text">Learn More</p>
+          </div>
+        ) : (
+          ""
+        )}
+        {this.state.arrowSection === 7 ? (
+          <img
+            className="down-arrow_landing-page rotate-180"
+            src="\svg-images\noun_Arrow_circle_white_1920765.svg"
+            alt="icon of arrow pointing down"
+          />
+        ) : (
+          <img
+            className="down-arrow_landing-page"
+            src="\svg-images\noun_Arrow_circle_white_1920765.svg"
+            alt="icon of arrow pointing down"
+          />
+        )}
       </div>
-    ) : (
-      ""
     );
   };
 
@@ -69,10 +103,7 @@ class Landing extends React.Component {
           </header>
         </div>
         {this.renderDownArrow()}
-        <section
-          id="section-one_landing-page"
-          className="container_dark space-evenly"
-        >
+        <section className="container_dark space-evenly section-2">
           <div className="div-container_eighty-vh section_margin">
             <header>
               <img
@@ -95,7 +126,7 @@ class Landing extends React.Component {
             </p>
           </div>
         </section>
-        <section className="space-evenly">
+        <section className="space-evenly section-3">
           <div className="div-container_eighty-vh section_margin">
             <header>
               <img
@@ -115,7 +146,7 @@ class Landing extends React.Component {
             </p>
           </div>
         </section>
-        <section className="container_dark space-evenly">
+        <section className="container_dark space-evenly section-4">
           <div className="div-container_eighty-vh section_margin">
             <header>
               <img
@@ -133,7 +164,7 @@ class Landing extends React.Component {
             </p>
           </div>
         </section>
-        <section className="space-evenly">
+        <section className="space-evenly section-5">
           <div className="div-container_eighty-vh section_margin">
             <header>
               <img
@@ -153,7 +184,7 @@ class Landing extends React.Component {
             </p>
           </div>
         </section>
-        <section className="container_dark space-evenly">
+        <section className="container_dark space-evenly section-6">
           <div className="div-container_eighty-vh section_margin">
             <div className="warning_container">
               <img
@@ -181,7 +212,7 @@ class Landing extends React.Component {
             </p>
           </div>
         </section>
-        <section>
+        <section className="section-7">
           <div className="div-container_eighty-vh section_margin">
             <header>
               <img
