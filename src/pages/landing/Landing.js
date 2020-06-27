@@ -54,8 +54,8 @@ class Landing extends React.Component {
     return (
       <div
         className="down-arrow_container_landing-page"
-        onClick={() => {
-          incrementArrowSection(this.state.arrowSection);
+        onClick={async () => {
+          await incrementArrowSection(this.state.arrowSection);
           this.scrollToSection(`section-${this.state.arrowSection}`);
         }}
       >
@@ -66,7 +66,7 @@ class Landing extends React.Component {
         ) : (
           ""
         )}
-        {this.state.arrowSection === 7 ? (
+        {this.state.arrowSection >= 7 ? (
           <img
             className="down-arrow_landing-page rotate-180"
             src="\svg-images\noun_Arrow_circle_white_1920765.svg"
