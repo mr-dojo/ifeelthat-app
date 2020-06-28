@@ -7,7 +7,6 @@ function Button(props) {
     buttonTextClass,
     buttonType = "button",
     buttonClass = "button",
-
     onClick = () => {},
   } = props;
   return (
