@@ -110,6 +110,10 @@ class Breathe extends React.Component {
             <h2>Breathe and Identify</h2>
           </header>
 
+          <p className="medium-text">
+            Mindful breathing will help when trying to identify your emotions.
+          </p>
+
           <p className="small-text">
             Starting in your belly and working up to your chest, take a deep
             breath.
@@ -145,9 +149,6 @@ class Breathe extends React.Component {
               }, 1000);
             }}
           ></Button>
-          <p className="small-text">
-            Mindful breathing will help when trying to identify your emotions.
-          </p>
         </div>
       </section>
     );
