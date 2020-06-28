@@ -3,7 +3,7 @@
   top: 0;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   background-color: #fafafa;
   box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.09);
@@ -12,12 +12,8 @@
   height: 50px;
 }
 
-div.spacer {
-  flex: 1;
-}
-
 div.nav-spacer {
-  width: 45px;
+  width: 30px;
 }
 
 span.tool-bar__app-name {
@@ -50,6 +46,16 @@ span.tool-bar__app-name {
   margin: 0;
 }
 
+button.tool-bar_about-button {
+  height: 30px;
+  width: 100px;
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tool-bar_about-button-text {
+  font-size: 20px;
+}
+
 @media screen and (min-width: 700px) {
   span.tool-bar__app-name {
     margin: 0 10px;
@@ -63,6 +69,6 @@ span.tool-bar__app-name {
   }
 
   div.nav-spacer {
-    width: 90px;
+    width: 220px;
   }
 }

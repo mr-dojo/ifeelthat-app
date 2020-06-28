@@ -2,11 +2,22 @@ import React from "react";
 import DrawerToggleButton from "./drawerToggleButton/DrawerToggleButton";
 import StoreContext from "../../StoreContext";
 import { Link } from "react-router-dom";
+import { scroller } from "react-scroll";
 import "./toolBar.css";
+import Button from "../button/Button";
 
 /* Top menu */
 class ToolBar extends React.Component {
   static contextType = StoreContext;
+
+  scrollToSection(section) {
+    scroller.scrollTo(section, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  }
+
   renderNav() {
     return (
       <div className="tool-bar">
@@ -14,30 +25,29 @@ class ToolBar extends React.Component {
         <nav className="tool-bar__nav" role="navigation">
           <ul>
             <li>
-              <Link
-                to="/"
+              <Button
                 aria-label="learn about Authentic"
-                onClick={(e) => {
+                buttonText="About"
+                buttonTextClass="tool-bar_about-button-text"
+                buttonClass="button tool-bar_about-button"
+                onClick={async (e) => {
                   e.preventDefault();
                   const stepObj = { path: "/" };
                   this.context.setSessionStorage("step", stepObj);
-                  this.context.handleRedirect("/");
+                  await this.context.handleRedirect("/");
+                  this.scrollToSection("section-2");
                   this.context.updateFeeling({
                     emotion: "",
                     color: "",
                   });
                 }}
-              >
-                <img
-                  className="app-logo-toolbar_landing-page"
-                  src="/svg-images/question_black_207269.svg"
-                  alt="about button"
-                />
-              </Link>
+              />
             </li>
             <li>
-              <Link
-                to="/breathe"
+              <Button
+                buttonText="Begin"
+                buttonTextClass="tool-bar_about-button-text"
+                buttonClass="button tool-bar_about-button"
                 aria-label="start the process"
                 onClick={(e) => {
                   e.preventDefault();
@@ -49,42 +59,36 @@ class ToolBar extends React.Component {
                     color: "",
                   });
                 }}
-              >
-                <img
-                  className="app-logo-toolbar_landing-page"
-                  src="/svg-images/play_black_207259.svg"
-                  alt="start button"
-                />
-              </Link>
+              />
             </li>
           </ul>
         </nav>
-        <div className="spacer" />
-        {this.props.location.pathname !== "/" ? (
-          <Link
-            to="/"
-            aria-label="learn about Authentic"
-            onClick={(e) => {
-              e.preventDefault();
-              const stepObj = { path: "/" };
-              this.context.setSessionStorage("step", stepObj);
-              this.context.handleRedirect("/");
-              this.context.updateFeeling({
-                emotion: "",
-                color: "",
-              });
-            }}
-          >
-            <img
-              className="app-logo-toolbar_landing-page"
-              src="/images/noun_Fingerprint_286941.png"
-              alt="fingerprint"
-            />
-          </Link>
-        ) : (
-          ""
-        )}
-        <div className="spacer" />
+        <div>
+          {this.props.location.pathname !== "/" ? (
+            <Link
+              to="/"
+              aria-label="learn about Authentic"
+              onClick={(e) => {
+                e.preventDefault();
+                const stepObj = { path: "/" };
+                this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/");
+                this.context.updateFeeling({
+                  emotion: "",
+                  color: "",
+                });
+              }}
+            >
+              <img
+                className="app-logo-toolbar_landing-page"
+                src="/images/noun_Fingerprint_286941.png"
+                alt="fingerprint"
+              />
+            </Link>
+          ) : (
+            ""
+          )}
+        </div>
         <div className="nav-spacer" />
       </div>
     );
