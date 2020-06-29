@@ -176,3 +176,9 @@ img.icon {
   height: 130px;
   width: 130px;
 }
+
+@media screen and (min-width: 700px) {
+  .div-container_eighty-vh {
+    width: 90%;
+  }
+}
