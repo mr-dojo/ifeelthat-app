@@ -48,6 +48,16 @@ p.quote-author {
 .down-arrow_breathe-page {
   height: 70px;
   width: 70px;
+  border-radius: 40px;
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.09);
+}
+
+.down-arrow_breathe-page:hover {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.down-arrow_breathe-page:active {
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.09);
 }
 
 .breathe-page_button-container {

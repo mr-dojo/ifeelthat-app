@@ -88,7 +88,7 @@ class Breathe extends React.Component {
       >
         <img
           className="down-arrow_breathe-page"
-          src="/images/Arrow_Down_Black1920765.png"
+          src="/svg-images/noun_Arrow_circle_white_1920765.svg"
           alt="icon of arrow pointing down"
         />
       </div>
@@ -290,6 +290,7 @@ class Breathe extends React.Component {
                 : ` emotions `}
               at a deeper level.
             </p>
+            <div className="vertical-spacer" />
           </div>
         </section>
         {this.renderDownArrow()}
