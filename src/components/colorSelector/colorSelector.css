@@ -20,6 +20,7 @@
   height: 100px;
   width: 100px;
   margin: 5px;
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .color-chooser_form input {

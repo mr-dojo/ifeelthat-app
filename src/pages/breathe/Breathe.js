@@ -3,7 +3,6 @@ import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
 import { scroller } from "react-scroll";
 import { API_ENDPOINT } from "../../config";
-import { Link } from "react-router-dom";
 import ScrollToTop from "../../components/ScrollToTop";
 import "./breathe.css";
 import ColorSelector from "../../components/colorSelector/ColorSelector";
@@ -14,7 +13,7 @@ class Breathe extends React.Component {
   static contextType = StoreContext;
 
   state = {
-    breathButtonText: "Start",
+    breathButtonText: "Breathe",
     onTopOfPage: true,
   };
 
@@ -89,7 +88,7 @@ class Breathe extends React.Component {
       >
         <img
           className="down-arrow_breathe-page"
-          src="/images/Arrow_Down_Black1920765.png"
+          src="/svg-images/noun_Arrow_circle_white_1920765.svg"
           alt="icon of arrow pointing down"
         />
       </div>
@@ -102,12 +101,18 @@ class Breathe extends React.Component {
     return (
       <section className="space-evenly">
         <div className="div-container_eighty-vh section_margin">
-          <img
-            className="icon"
-            src="/images/noun_breathe_black2588014.png"
-            alt="icon of a person taking a breathe"
-          />
-          <h2>Breathe and Identify</h2>
+          <header>
+            <img
+              className="icon"
+              src="/images/noun_breathe_black2588014.png"
+              alt="icon of a person taking a breathe"
+            />
+            <h2>Breathe and Identify</h2>
+          </header>
+
+          <p className="medium-text">
+            Mindful breathing will help when trying to identify your emotions.
+          </p>
 
           <p className="small-text">
             Starting in your belly and working up to your chest, take a deep
@@ -132,7 +137,7 @@ class Breathe extends React.Component {
                   clearInterval(timer);
                   return this.setState(
                     {
-                      breathButtonText: "Start",
+                      breathButtonText: "Breathe",
                     },
                     () => {
                       this.context.updateBreatheSection(2);
@@ -144,9 +149,6 @@ class Breathe extends React.Component {
               }, 1000);
             }}
           ></Button>
-          <p className="small-text">
-            Mindful breathing will help when trying to identify your emotions.
-          </p>
         </div>
       </section>
     );
@@ -208,21 +210,25 @@ class Breathe extends React.Component {
     return (
       <section id="breathe-again" className="section_margin space-evenly">
         <div className="section_margin space-evenly div-container_eighty-vh">
-          <img
-            className="icon"
-            src="/images/noun_breathe_black2588014.png"
-            alt="icon of a person taking a breathe"
-          />
-          <h2>
-            Feel that
-            {this.context.feeling.emotion
-              ? ` ${this.context.feeling.emotion}`
-              : ` emotion`}
-          </h2>
+          <header>
+            <img
+              className="icon"
+              src="/images/noun_breathe_black2588014.png"
+              alt="icon of a person taking a breathe"
+            />
+            <h2>
+              Feel that
+              {this.context.feeling.emotion
+                ? ` ${this.context.feeling.emotion}`
+                : ` emotion`}
+            </h2>
+          </header>
+
           <p className="small-text">
             Take a few more deep breaths and try to <strong>really</strong>{" "}
             experience it.
           </p>
+
           <Button
             buttonText={this.state.breathButtonText}
             onClick={() => {
@@ -241,7 +247,7 @@ class Breathe extends React.Component {
                   clearInterval(timer);
                   return this.setState(
                     {
-                      breathButtonText: "Start",
+                      breathButtonText: "Breathe",
                     },
                     () => {
                       const stepObj = { path: "./breathe", section: 4 };
@@ -278,13 +284,13 @@ class Breathe extends React.Component {
               </h2>
             </header>
             <p className="small-text">
-              This helps you to see your
+              This may help you feel and experience your
               {this.context.feeling.emotion
                 ? ` ${this.context.feeling.emotion} `
                 : ` emotions `}
-              as something you are <strong>experiencing</strong> rather than
-              something you <strong>are</strong>.
+              at a deeper level.
             </p>
+            <div className="vertical-spacer" />
           </div>
         </section>
         {this.renderDownArrow()}
@@ -321,37 +327,42 @@ class Breathe extends React.Component {
                 : `You've identified your emotion, now...`}
             </h2>
           </header>
-          <p className="medium-text">
-            Select <strong>Listen</strong> to find other people's posts about
-            {this.context.feeling.emotion
-              ? ` their ${this.context.feeling.emotion}.`
-              : ` the feeling you are experiencing.`}
-            .
-          </p>
-          <Link className="nav-link" to="/listen">
+
+          <div className="breathe-page_button-container">
+            <p className="small-text">
+              Select <strong>Listen</strong> to find other people's posts about
+              {this.context.feeling.emotion
+                ? ` ${this.context.feeling.emotion}.`
+                : ` the feeling you are experiencing.`}
+            </p>
+
             <Button
               buttonText="Listen"
               onClick={() => {
                 const stepObj = { path: "/listen" };
                 this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/listen");
               }}
             />
-          </Link>
-          <p className="medium-text">
-            Select <strong>Share</strong> to create a post about
-            {this.context.feeling.emotion
-              ? ` your ${this.context.feeling.emotion}.`
-              : ` the feeling you are experiencing.`}
-          </p>
-          <Link className="nav-link" to="/share">
+          </div>
+
+          <div className="breathe-page_button-container">
+            <p className="small-text">
+              Select <strong>Share</strong> to create an an anonymous post about
+              {this.context.feeling.emotion
+                ? ` your ${this.context.feeling.emotion}.`
+                : ` the feeling you are experiencing.`}
+            </p>
+
             <Button
               buttonText="Share"
               onClick={() => {
                 const stepObj = { path: "/share" };
                 this.context.setSessionStorage("step", stepObj);
+                this.context.handleRedirect("/share");
               }}
             />
-          </Link>
+          </div>
         </div>
       </section>
     );

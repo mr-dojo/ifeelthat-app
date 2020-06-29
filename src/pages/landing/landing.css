@@ -46,16 +46,28 @@ div.container_header {
 .down-arrow_container_landing-page {
   display: flex;
   position: fixed;
-  bottom: 50px;
-  justify-content: center;
+  flex-direction: row;
+  bottom: 20px;
+  justify-content: flex-end;
   align-items: center;
   height: 70px;
   width: 100vw;
 }
 
 .down-arrow_landing-page {
-  height: 70px;
-  width: 70px;
+  margin: 0 20px 0 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 40px;
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.09);
+}
+
+.down-arrow_landing-page:hover {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.down-arrow_landing-page:active {
+  box-shadow: 0px 0 10px 0 rgba(0, 0, 0, 0.09);
 }
 
 .warning_container {
@@ -75,11 +87,23 @@ div.container_header {
     font-size: 100px;
     margin: -10px 0 0 0;
   }
+
+  .down-arrow_landing-page {
+    margin: 0 30px 0 10px;
+    height: 60px;
+    width: 60px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   .app-name {
     font-size: 150px;
     margin: -50px 0 -20px 0;
+  }
+
+  .down-arrow_landing-page {
+    margin: 0 50px 0 10px;
+    height: 70px;
+    width: 70px;
   }
 }

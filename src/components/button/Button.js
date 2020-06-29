@@ -4,13 +4,14 @@ import "./button.css";
 function Button(props) {
   const {
     buttonText,
+    buttonTextClass,
     buttonType = "button",
     buttonClass = "button",
     onClick = () => {},
   } = props;
   return (
     <button className={buttonClass} onClick={onClick} type={buttonType}>
-      <span>{buttonText}</span>
+      <span className={buttonTextClass}>{buttonText}</span>
     </button>
   );
 }

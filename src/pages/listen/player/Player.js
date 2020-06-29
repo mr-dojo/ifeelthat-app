@@ -26,7 +26,7 @@ class Player extends React.Component {
 
   render() {
     return (
-      <>
+      <section>
         <div id="player">{this.buildIframe()}</div>
         <Button buttonText="Next" onClick={() => this.props.next()}></Button>
         <Link className="nav-link" to="/share">
@@ -39,7 +39,7 @@ class Player extends React.Component {
             }}
           />
         </Link>
-      </>
+      </section>
     );
   }
 }

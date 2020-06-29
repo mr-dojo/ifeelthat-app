@@ -5,6 +5,7 @@ import Landing from "./pages/landing/Landing";
 import Breathe from "./pages/breathe/Breathe";
 import Listen from "./pages/listen/Listen";
 import Share from "./pages/share/Share";
+import Survey from "./pages/survey/Survey";
 import SideDrawer from "./components/sideDrawer/SideDrawer";
 import Backdrop from "./components/backdrop/Backdrop";
 import Footer from "./components/footer/Footer";
@@ -22,6 +23,7 @@ class App extends React.Component {
     sideDrawerOpen: false,
     redirect: "",
     breatheSection: 1,
+    shareSection: 1,
     sharePosition: 0,
     shareSubmitted: false,
   };
@@ -62,7 +64,6 @@ class App extends React.Component {
       const sessionStorageStep = window.sessionStorage.getItem("step");
       const stepObj = JSON.parse(sessionStorageStep);
       this.ifPathIsBreathe(stepObj);
-      this.ifPathIsShare(stepObj);
       this.setState({
         sessionStorage: stepObj,
         redirect: stepObj.path,
@@ -85,14 +86,6 @@ class App extends React.Component {
     if (stepObj.path === "/breathe") {
       this.setState({
         breatheSection: stepObj.section,
-      });
-    } else return;
-  };
-
-  ifPathIsShare = (stepObj) => {
-    if (stepObj.path === "/share") {
-      this.setState({
-        shareSubmitted: stepObj.submitted,
       });
     } else return;
   };
@@ -142,6 +135,12 @@ class App extends React.Component {
         window.sessionStorage.setItem("step", JSON.stringify(newStep));
       }
     );
+  };
+
+  updateShareSection = (section) => {
+    this.setState({
+      shareSection: section,
+    });
   };
 
   /*updates the share that the user is currently on*/
@@ -264,11 +263,12 @@ class App extends React.Component {
       sideDrawerOpen: this.state.sideDrawerOpen,
       sessionStorage: this.state.sessionStorage,
       breatheSection: this.state.breatheSection,
+      shareSection: this.state.shareSection,
       shareQueue: this.state.shareQueue,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       updateBreatheSection: this.updateBreatheSection,
-      updateShareType: this.updateShareType,
+      updateShareSection: this.updateShareSection,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
       handleColorSubmit: this.handleColorSubmit,
       setPositionFromLocalStorage: this.setPositionFromLocalStorage,
@@ -279,7 +279,7 @@ class App extends React.Component {
     return (
       <StoreContext.Provider value={contextValues}>
         <div
-          className="content"
+          className="content section-1"
           style={{
             color: this.state.feeling.color
               ? this.contrastTextColor(this.state.feeling.color, true)
@@ -303,6 +303,7 @@ class App extends React.Component {
             <Route path="/breathe" component={Breathe} />
             <Route exact path="/listen" component={Listen} />
             <Route exact path="/share" component={Share} />
+            <Route exact path="/survey" component={Survey} />
           </main>
         </div>
         <Footer></Footer>
