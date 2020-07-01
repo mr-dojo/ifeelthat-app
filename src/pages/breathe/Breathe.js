@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../../components/button/Button";
 import StoreContext from "../../StoreContext";
-import { scroller } from "react-scroll";
 import { API_ENDPOINT } from "../../config";
 import ScrollToTop from "../../components/ScrollToTop";
 import "./breathe.css";
@@ -16,34 +15,6 @@ class Breathe extends React.Component {
     breathButtonText: "Breathe",
     onTopOfPage: true,
   };
-
-  componentDidMount() {
-    this.watchScrollPosition();
-  }
-
-  /* If the user is on the top of the page
-  render the down arrow */
-  watchScrollPosition = () => {
-    window.onscroll = () => {
-      if (window.pageYOffset === 0 && !this.state.onTopOfPage) {
-        this.setState({
-          onTopOfPage: true,
-        });
-      } else if (window.pageYOffset !== 0 && this.state.onTopOfPage) {
-        this.setState({
-          onTopOfPage: false,
-        });
-      }
-    };
-  };
-
-  scrollToSection() {
-    scroller.scrollTo("choose-color_section", {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-    });
-  }
 
   handleEmotionSubmit = (e) => {
     e.preventDefault();
@@ -80,26 +51,10 @@ class Breathe extends React.Component {
       });
   };
 
-  renderDownArrow = () => {
-    return this.state.onTopOfPage ? (
-      <div
-        className="down-arrow_container_breathe-page"
-        onClick={() => this.scrollToSection()}
-      >
-        <img
-          className="down-arrow_breathe-page"
-          src="/svg-images/noun_Arrow_circle_white_1920765.svg"
-          alt="icon of arrow pointing down"
-        />
-      </div>
-    ) : (
-      ""
-    );
-  };
-
   renderBreath = () => {
     return (
       <section className="space-evenly">
+        <ScrollToTop />
         <div className="div-container_eighty-vh section_margin">
           <header>
             <img
@@ -157,6 +112,7 @@ class Breathe extends React.Component {
   renderEmotion = () => {
     return (
       <section>
+        <ScrollToTop />
         <div className="section_margin div-container_eighty-vh">
           <header>
             <img
@@ -179,8 +135,8 @@ class Breathe extends React.Component {
               id="emotion"
               required
             >
-              <option value="" selected disabled>
-                Select
+              <option value="" defaultValue>
+                Select One
               </option>
               <option value="Joy">Joy</option>
               <option value="Sadness">Sadness</option>
@@ -209,6 +165,7 @@ class Breathe extends React.Component {
   renderBreath2 = () => {
     return (
       <section id="breathe-again" className="section_margin space-evenly">
+        <ScrollToTop />
         <div className="section_margin space-evenly div-container_eighty-vh">
           <header>
             <img
@@ -267,6 +224,7 @@ class Breathe extends React.Component {
   renderColor = () => {
     return (
       <>
+        <ScrollToTop />
         <section className="container-dark explain-color_section">
           <div className="div-container_eighty-vh">
             <header>
@@ -283,29 +241,23 @@ class Breathe extends React.Component {
                 .
               </h2>
             </header>
-            <p className="small-text">
+            <p className="xtra-small-text">
               This may help you feel and experience your
               {this.context.feeling.emotion
                 ? ` ${this.context.feeling.emotion} `
                 : ` emotions `}
               at a deeper level.
             </p>
-            <div className="vertical-spacer" />
-          </div>
-        </section>
-        {this.renderDownArrow()}
-        <section className="choose-color_section">
-          <div className="div-container_eighty-vh">
             <ColorSelector />
             <div className="quote-container">
-              <p className="xtra-small-text align-left quote-text">
+              <p className="extra-small-text align-left quote-text">
                 <i>
                   "Anyone who has ever felt blue, seen red, blacked out, or
                   turned green knows we're prone to make emotional associations
                   with different shades"
                 </i>
               </p>
-              <p className="xtra-small-text align-right quote-author">
+              <p className="extra-small-text align-right quote-author">
                 - Winifred Gallagher
               </p>
             </div>
