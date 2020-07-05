@@ -75,35 +75,11 @@ class Breathe extends React.Component {
           </p>
 
           <Button
-            buttonText={this.state.breathButtonText}
+            buttonText="Start"
             onClick={() => {
-              let inCount = 5;
-              let outCount = 5;
-              let timer = setInterval(() => {
-                if (inCount !== 0) {
-                  this.setState({ breathButtonText: `Breathe In ${inCount}` });
-                  inCount = inCount - 1;
-                } else if (outCount !== 0) {
-                  this.setState({
-                    breathButtonText: `Breathe Out ${outCount}`,
-                  });
-                  outCount--;
-                } else {
-                  clearInterval(timer);
-                  return this.setState(
-                    {
-                      breathButtonText: "Breathe",
-                    },
-                    () => {
-                      this.context.updateBreatheSection(2);
-                      const stepObj = { path: "/breathe", section: 2 };
-                      this.context.setSessionStorage("step", stepObj);
-                    }
-                  );
-                }
-              }, 1000);
+              this.context.handleToggleBreatheTimer();
             }}
-          ></Button>
+          />
         </div>
       </section>
     );
