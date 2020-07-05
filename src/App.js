@@ -7,6 +7,7 @@ import Listen from "./pages/listen/Listen";
 import Share from "./pages/share/Share";
 import Survey from "./pages/survey/Survey";
 import SideDrawer from "./components/sideDrawer/SideDrawer";
+import BreatheTimer from "./components/breatheTimer/BreatheTimer";
 import Backdrop from "./components/backdrop/Backdrop";
 import Footer from "./components/footer/Footer";
 import StoreContext from "./StoreContext";
@@ -21,6 +22,7 @@ class App extends React.Component {
     sessionStorage: {},
     shareQueue: [],
     sideDrawerOpen: false,
+    breatheTimerOpen: true,
     redirect: "",
     breatheSection: 1,
     shareSection: 1,
@@ -205,6 +207,11 @@ class App extends React.Component {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
 
+  handleToggleBreatheTimer = () =>
+    this.setState((prevState) => {
+      return { breatheTimerOpen: !prevState.breatheTimerOpen };
+    });
+
   handleRedirect = (path) => {
     this.syncFeeling();
     this.syncStep();
@@ -270,6 +277,7 @@ class App extends React.Component {
       updateBreatheSection: this.updateBreatheSection,
       updateShareSection: this.updateShareSection,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
+      handleToggleBreatheTimer: this.handleToggleBreatheTimer,
       handleColorSubmit: this.handleColorSubmit,
       setPositionFromLocalStorage: this.setPositionFromLocalStorage,
       populateShares: this.populateShares,
@@ -290,13 +298,18 @@ class App extends React.Component {
           }}
         >
           <ScrollToTop />
+
           {this.state.redirect !== "" ? (
             <Redirect to={this.state.redirect} />
           ) : (
             ""
           )}
+
           <SideDrawer />
+
           {this.state.sideDrawerOpen ? <Backdrop /> : ""}
+          {this.state.breatheTimerOpen ? <BreatheTimer /> : ""}
+
           <main>
             <Route path="/" component={ToolBar} />
             <Route exact path="/" component={Landing} />

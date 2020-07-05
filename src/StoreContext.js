@@ -11,6 +11,7 @@ const StoreContext = React.createContext({
   breatheSection: Number,
   shareSection: Number,
   sideDrawerOpen: Boolean,
+  breatheTimerOpen: Boolean,
   sharePosition: Number,
 });
 
