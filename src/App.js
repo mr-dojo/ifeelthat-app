@@ -22,7 +22,7 @@ class App extends React.Component {
     sessionStorage: {},
     shareQueue: [],
     sideDrawerOpen: false,
-    breatheTimerOpen: true,
+    breatheTimerOpen: false,
     redirect: "",
     breatheSection: 1,
     shareSection: 1,
@@ -229,9 +229,9 @@ class App extends React.Component {
 
     this.updateBreatheSection(5);
     this.updateFeeling(newObj);
-    this.setSessionStorage("step", stepObj);
     this.patchColor(newObj);
     this.populateShares();
+    this.setSessionStorage("step", stepObj);
     this.setPositionFromLocalStorage();
   };
 
