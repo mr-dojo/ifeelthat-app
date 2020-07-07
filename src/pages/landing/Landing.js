@@ -111,18 +111,20 @@ class Landing extends React.Component {
                 src="/images/noun_empathy_2295254.png"
                 alt="empathy"
               />
-              <h2>Connection without conversation</h2>
+              <h2>Connected by emotions</h2>
             </header>
             <p className="medium-text">
               This app is designed to help you find connection through shared
               experiences.
             </p>
             <p className="small-text">
-              It works best if you have at least 5 minutes,
+              <strong>For best results:</strong>
               <br />
-              by yourself,
+              Have at least 5 minutes
               <br />
-              in a quiet place.
+              by yourself
+              <br />
+              in a quiet place
             </p>
           </div>
         </section>
@@ -137,12 +139,12 @@ class Landing extends React.Component {
               <h2>Breathe and identify</h2>
             </header>
             <p className="medium-text">
-              You'll go through a 3 minute process to get out of your head and
-              into your feelings.
+              You'll go through a quick process to get out of your head and into
+              your feelings.
             </p>
             <p className="small-text">
               Being mindful of your breathing will allow you to more easily
-              identify the emotions you're experiencing.
+              identify and feel into the emotions you're experiencing.
             </p>
           </div>
         </section>
@@ -195,11 +197,9 @@ class Landing extends React.Component {
               <h3>
                 <strong className="medium-text">Warning:</strong>
               </h3>
-              <p className="small-text align-left">
-                <br /> This app is not for everybody and contains content that
-                may be disturbing and upsetting.
-                <br />
-                May also contain adult language and topics.
+              <p className="extra-small-text align-left">
+                <br /> This app is not for everybody and contains adult language
+                and topics that may be upsetting or disturbing.
               </p>
             </div>
             <p className="small-text">
