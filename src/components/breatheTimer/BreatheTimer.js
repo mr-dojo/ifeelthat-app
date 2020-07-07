@@ -11,8 +11,6 @@ class BreatheTimer extends React.Component {
     timerDivClasses: "breathe-timer",
   };
 
-  buttonActions = this.context.breatheTimerButtonActions;
-
   componentDidMount() {
     // Initiate the component fade-in animation
     this.setState({
