@@ -11,7 +11,10 @@ class BreatheTimer extends React.Component {
     timerDivClasses: "breathe-timer",
   };
 
+  buttonActions = this.context.breatheTimerButtonActions;
+
   componentDidMount() {
+    // Initiate the component fade-in animation
     this.setState({
       timerDivClasses: "breathe-timer breathe-timer_fade-in",
     });
@@ -19,18 +22,16 @@ class BreatheTimer extends React.Component {
 
   render() {
     return (
-      <div
-        className={this.state.timerDivClasses}
-        onClick={() => {
-          this.context.handleToggleBreatheTimer();
-        }}
-      >
+      <div className={this.state.timerDivClasses}>
         <div className="breathe-timer_white" />
         <div className="breathe-timer_black" />
         <div className="breathe-timer_animation" />
         <Button
           buttonClass="breathe-timer_exit-button button"
           buttonText="Ready"
+          onClick={() => {
+            this.context.handleToggleBreatheTimer();
+          }}
         />
       </div>
     );
