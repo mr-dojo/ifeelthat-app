@@ -19,13 +19,12 @@ class Breathe extends React.Component {
   handleEmotionSubmit = (e) => {
     e.preventDefault();
     const newEmotion = e.target.emotion.value;
-    const stepObj = { path: "/breathe", section: 3 };
-
-    this.context.updateFeeling(newEmotion);
     this.context.updateBreatheSection(3);
+    this.postFeeling(newEmotion);
+    this.context.updateFeeling(newEmotion);
+    const stepObj = { path: "/breathe", section: 3 };
     this.context.setSessionStorage("step", stepObj);
     this.context.updatePosition(true);
-    this.postFeeling(newEmotion);
   };
 
   postFeeling = (emotion) => {
@@ -77,6 +76,13 @@ class Breathe extends React.Component {
           <Button
             buttonText="Start"
             onClick={() => {
+              setTimeout(() => {
+                this.context.updateBreatheSection(2);
+                this.context.setSessionStorage("step", {
+                  path: "./breathe",
+                  section: 2,
+                });
+              }, 1000);
               this.context.handleToggleBreatheTimer();
             }}
           />
@@ -149,47 +155,28 @@ class Breathe extends React.Component {
               src="/images/noun_breathe_black2588014.png"
               alt="icon of a person taking a breathe"
             />
-            <h2>
-              Feel that
-              {this.context.feeling.emotion
-                ? ` ${this.context.feeling.emotion}`
-                : ` emotion`}
-            </h2>
+            <h2>Feel into it</h2>
           </header>
 
           <p className="small-text">
-            Take a few more deep breaths and try to <strong>really</strong>{" "}
-            experience it.
+            Continue taking deep breathes and allow yourself to really
+            experience the
+            {this.context.feeling.emotion
+              ? ` ${this.context.feeling.emotion}`
+              : ` emotion`}
           </p>
 
           <Button
-            buttonText={this.state.breathButtonText}
+            buttonText="Start"
             onClick={() => {
-              let inCount = 5;
-              let outCount = 5;
-              let timer = setInterval(() => {
-                if (inCount !== 0) {
-                  this.setState({ breathButtonText: `Breathe In ${inCount}` });
-                  inCount = inCount - 1;
-                } else if (outCount !== 0) {
-                  this.setState({
-                    breathButtonText: `Breathe Out ${outCount}`,
-                  });
-                  outCount--;
-                } else {
-                  clearInterval(timer);
-                  return this.setState(
-                    {
-                      breathButtonText: "Breathe",
-                    },
-                    () => {
-                      const stepObj = { path: "./breathe", section: 4 };
-                      this.context.updateBreatheSection(4);
-                      this.context.setSessionStorage("step", stepObj);
-                    }
-                  );
-                }
+              setTimeout(() => {
+                this.context.updateBreatheSection(4);
+                this.context.setSessionStorage("step", {
+                  path: "./breathe",
+                  section: 4,
+                });
               }, 1000);
+              this.context.handleToggleBreatheTimer();
             }}
           ></Button>
         </div>
@@ -210,7 +197,7 @@ class Breathe extends React.Component {
                 alt="finger hovering over buttons"
               />
               <h2 className="explain-color_h2">
-                Choose a color to represent
+                Now, choose a color to represent
                 {this.context.feeling.emotion
                   ? ` your ${this.context.feeling.emotion}`
                   : ` this emotion`}
@@ -218,7 +205,9 @@ class Breathe extends React.Component {
               </h2>
             </header>
             <p className="xtra-small-text">
-              This may help you feel and experience your
+              Colors are known to be associated with emotions. By choosing a
+              color to represent this feeling, you may be able to experience
+              your
               {this.context.feeling.emotion
                 ? ` ${this.context.feeling.emotion} `
                 : ` emotions `}
@@ -276,7 +265,7 @@ class Breathe extends React.Component {
 
           <div className="breathe-page_button-container">
             <p className="small-text">
-              Select <strong>Share</strong> to create an an anonymous post about
+              Select <strong>Share</strong> to create an anonymous post about
               {this.context.feeling.emotion
                 ? ` your ${this.context.feeling.emotion}.`
                 : ` the feeling you are experiencing.`}
