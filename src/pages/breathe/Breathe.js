@@ -69,8 +69,8 @@ class Breathe extends React.Component {
           </p>
 
           <p className="small-text">
-            Starting in your belly and working up to your chest, take a deep
-            breath.
+            Take deep breathes from your belly and note emotions that come up.
+            Select the "Ready" button when you feel ready to move on.
           </p>
 
           <Button
