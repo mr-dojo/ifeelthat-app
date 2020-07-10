@@ -21,6 +21,7 @@ class App extends React.Component {
     feeling: {},
     sessionStorage: {},
     shareQueue: [],
+    shareText: "",
     sideDrawerOpen: false,
     breatheTimerOpen: false,
     redirect: "",
@@ -244,6 +245,12 @@ class App extends React.Component {
     );
   };
 
+  updateShareText = (newText) => {
+    this.setState({
+      shareText: newText,
+    });
+  };
+
   patchColor = (newObj) => {
     fetch(`${API_ENDPOINT}feeling/${this.state.feeling.id}`, {
       method: "PATCH",
@@ -272,10 +279,12 @@ class App extends React.Component {
       breatheSection: this.state.breatheSection,
       shareSection: this.state.shareSection,
       shareQueue: this.state.shareQueue,
+      shareText: this.state.shareText,
       updateFeeling: this.updateFeeling,
       updatePosition: this.updatePosition,
       updateBreatheSection: this.updateBreatheSection,
       updateShareSection: this.updateShareSection,
+      updateShareText: this.updateShareText,
       handleToggleSideDrawer: this.handleToggleSideDrawer,
       handleToggleBreatheTimer: this.handleToggleBreatheTimer,
       handleColorSubmit: this.handleColorSubmit,
