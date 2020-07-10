@@ -3,6 +3,7 @@ import Button from "../../../components/button/Button";
 import StoreContext from "../../../StoreContext";
 import { API_ENDPOINT } from "../../../config";
 import "./shareText.css";
+import AreYouSure from "../../../components/areYouSure/AreYouSure";
 
 /* Renders a text input form */
 export default class ShareText extends React.Component {
@@ -11,31 +12,33 @@ export default class ShareText extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      breathButtonText: "Breathe",
-      shareText: "",
+      deleteCheck: false,
     };
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleTextSubmit = this.handleTextSubmit.bind(this);
   }
 
-  handleTextDelete = (e) => {
-    e.preventDefault();
+  handleDeleteText = () => {
     this.setState({
-      submitted: true,
-      shareText: "",
+      deleteCheck: false,
+    });
+    this.context.updateShareText("");
+  };
+
+  handleDeleteTextCancel = () => {
+    this.setState({
+      deleteCheck: false,
     });
   };
 
   handleTextChange = (e) => {
-    this.setState({
-      shareText: e.target.value,
-    });
+    this.context.updateShareText(e.target.value);
   };
 
   handleTextSubmit = (e) => {
     e.preventDefault();
     const { id, emotion } = this.context.feeling;
-    const text = this.state.shareText;
+    const text = this.context.shareText;
     const newShare = {
       text_share: text,
       share_type: "Text",
@@ -58,6 +61,7 @@ export default class ShareText extends React.Component {
       })
       .then((resJson) => {
         this.context.updateShareSection(3);
+        this.handleDeleteText();
       });
   };
 
@@ -90,20 +94,30 @@ export default class ShareText extends React.Component {
               name="share-text"
               id="text"
               placeholder="Just let the expression flow, stick with that feeling..."
-              value={this.state.shareText}
+              value={this.context.shareText}
               required
             ></textarea>
-            <Button buttonText="Share it" buttonType="submit"></Button>
-            {!this.state.shareText ? (
-              <Button
-                buttonText="Cancel"
-                onClick={(e) => this.handleCancel()}
-              />
+            {!this.context.shareText ? (
+              <>
+                <Button buttonText="Share it" buttonType="submit"></Button>
+                <Button
+                  buttonText="Cancel"
+                  onClick={(e) => this.handleCancel()}
+                />
+              </>
+            ) : !this.state.deleteCheck ? (
+              <>
+                <Button buttonText="Share it" buttonType="submit"></Button>
+                <Button
+                  buttonText="Burn it"
+                  onClick={() => this.setState({ deleteCheck: true })}
+                ></Button>
+              </>
             ) : (
-              <Button
-                buttonText="Burn it"
-                onClick={(e) => this.handleTextDelete(e)}
-              ></Button>
+              <AreYouSure
+                yesCallback={this.handleDeleteText}
+                noCallback={this.handleDeleteTextCancel}
+              ></AreYouSure>
             )}
           </form>
         </div>
@@ -112,6 +126,6 @@ export default class ShareText extends React.Component {
   };
 
   render() {
-    return this.renderTextForm();
+    return <>{this.renderTextForm()}</>;
   }
 }
