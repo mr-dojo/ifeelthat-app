@@ -6,6 +6,7 @@ const StoreContext = React.createContext({
     emotion: "",
     color: "",
   },
+  shareText: "",
   sessionStorage: {},
   shareQueue: [],
   breatheSection: Number,
