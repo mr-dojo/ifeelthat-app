@@ -55,31 +55,8 @@ class Share extends React.Component {
           <Button
             buttonText={this.state.breathButtonText}
             onClick={() => {
-              let inCount = 5;
-              let outCount = 5;
-              let timer = setInterval(() => {
-                if (inCount !== 0) {
-                  this.setState({
-                    breathButtonText: `Breathe In ${inCount}`,
-                  });
-                  inCount = inCount - 1;
-                } else if (outCount !== 0) {
-                  this.setState({
-                    breathButtonText: `Breathe Out ${outCount}`,
-                  });
-                  outCount--;
-                } else {
-                  clearInterval(timer);
-                  return this.setState(
-                    {
-                      breathButtonText: "Breathe",
-                    },
-                    () => {
-                      this.context.updateShareSection(5);
-                    }
-                  );
-                }
-              }, 1000);
+              this.context.handleToggleBreatheTimer();
+              setTimeout(this.context.updateShareSection(5), 1000);
             }}
           ></Button>
         </div>
